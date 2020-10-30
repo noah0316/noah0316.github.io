@@ -2,7 +2,9 @@ body.dark {
   background-color: $dark-background-color;
   text-shadow: $dark-text-shadow;
   color: $dark-light-font-color;
-
+  .thumbnail:hover {
+    background-color: #313131;
+  }
   // home
   .home-header {
     color: $dark-light-font-color;
@@ -15,7 +17,7 @@ body.dark {
     .author-introduction {
       color: $dark-middle-font-color;
     }
-    a {
+    div {
       color: $dark-link-color;
     }
   }

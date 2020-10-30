@@ -4,7 +4,44 @@
   position: relative;
   width: 100%;
   height: 60px;
-  background: $theme-gradient;
+  background: linear-gradient(89deg, #43e97b, #38f9d7, #8e2ddd);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
+  @-webkit-keyframes AnimationName {
+    0% {
+      background-position: 0% 43%;
+    }
+    50% {
+      background-position: 100% 58%;
+    }
+    100% {
+      background-position: 0% 43%;
+    }
+  }
+  @-moz-keyframes AnimationName {
+    0% {
+      background-position: 0% 43%;
+    }
+    50% {
+      background-position: 100% 58%;
+    }
+    100% {
+      background-position: 0% 43%;
+    }
+  }
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 43%;
+    }
+    50% {
+      background-position: 100% 58%;
+    }
+    100% {
+      background-position: 0% 43%;
+    }
+  }
 
   .link {
     display: inline-block;

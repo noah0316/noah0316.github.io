@@ -6,6 +6,9 @@ body.light {
   .home-header {
     color: $dark-gray;
   }
+  .thumbnail:hover {
+    background-color: #e8e8e8;
+  }
 
   .bio {
     .author-name-content {
@@ -14,7 +17,7 @@ body.light {
     .author-introduction {
       color: $middle-gray;
     }
-    a {
+    div {
       color: $light-link-color;
     }
   }

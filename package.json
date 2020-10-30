@@ -8,6 +8,7 @@
     "url": "https://github.com/JaeYeopHan/gatsby-starter-bee/issues"
   },
   "dependencies": {
+    "browserslist": "^4.14.5",
     "gatsby": "^2.2.8",
     "gatsby-image": "^2.0.34",
     "gatsby-plugin-feed": "^2.1.0",
@@ -32,6 +33,7 @@
     "gatsby-source-filesystem": "^2.0.28",
     "gatsby-transformer-remark": "^2.3.8",
     "gatsby-transformer-sharp": "^2.1.17",
+    "gh-pages": "^3.1.0",
     "intersection-observer": "^0.5.1",
     "katex": "^0.11.1",
     "lodash": "^4.17.19",
@@ -66,7 +68,7 @@
     "recursive-readdir": "^2.2.2",
     "signale": "^1.3.0"
   },
-  "homepage": "https://github.com/JaeYeopHan/gatsby-starter-bee#readme",
+  "homepage": "https://{noah0316}.github.io/{noah0316.github.io}",
   "keywords": [
     "gatsby"
   ],
@@ -74,7 +76,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JaeYeopHan/gatsby-starter-bee.git"
+    "url": "git+https://github.com/noah0316/noah0316.github.io.git"
   },
   "scripts": {
     "post": "gatsby-post-gen",
@@ -85,6 +87,7 @@
     "start": "npm run develop",
     "build": "gatsby build",
     "lh": "lighthousebot",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
+    "deploy": "gatsby build && gh-pages -d public -b master -r 'git@github.com:${noah0316}/${noah0316}.github.io.git'"
   }
 }

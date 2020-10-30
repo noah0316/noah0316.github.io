@@ -34,7 +34,7 @@
 }
 
 .category-container::-webkit-scrollbar {
-  display: none; // Safari and Chrome
+  display: visible; // Safari and Chrome
 }
 
 .category-container {

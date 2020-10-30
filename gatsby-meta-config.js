@@ -1,13 +1,13 @@
 module.exports = {
-  title: `Bee starter`,
+  title: `Noah's Dev Log`,
   description: `Blog posted about ...`,
-  author: `[Your Name]`,
-  introduction: `I explain with words and code. I explain with words and code. I explain with words and code.`,
-  siteUrl: `https://gatsby-starter-bee.netlify.com`, // Your blog site url
+  author: `[Noah]`,
+  introduction: `23살 대학생 개발자`,
+  siteUrl: `https://noah0316.github.io`, // Your blog site url
   social: {
     twitter: ``, // Your Twitter account
-    github: ``, // Your GitHub account
-    medium: ``, // Your Medium account
+    github: `noah0316`, // Your GitHub account
+    instagram: `happyhong_2`, // Your Medium account
     facebook: ``, // Your Facebook account
     linkedin: ``, // Your LinkedIn account
   },
@@ -21,7 +21,7 @@ module.exports = {
     countOfInitialPost: 10, // Config your initial count of post
   },
   sponsor: {
-    buyMeACoffeeId: 'jbee',
+    buyMeACoffeeId: 'q6PBeY92M',
   },
   share: {
     facebookAppId: '', // Add facebookAppId for using facebook share feature v3.2
