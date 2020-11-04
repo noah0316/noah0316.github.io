@@ -7,7 +7,7 @@ import { description } from '../../../gatsby-meta-config'
 
 function NewlineText(props) {
   const text = props.text;
-  const newText = text.split('\n').map(str => <p>{str}</p>);
+  const newText = text.split('\n').map(str => <p key={str}>{str}</p>);
   
   return newText;
 }
