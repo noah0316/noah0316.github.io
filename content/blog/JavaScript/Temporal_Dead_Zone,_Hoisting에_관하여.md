@@ -40,7 +40,7 @@ console.log(variable) // undefined
 var variable = 10
 ```
 
-위의 코드는 undefined가 출력된다.. 자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석한다.
+위의 코드는 undefined가 출력된다. 자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석한다.
 
 ```javascript
 var variable
@@ -226,7 +226,8 @@ myCar.power // => '300HP'
 ```javascript
 const a = 2
 function square(a = a) {
-  // Access to TDZ
+  // function square(a = a) -> Access to TDZ
+
   return a * a
 }
 // Does not work!
