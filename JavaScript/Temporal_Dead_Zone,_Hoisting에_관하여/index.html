@@ -84,7 +84,7 @@
 <p>variable이라는 변수를 선언해주지 않았기 때문에 위의 코드는 당연히 참조에러를 발생시킨다.</p>
 <div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable<span class="token punctuation">)</span> <span class="token comment">// undefined</span>
 <span class="token keyword">var</span> variable <span class="token operator">=</span> <span class="token number">10</span></code></pre></div>
-<p>위의 코드는 undefined가 출력된다.. 자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석한다.</p>
+<p>위의 코드는 undefined가 출력된다. 자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석한다.</p>
 <div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> variable
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable<span class="token punctuation">)</span> <span class="token comment">// undefined</span>
 variable <span class="token operator">=</span> <span class="token number">10</span></code></pre></div>
@@ -216,7 +216,8 @@ myCar<span class="token punctuation">.</span>power <span class="token comment">/
 <p>기본 매개변수는 전역(global)과 함수 스코프 사이의 중간 스코프(intermidiate scope)에 위치한다. 기본 매개변수도 TDZ 제한이 있다.</p>
 <div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">2</span>
 <span class="token keyword">function</span> <span class="token function">square</span><span class="token punctuation">(</span><span class="token parameter">a <span class="token operator">=</span> a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token comment">// Access to TDZ</span>
+  <span class="token comment">// function square(a = a) -> Access to TDZ</span>
+
   <span class="token keyword">return</span> a <span class="token operator">*</span> a
 <span class="token punctuation">}</span>
 <span class="token comment">// Does not work!</span>
