@@ -31,7 +31,11 @@
   .author-introduction {
     margin-top: 4px;
     font-size: 80%;
-    line-height: 1.4;
+    line-height: 0.5;
+    white-space: pre-line;
+    :nth-child(2) {
+      margin-left: 3px;
+    }
   }
 
   .author-socials {

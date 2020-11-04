@@ -10,7 +10,11 @@
   -ms-overflow-style: none; // IE 10+
   overflow: -moz-scrollbars-none; // Firefox
   z-index: 1;
-  padding: 6px 20px;
+  padding: 4px 15px 10px 15px;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    padding: 6px 15px;
+  }
 
   .item {
     display: inline-block;

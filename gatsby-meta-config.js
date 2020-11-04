@@ -2,7 +2,7 @@ module.exports = {
   title: `Noah's Dev Log`,
   description: `Blog posted about ...`,
   author: `[Noah]`,
-  introduction: `23살 대학생 개발자`,
+  introduction: `👨‍💻 23살 대학생 개발자입니다.\n  Swift를 활용한 iOS개발에 관심이 많지만\n 🛠 기술을 가리지는 않습니다.😊`,
   siteUrl: `https://noah0316.github.io`, // Your blog site url
   social: {
     twitter: ``, // Your Twitter account
