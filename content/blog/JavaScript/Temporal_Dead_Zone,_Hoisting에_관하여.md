@@ -20,7 +20,7 @@ Temporal DeadZone, 줄여서 TDZ를 보기전에 Hoisting에 관하여 알아보
 
 <img src="/assets/2020-11-04/hoisting-papago.png" width="300"/>
 
-<center>출처 : 네이버 파파고</center>
+<center><출처 : 네이버 파파고></center>
 <br>
 
 Hoisting은 ''끌어올리다''라는 뜻을 가지고 있다.
@@ -121,7 +121,8 @@ const number = 123 // ReferenceError: Cannot access 'number' before initializati
 선언 -> 초기화 -> 할당
 
 <img src="/assets/2020-11-04/var.png" width="300"/>
-
+<center><출처 : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/></center>
+<br>
 var로 선언된 변수는 선언과 초기화를 동시에 진행합니다. 위에서 보았던 것처럼 var로 선언된 변수는 선언과 동시에 undefined로 호이스 팅되어 선언과 초기화가 동시에 진행된다.
 
 ### let, const으로 선언된 변수는
@@ -129,7 +130,8 @@ var로 선언된 변수는 선언과 초기화를 동시에 진행합니다. 위
 ---
 
 <img src="/assets/2020-11-04/let.png" width="600"/>
-
+<center><출처 : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/></center>
+<br>
 let은 선언과 초기화가 분리되어 그 사이에 TDZ가 생성되고,
 
 const는 선언과 초기화가 동시에 진행되어지지만 선언이전에 TDZ가 생성되어 접근하면 Reference Error가 발생한다.
@@ -139,13 +141,14 @@ const는 선언과 초기화가 동시에 진행되어지지만 선언이전에 
 <hr>
 
 <img src="/assets/2020-11-04/func.png" width="600"/>
-
+<center><출처 : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/></center>
+<br>
 선언, 초기화, 할당을 동시에 진행한다.
 
 Temporal Dead Zone에 접근하면 참조에러를 발생하는데 Temporal Dead Zone은 다음과 같다.
 
 <img src="/assets/2020-11-04/tdz.jpeg" width="600"/>
-
+<br>
 TDZ에 영향을 받는 구문들은 생성되는 과정에서 TDZ가 생성되는데 TDZ에 접근하게 되면 ReferenceError가 발생한다.
 
 따라서 TDZ에 있는 number변수에 접근하면 ReferenceError가 발생한다.
