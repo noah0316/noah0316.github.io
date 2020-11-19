@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about ...]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 04 Nov 2020 18:02:01 GMT</lastBuildDate><item><title><![CDATA[Temporal Dead Zone, Hoisting에 관하여]]></title><description><![CDATA[이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다. 원문 : https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/ 원문 : https://dmitripavlutin…]]></description><link>https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</link><guid isPermaLink="false">https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</guid><pubDate>Wed, 04 Nov 2020 23:38:01 GMT</pubDate><content:encoded>&lt;p&gt;이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about ...]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 19 Nov 2020 06:36:00 GMT</lastBuildDate><item><title><![CDATA[Temporal Dead Zone, Hoisting에 관하여]]></title><description><![CDATA[이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다. 원문 : https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/ 원문 : https://dmitripavlutin…]]></description><link>https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</link><guid isPermaLink="false">https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</guid><pubDate>Wed, 04 Nov 2020 23:38:01 GMT</pubDate><content:encoded>&lt;p&gt;이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다.&lt;/p&gt;
 &lt;p&gt;원문 : &lt;a href=&quot;https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/&quot;&gt;https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;원문 : &lt;a href=&quot;https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&quot;&gt;https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Temporal DeadZone, 줄여서 TDZ를 보기전에 Hoisting에 관하여 알아보자.&lt;/p&gt;
@@ -9,7 +9,7 @@
   &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;hoisting papago&quot; title=&quot;hoisting papago&quot; src=&quot;/static/cffcf10865567dabf28a709e6cc66b42/dd45a/hoisting-papago.png&quot; srcset=&quot;/static/cffcf10865567dabf28a709e6cc66b42/5a46d/hoisting-papago.png 300w,
 /static/cffcf10865567dabf28a709e6cc66b42/dd45a/hoisting-papago.png 550w&quot; sizes=&quot;(max-width: 550px) 100vw, 550px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
-&lt;center&gt;출처 : 네이버 파파고&lt;/center&gt;
+&lt;center&gt;&lt;출처 : 네이버 파파고&gt;&lt;/center&gt;
 &lt;br&gt;
 &lt;p&gt;Hoisting은 ”끌어올리다”라는 뜻을 가지고 있다.&lt;/p&gt;
 &lt;p&gt;JavaSciprt에서의 Hoisting은 선언되지 않은 함수, 변수(var로 선언된), import구문을 상단으로 끌어올려 사용할 수 있게 하는 방식을 의미한다.&lt;/p&gt;
@@ -69,7 +69,9 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 /static/9edccb0975ba87abf535462e3b31c02d/c1b63/var.png 1200w,
 /static/9edccb0975ba87abf535462e3b31c02d/e8814/var.png 1392w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
-&lt;p&gt;var로 선언된 변수는 선언과 초기화를 동시에 진행합니다. 위에서 보았던 것처럼 var로 선언된 변수는 선언과 동시에 undefined로 호이스 팅되어 선언과 초기화가 동시에 진행된다.&lt;/p&gt;
+&lt;center&gt;&amp;lt;&amp;#xCD9C;&amp;#xCC98; : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&amp;gt;&lt;/center&gt;
+&lt;br&gt;
+var&amp;#xB85C; &amp;#xC120;&amp;#xC5B8;&amp;#xB41C; &amp;#xBCC0;&amp;#xC218;&amp;#xB294; &amp;#xC120;&amp;#xC5B8;&amp;#xACFC; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB97C; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; &amp;#xC9C4;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC704;&amp;#xC5D0;&amp;#xC11C; &amp;#xBCF4;&amp;#xC558;&amp;#xB358; &amp;#xAC83;&amp;#xCC98;&amp;#xB7FC; var&amp;#xB85C; &amp;#xC120;&amp;#xC5B8;&amp;#xB41C; &amp;#xBCC0;&amp;#xC218;&amp;#xB294; &amp;#xC120;&amp;#xC5B8;&amp;#xACFC; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; undefined&amp;#xB85C; &amp;#xD638;&amp;#xC774;&amp;#xC2A4; &amp;#xD305;&amp;#xB418;&amp;#xC5B4; &amp;#xC120;&amp;#xC5B8;&amp;#xACFC; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xAC00; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; &amp;#xC9C4;&amp;#xD589;&amp;#xB41C;&amp;#xB2E4;.
 &lt;h3 id=&quot;let-const으로-선언된-변수는&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#let-const%EC%9C%BC%EB%A1%9C-%EC%84%A0%EC%96%B8%EB%90%9C-%EB%B3%80%EC%88%98%EB%8A%94&quot; aria-label=&quot;let const으로 선언된 변수는 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;let, const으로 선언된 변수는&lt;/h3&gt;
 &lt;hr&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
@@ -79,7 +81,9 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 /static/0d6208436219e3b022a6c152572d803c/c1b63/let.png 1200w,
 /static/0d6208436219e3b022a6c152572d803c/52ab5/let.png 1420w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
-&lt;p&gt;let은 선언과 초기화가 분리되어 그 사이에 TDZ가 생성되고,&lt;/p&gt;
+&lt;center&gt;&amp;lt;&amp;#xCD9C;&amp;#xCC98; : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&amp;gt;&lt;/center&gt;
+&lt;br&gt;
+let&amp;#xC740; &amp;#xC120;&amp;#xC5B8;&amp;#xACFC; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xAC00; &amp;#xBD84;&amp;#xB9AC;&amp;#xB418;&amp;#xC5B4; &amp;#xADF8; &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0; TDZ&amp;#xAC00; &amp;#xC0DD;&amp;#xC131;&amp;#xB418;&amp;#xACE0;,
 &lt;p&gt;const는 선언과 초기화가 동시에 진행되어지지만 선언이전에 TDZ가 생성되어 접근하면 Reference Error가 발생한다.&lt;/p&gt;
 &lt;h3 id=&quot;함수-선언식은&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8%EC%8B%9D%EC%9D%80&quot; aria-label=&quot;함수 선언식은 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;함수 선언식은&lt;/h3&gt;
 &lt;hr&gt;
@@ -90,7 +94,9 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 /static/36d3480708397e4ce923bccd4b2b7c52/c1b63/func.png 1200w,
 /static/36d3480708397e4ce923bccd4b2b7c52/d7ceb/func.png 1446w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
-&lt;p&gt;선언, 초기화, 할당을 동시에 진행한다.&lt;/p&gt;
+&lt;center&gt;&amp;lt;&amp;#xCD9C;&amp;#xCC98; : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&amp;gt;&lt;/center&gt;
+&lt;br&gt;
+&amp;#xC120;&amp;#xC5B8;, &amp;#xCD08;&amp;#xAE30;&amp;#xD654;, &amp;#xD560;&amp;#xB2F9;&amp;#xC744; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; &amp;#xC9C4;&amp;#xD589;&amp;#xD55C;&amp;#xB2E4;.
 &lt;p&gt;Temporal Dead Zone에 접근하면 참조에러를 발생하는데 Temporal Dead Zone은 다음과 같다.&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1000px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 117.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAXABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAd2UABJRb//EABcQAQADAAAAAAAAAAAAAAAAAAEAECD/2gAIAQEAAQUC0wr/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ah//xAAcEAACAgIDAAAAAAAAAAAAAAAAEQEQITFBYfD/2gAIAQEAAT8hnyFPdSYWnTcGQj//2gAMAwEAAgADAAAAEEPA/P/EABURAQEAAAAAAAAAAAAAAAAAABEg/9oACAEDAQE/EGP/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAeEAEAAgICAwEAAAAAAAAAAAABABEhMWFxEEFRgf/aAAgBAQABPxAWFWR8m28tfk51cBRYa21ASw6VDR1KEwce5YW4OPD/2Q==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -98,7 +104,8 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 /static/dfec2c7306e61a4fbc590903554352db/b4294/tdz.jpg 600w,
 /static/dfec2c7306e61a4fbc590903554352db/a2510/tdz.jpg 1000w&quot; sizes=&quot;(max-width: 1000px) 100vw, 1000px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
-&lt;p&gt;TDZ에 영향을 받는 구문들은 생성되는 과정에서 TDZ가 생성되는데 TDZ에 접근하게 되면 ReferenceError가 발생한다.&lt;/p&gt;
+&lt;br&gt;
+TDZ&amp;#xC5D0; &amp;#xC601;&amp;#xD5A5;&amp;#xC744; &amp;#xBC1B;&amp;#xB294; &amp;#xAD6C;&amp;#xBB38;&amp;#xB4E4;&amp;#xC740; &amp;#xC0DD;&amp;#xC131;&amp;#xB418;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; TDZ&amp;#xAC00; &amp;#xC0DD;&amp;#xC131;&amp;#xB418;&amp;#xB294;&amp;#xB370; TDZ&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD558;&amp;#xAC8C; &amp;#xB418;&amp;#xBA74; ReferenceError&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD55C;&amp;#xB2E4;.
 &lt;p&gt;따라서 TDZ에 있는 number변수에 접근하면 ReferenceError가 발생한다.&lt;/p&gt;
 &lt;p&gt;let으로 선언된 변수도 마찬가지이다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;number&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;

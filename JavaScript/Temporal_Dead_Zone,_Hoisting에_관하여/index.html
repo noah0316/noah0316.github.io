@@ -75,7 +75,7 @@
   <img class="gatsby-resp-image-image" alt="hoisting papago" title="hoisting papago" src="/static/cffcf10865567dabf28a709e6cc66b42/dd45a/hoisting-papago.png" srcset="/static/cffcf10865567dabf28a709e6cc66b42/5a46d/hoisting-papago.png 300w,
 /static/cffcf10865567dabf28a709e6cc66b42/dd45a/hoisting-papago.png 550w" sizes="(max-width: 550px) 100vw, 550px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
-<center>출처 : 네이버 파파고</center>
+<center><출처 : 네이버 파파고></center>
 <br>
 <p>Hoisting은 ”끌어올리다”라는 뜻을 가지고 있다.</p>
 <p>JavaSciprt에서의 Hoisting은 선언되지 않은 함수, 변수(var로 선언된), import구문을 상단으로 끌어올려 사용할 수 있게 하는 방식을 의미한다.</p>
@@ -135,7 +135,9 @@ console<span class="token punctuation">.</span><span class="token function">log<
 /static/9edccb0975ba87abf535462e3b31c02d/c1b63/var.png 1200w,
 /static/9edccb0975ba87abf535462e3b31c02d/e8814/var.png 1392w" sizes="(max-width: 1200px) 100vw, 1200px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
-<p>var로 선언된 변수는 선언과 초기화를 동시에 진행합니다. 위에서 보았던 것처럼 var로 선언된 변수는 선언과 동시에 undefined로 호이스 팅되어 선언과 초기화가 동시에 진행된다.</p>
+<center>&lt;&#xCD9C;&#xCC98; : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&gt;</center>
+<br>
+var&#xB85C; &#xC120;&#xC5B8;&#xB41C; &#xBCC0;&#xC218;&#xB294; &#xC120;&#xC5B8;&#xACFC; &#xCD08;&#xAE30;&#xD654;&#xB97C; &#xB3D9;&#xC2DC;&#xC5D0; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xC704;&#xC5D0;&#xC11C; &#xBCF4;&#xC558;&#xB358; &#xAC83;&#xCC98;&#xB7FC; var&#xB85C; &#xC120;&#xC5B8;&#xB41C; &#xBCC0;&#xC218;&#xB294; &#xC120;&#xC5B8;&#xACFC; &#xB3D9;&#xC2DC;&#xC5D0; undefined&#xB85C; &#xD638;&#xC774;&#xC2A4; &#xD305;&#xB418;&#xC5B4; &#xC120;&#xC5B8;&#xACFC; &#xCD08;&#xAE30;&#xD654;&#xAC00; &#xB3D9;&#xC2DC;&#xC5D0; &#xC9C4;&#xD589;&#xB41C;&#xB2E4;.
 <h3 id="let-const으로-선언된-변수는" style="position:relative;"><a href="#let-const%EC%9C%BC%EB%A1%9C-%EC%84%A0%EC%96%B8%EB%90%9C-%EB%B3%80%EC%88%98%EB%8A%94" aria-label="let const으로 선언된 변수는 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>let, const으로 선언된 변수는</h3>
 <hr>
 <span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;">
@@ -145,7 +147,9 @@ console<span class="token punctuation">.</span><span class="token function">log<
 /static/0d6208436219e3b022a6c152572d803c/c1b63/let.png 1200w,
 /static/0d6208436219e3b022a6c152572d803c/52ab5/let.png 1420w" sizes="(max-width: 1200px) 100vw, 1200px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
-<p>let은 선언과 초기화가 분리되어 그 사이에 TDZ가 생성되고,</p>
+<center>&lt;&#xCD9C;&#xCC98; : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&gt;</center>
+<br>
+let&#xC740; &#xC120;&#xC5B8;&#xACFC; &#xCD08;&#xAE30;&#xD654;&#xAC00; &#xBD84;&#xB9AC;&#xB418;&#xC5B4; &#xADF8; &#xC0AC;&#xC774;&#xC5D0; TDZ&#xAC00; &#xC0DD;&#xC131;&#xB418;&#xACE0;,
 <p>const는 선언과 초기화가 동시에 진행되어지지만 선언이전에 TDZ가 생성되어 접근하면 Reference Error가 발생한다.</p>
 <h3 id="함수-선언식은" style="position:relative;"><a href="#%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8%EC%8B%9D%EC%9D%80" aria-label="함수 선언식은 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>함수 선언식은</h3>
 <hr>
@@ -156,7 +160,9 @@ console<span class="token punctuation">.</span><span class="token function">log<
 /static/36d3480708397e4ce923bccd4b2b7c52/c1b63/func.png 1200w,
 /static/36d3480708397e4ce923bccd4b2b7c52/d7ceb/func.png 1446w" sizes="(max-width: 1200px) 100vw, 1200px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
-<p>선언, 초기화, 할당을 동시에 진행한다.</p>
+<center>&lt;&#xCD9C;&#xCC98; : https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&gt;</center>
+<br>
+&#xC120;&#xC5B8;, &#xCD08;&#xAE30;&#xD654;, &#xD560;&#xB2F9;&#xC744; &#xB3D9;&#xC2DC;&#xC5D0; &#xC9C4;&#xD589;&#xD55C;&#xB2E4;.
 <p>Temporal Dead Zone에 접근하면 참조에러를 발생하는데 Temporal Dead Zone은 다음과 같다.</p>
 <span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1000px;">
       <span class="gatsby-resp-image-background-image" style="padding-bottom: 117.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAXABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAd2UABJRb//EABcQAQADAAAAAAAAAAAAAAAAAAEAECD/2gAIAQEAAQUC0wr/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ah//xAAcEAACAgIDAAAAAAAAAAAAAAAAEQEQITFBYfD/2gAIAQEAAT8hnyFPdSYWnTcGQj//2gAMAwEAAgADAAAAEEPA/P/EABURAQEAAAAAAAAAAAAAAAAAABEg/9oACAEDAQE/EGP/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAeEAEAAgICAwEAAAAAAAAAAAABABEhMWFxEEFRgf/aAAgBAQABPxAWFWR8m28tfk51cBRYa21ASw6VDR1KEwce5YW4OPD/2Q==&apos;); background-size: cover; display: block;"></span>
@@ -164,7 +170,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 /static/dfec2c7306e61a4fbc590903554352db/b4294/tdz.jpg 600w,
 /static/dfec2c7306e61a4fbc590903554352db/a2510/tdz.jpg 1000w" sizes="(max-width: 1000px) 100vw, 1000px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
-<p>TDZ에 영향을 받는 구문들은 생성되는 과정에서 TDZ가 생성되는데 TDZ에 접근하게 되면 ReferenceError가 발생한다.</p>
+<br>
+TDZ&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xB294; &#xAD6C;&#xBB38;&#xB4E4;&#xC740; &#xC0DD;&#xC131;&#xB418;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; TDZ&#xAC00; &#xC0DD;&#xC131;&#xB418;&#xB294;&#xB370; TDZ&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAC8C; &#xB418;&#xBA74; ReferenceError&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.
 <p>따라서 TDZ에 있는 number변수에 접근하면 ReferenceError가 발생한다.</p>
 <p>let으로 선언된 변수도 마찬가지이다.</p>
 <div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
