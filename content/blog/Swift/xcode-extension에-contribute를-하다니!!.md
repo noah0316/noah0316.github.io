@@ -38,7 +38,7 @@ Swimat의 공식 Github의 Star도 1.3k 씩이나 되고 사용하는 사람도 
     <img src="assets/2.png"/>
 </p>
 
-다음과 같이 brew cask install 대신에 brew install --cask라는 명령어를 사용하라고 하는 메시지가 출력되었다.  
+다음과 같이 `brew cask` install 대신에 `brew install --cask`라는 명령어를 사용하라고 하는 메시지가 출력되었다.  
 "README를 보고 설치를 했는데 왜 명령어가 사용 불가능하지? README가 Update가 안되어있었나?" 라는 생각이 들어  
 먼저 homebrew의 공식 도큐먼트를 보러갔다.
 
@@ -49,8 +49,8 @@ Swimat의 공식 Github의 Star도 1.3k 씩이나 되고 사용하는 사람도 
 얼마전인 2020년 12월 21일에 마이너 업데이트가 한번 있었고(Homebrew 2.7.0)  
 그보다 전인 2020년 12월 01에 마이너 업데이트가 한번 있었다.(Homebrew 2.6.0)   
 여기서 주의깊게 본 버전은 2.6.0 버전이다.  
-2.6.0 업데이트 내용을 살펴보니 Homebrew 2.6.0 버전에서 **brew cask**라는 명령어가 **deprecated** 되어   
-**brew --cask**로 대체 됨을 알 수 있었다. 
+2.6.0 업데이트 내용을 살펴보니 Homebrew 2.6.0 버전에서 `brew cask`라는 명령어가 **deprecated** 되어   
+`brew --cask`로 대체 됨을 알 수 있었다. 
 이를 보고 "아, 아직 Swimat의 README파일이 Update가 되지 않은거구나"  
 라는 생각과 함께, 나와 같이 처음 사용해보려고 하는 사용자들이 똑같은 과정을 겪게 되는 수고를 덜기위해   
 pull request를 보내 README파일을 update해보기로 마음을 먹었다.
