@@ -98,7 +98,7 @@ Swimat이라는 프로그램을 보게 되었다.
 /static/50793c0b6f73992c315eecf816041751/3c051/2.png 760w" sizes="(max-width: 760px) 100vw, 760px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
 </p>
-<p>다음과 같이 brew cask install 대신에 brew install —cask라는 명령어를 사용하라고 하는 메시지가 출력되었다.<br>
+<p>다음과 같이 <code class="language-text">brew cask</code> install 대신에 <code class="language-text">brew install --cask</code>라는 명령어를 사용하라고 하는 메시지가 출력되었다.<br>
 “README를 보고 설치를 했는데 왜 명령어가 사용 불가능하지? README가 Update가 안되어있었나?” 라는 생각이 들어<br>
 먼저 homebrew의 공식 도큐먼트를 보러갔다.</p>
 <blockquote>
@@ -109,8 +109,8 @@ Homebrew는 macOS용 소프트웨어 패키지 관리 시스템으로써  apple�
 얼마전인 2020년 12월 21일에 마이너 업데이트가 한번 있었고(Homebrew 2.7.0)<br>
 그보다 전인 2020년 12월 01에 마이너 업데이트가 한번 있었다.(Homebrew 2.6.0)<br>
 여기서 주의깊게 본 버전은 2.6.0 버전이다.<br>
-2.6.0 업데이트 내용을 살펴보니 Homebrew 2.6.0 버전에서 <strong>brew cask</strong>라는 명령어가 <strong>deprecated</strong> 되어<br>
-<strong>brew —cask</strong>로 대체 됨을 알 수 있었다.
+2.6.0 업데이트 내용을 살펴보니 Homebrew 2.6.0 버전에서 <code class="language-text">brew cask</code>라는 명령어가 <strong>deprecated</strong> 되어<br>
+<code class="language-text">brew --cask</code>로 대체 됨을 알 수 있었다.
 이를 보고 “아, 아직 Swimat의 README파일이 Update가 되지 않은거구나”<br>
 라는 생각과 함께, 나와 같이 처음 사용해보려고 하는 사용자들이 똑같은 과정을 겪게 되는 수고를 덜기위해<br>
 pull request를 보내 README파일을 update해보기로 마음을 먹었다.</p>
