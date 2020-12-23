@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about ...]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 19 Dec 2020 06:34:33 GMT</lastBuildDate><item><title><![CDATA[Swift에서의 Functions]]></title><description><![CDATA[…]]></description><link>https://noah0316.github.io/Swift/swift에서의-functions/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/swift에서의-functions/</guid><pubDate>Sat, 19 Dec 2020 15:12:37 GMT</pubDate><content:encoded>&lt;p&gt;이 글은 애플의 &lt;a href=&quot;https://docs.swift.org/swift-book/LanguageGuide/Functions.html&quot;&gt;스위프트 공식문서&lt;/a&gt; 를 스터디하며 중간중간 저의 개인적인 생각을 덧 붙여 쓴 글 입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about ...]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Dec 2020 17:30:29 GMT</lastBuildDate><item><title><![CDATA[Xcode Extension에 contribute를 하다니!!]]></title><description><![CDATA[Swift를 공부하기 시작한지 얼마되지 않은 나는 사용할만한 여러 Xcode Extension을 찾아보고 있었다. 평소 나는 코드 스타일, Lint에 관심이 많다. Swift…]]></description><link>https://noah0316.github.io/Swift/xcode-extension에-contribute를-하다니!!/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/xcode-extension에-contribute를-하다니!!/</guid><pubDate>Thu, 24 Dec 2020 02:12:43 GMT</pubDate><content:encoded>&lt;p&gt;Swift를 공부하기 시작한지 얼마되지 않은 나는 사용할만한 여러 Xcode Extension을 찾아보고 있었다.&lt;/p&gt;
+&lt;p&gt;평소 나는 코드 스타일, Lint에 관심이 많다.&lt;br&gt;
+Swift를 처음 공부하기 시작하면서 스스로 고민하고 어떤 코드가 좋은 코드인지 찾아나가는 과정속에서&lt;br&gt;
+&lt;strong&gt;내 마음대로 코드를 짜는&lt;/strong&gt; 나쁜 습관을 들이지 않기 위해&lt;br&gt;
+&lt;a href=&quot;https://github.com/github/swift-style-guide&quot;&gt;Swift Style Guide&lt;/a&gt;, Style Share 구성원들이&lt;br&gt;
+Swift코드를 이해하기 쉽고 명확하게 작성하기 위한 스타일 가이드인 &lt;a href=&quot;https://github.com/StyleShare/swift-style-guide&quot;&gt;StyleShare/swift-style-guide&lt;/a&gt; 를보며&lt;br&gt;
+실무에서는 코드 가이드라인이 어떠한지에 대해 알아보고 있다.&lt;br&gt;
+(StyleShare/swift-style-guide 잘 보고 있습니다. 공유해 주심에 감사드립니다🙇‍♂️)&lt;/p&gt;
+&lt;p&gt;다음번에는 Swift용 linter인 &lt;strong&gt;SwiftLint&lt;/strong&gt;에 대해 알아볼 예정이다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SwiftLint는 swift 의 코드 스타일을 벗어나거나, 사용자가 설정한 rule 에서 벗어나게 되면 문제점이 있음을 알려주는 기능을 제공하여 일관성 있는 코드를 작성할 수 있게 도움을 주는 도구이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+다시 본론으로 돌아와서 
+&lt;p&gt;Xcode Extension을 찾아보던 중 Indent formatting을 지원해주는 확장 프로그램인&lt;br&gt;
+Swimat이라는 프로그램을 보게 되었다.
+(마치 Vscode Extension인 prettier와 비슷하다.)&lt;/p&gt;
+&lt;p&gt;Swimat의 공식 Github의 Star수도 1.3k 씩이나 되고 사용하는 사람도 많은 것 같아 사용을 해보기로 했다.&lt;br&gt;
+사용을 하기 위해 Swimat의 공식 Github에서 설치방법을 보고, 설치를 하기위해 터미널에 명령어를 쳤는데,&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 369px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 31.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsSAAALEgHS3X78AAAA3klEQVQY042P627CMAyF+/5Px/YHFmjTwmAppe0GzbVOz5KUThNi0ix98oktH8cZQnjvoY2B1hqDlJCBQVlI6zFoSijjYdz89tMUxzCF/EgWG0QEIQTYdov15g2cF2BcYHN0eOEKr6UCOxnkwmBVKIw0Gz6LLLouG/8b8SL6g/RDqS0+6gZN2ydE06L7vKFuulRv+y+cLz1OIuprON+lmUjUv0mGgzJgOUd5OKIK5OUe9aXDjlcoqkNawKt3rNkumJ6h7fhj+Eg6eSSPeHTET3OmIJbaonHvW0dw43O+AX840RzYnwepAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;1&quot; title=&quot;1&quot; src=&quot;/static/3b75175ed7b967fa5ef34f6c9ed16469/e0cdb/1.png&quot; srcset=&quot;/static/3b75175ed7b967fa5ef34f6c9ed16469/5a46d/1.png 300w,
+/static/3b75175ed7b967fa5ef34f6c9ed16469/e0cdb/1.png 369w&quot; sizes=&quot;(max-width: 369px) 100vw, 369px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 760px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 84.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsSAAALEgHS3X78AAACPUlEQVQ4y+2U23LSQBiA0Rkv2sqhNmxQSzmFbBJIIJBzAkJbqB2v9Al8gYwv4Ut4UfoGPoQXVR+mM7lu6K7/LpBSnXGY8dbMfLObPz/f/nsil4NHrLb2hIos1uoKajRVVKtjVG8oSKzUUL6A0PN8GeXzCBVLFSQIx6habaPjqpRRPWmL1RMpn9s8hjT4fBo4tGt7t4YeJjIecnQjSEbjy8QPZkkYXfC2148SrFiJotqJotisvVVU517Gg6+ZEMv9a9ufUmP0hvj+jLreOXXcMxqNLqluhFTreBmK6lKs2NA6HBnb1BxGFKvmT1DtrypUzKugF4Hk9G48eXcfhBfED+YEqiOWMyWud8b7MAjx/BnxwzmPWfaUON55GkZvab8f3IDqgAsV1VzAdKg5GKcwOlE1l4+uagyXo3XcrJ8BMcsMlp43hfzh96zCZktfDKwJhfVJZWwRNqVdYIOahru0rDFMffAgbDT1hap5ELRSSCLba/Q3WF4b20sM69qS+lsVgrDTDVgSn/KuslXfXmodn0rtP4Q+S9pZuCX+L1wJr9bCOybcwHZ8vevQrngc59/StfBm+9hcsyAkpL/vJMQek8XZLnOW7MiB8Ed2U2S5/wWuEe10PRjNJdASreMQoxeSru5DFRZR1YcqWRwuAWlLEcFylFr2hB3sb6Da48LS4ZEjiq/jUkmIC8WjuAgUii9iQahwymUAveQIgpi9F/cb8eFBMxbFV5/gt3NQPcu9//Bx86fzBHj6D+Rcb5r7Bd3akLlr2gI1AAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;2&quot; title=&quot;2&quot; src=&quot;/static/50793c0b6f73992c315eecf816041751/3c051/2.png&quot; srcset=&quot;/static/50793c0b6f73992c315eecf816041751/5a46d/2.png 300w,
+/static/50793c0b6f73992c315eecf816041751/0a47e/2.png 600w,
+/static/50793c0b6f73992c315eecf816041751/3c051/2.png 760w&quot; sizes=&quot;(max-width: 760px) 100vw, 760px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;다음과 같이 brew cask install 대신에 brew install —cask라는 명령어를 사용하라고 하는 메시지가 출력되었다.&lt;br&gt;
+“README를 보고 설치를 했는데 왜 명령어가 사용 불가능하지? README가 Update가 안되어있었나?” 라는 생각이 들어&lt;br&gt;
+먼저 homebrew의 공식 도큐먼트를 보러갔다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/%ED%99%88%EB%B8%8C%EB%A3%A8_(%ED%8C%A8%ED%82%A4%EC%A7%80_%EA%B4%80%EB%A6%AC_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4)&quot;&gt;Homebrew란?&lt;/a&gt;&lt;br&gt;
+Homebrew는 macOS용 소프트웨어 패키지 관리 시스템으로써  apple의 macOS 운영 체제의 소프트웨어 설치를 단순하게 만들어준다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://brew.sh/blog/&quot;&gt;homebrew의 공식 도큐먼트&lt;/a&gt;를 보러가보니&lt;br&gt;
+얼마전인 2020년 12월 21일에 마이너 업데이트가 한번 있었고(Homebrew 2.7.0)&lt;br&gt;
+그보다 전인 2020년 12월 01에 마이너 업데이트가 한번 있었다.(Homebrew 2.6.0)&lt;br&gt;
+여기서 주의깊게 본 버전은 2.6.0 버전이다.&lt;br&gt;
+2.6.0 업데이트 내용을 살펴보니 Homebrew 2.6.0 버전에서 &lt;strong&gt;brew cask&lt;/strong&gt;라는 명령어가 &lt;strong&gt;deprecated&lt;/strong&gt; 되어&lt;br&gt;
+&lt;strong&gt;brew —cask&lt;/strong&gt;로 대체 됨을 알 수 있었다.
+이를 보고 “아, 아직 Swimat의 README파일이 Update가 되지 않은거구나”&lt;br&gt;
+라는 생각과 함께, 나와 같이 처음 사용해보려고 하는 사용자들이 똑같은 과정을 겪게 되는 수고를 덜기위해&lt;br&gt;
+pull request를 보내 README파일을 update해보기로 마음을 먹었다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 474px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 41.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsSAAALEgHS3X78AAABUklEQVQoz3WR6W7aUBBG/f7PlT+JlKptgFASMBhvYIMBb/hup2ObhChV7+ho5rua+XQXzzmH1hpr7ZAd42o6S3LsMJb/rn72e3hX17GwAQsXMFMrIp2RmROrU8wkXrO5pASCL3pb7Qb8ImKnCw5cyN2ZnDuedZZS11Sm4axKFJpGtYRpTJqlxPuUSNiK3hc5/nbDuS6ly6CcHunrG4NhrRsa01KqWholnBFTRWfHoV5/MGgZHHDmXt/wGnvlh5vzLDyqF95VSGxz3ps9T0lEoHMim7HVeyKXE0oduwOxXPgzf2EwfP40nLDUYtLtmGRv/Erm/E4XzIs103zJ69Ef9OywIuE4Gn4z9Wrb8sSMRzflQf3kjwpYdynTwmdRbng9rVi2EW9VwPwixsVy2AvlC0KXjXDH698kMTmpXDOUkxWmpHItNZ1wpbnlD3rd0/dU/MtfeWdj9v149ngAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;3&quot; title=&quot;3&quot; src=&quot;/static/bcf81d0a6faf1bcb47e44471168f6f8d/5595f/3.png&quot; srcset=&quot;/static/bcf81d0a6faf1bcb47e44471168f6f8d/5a46d/3.png 300w,
+/static/bcf81d0a6faf1bcb47e44471168f6f8d/5595f/3.png 474w&quot; sizes=&quot;(max-width: 474px) 100vw, 474px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 401px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABY0lEQVQoz41Si26DMAzs///bpGlbnwxayptBIUB4tAk3x7RSNRW0SCc7Tuycz1mB1jAMkFKiLEsIISDbDkIqRtEoyF6j6RSqVkGPI2WMGMfXWD0KRnGMzXYH13URhBH2QYevc4c1wYkHWGFPtuekpbUyF5RevmQYTQDfvd7ULLhgIRpEaY7jOUSYZIh/LkiykvwcfpwhK2qkuUBAZ0lWoO2vkN3wEtxymPxgvTtg/+1gs7dgOS4O9gkf6y1cL4RF/tv7J/woQdW0s8W4oBG5lh3KqiHbQtQNJ1W15Jhse4pJXMqKE/rrjRnOgVvWf4Q220fk+cz4SmnSUU/2BZ4YSuRFhYKZTozNvmaGLUpiWVF8iR0zNC/HaUb6HUk/m+32YLNe9smjQflsLeeEneXwQ4tDMR0ZfbwgQppdaMI5+xNDgbMfctwLY/b/UZA0pL813jXSd/3Mf9P3/6mfNDXxG2k1h1/151GuXB7WhgAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;4&quot; title=&quot;4&quot; src=&quot;/static/4ecd8c586caadaf04e38008056bcc33a/9144d/4.png&quot; srcset=&quot;/static/4ecd8c586caadaf04e38008056bcc33a/5a46d/4.png 300w,
+/static/4ecd8c586caadaf04e38008056bcc33a/9144d/4.png 401w&quot; sizes=&quot;(max-width: 401px) 100vw, 401px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;다음과 커밋을 하고 push를 하여 내용을 변경한뒤,&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 952px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 35%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsSAAALEgHS3X78AAABEUlEQVQoz41R2W7DMAzL/3/hCgzby5qmdhzH9xWbkx0ULYo9TAARShFkkZpAEUKE0RoxRqA1ygMS8VoPOGuRUkIpGZZ4R+dnNLzHpHaJ769PCOVxFxrSRGw6DLhUCQ0u0yMFI7eEzh/QvkBQr3IZLh6YnNW4LzcaaDHfBZZV4sY3zEyAbQrrbiB2CybUmUtD/+Wo2VigbF/Aw9L0QA9Pj1Xn+YqPywXX6w9WzsE5A2MMy7IMvm0bZIeU2EmV1uq0wJhhC1o9JTfyrENQM+crvA/DyxjT8NZ5P/CfoDHnhp104/uQ46hIOSOXMurP5ob6hvbyLdSfUn5KDsHDGD2KnjYK48oVDwV/XfT10pku35X9At4QIQvQ4XShAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;5&quot; title=&quot;5&quot; src=&quot;/static/4ebd9de0b687324716bd81b1d246159f/7e4a6/5.png&quot; srcset=&quot;/static/4ebd9de0b687324716bd81b1d246159f/5a46d/5.png 300w,
+/static/4ebd9de0b687324716bd81b1d246159f/0a47e/5.png 600w,
+/static/4ebd9de0b687324716bd81b1d246159f/7e4a6/5.png 952w&quot; sizes=&quot;(max-width: 952px) 100vw, 952px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;다음과 같은 메시지와 함께 pull request를 보냈고 몇시간 후에
+&lt;strong&gt;감사하게도&lt;/strong&gt; master(main) 브랜치에 Merge가 되었다!!&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 972px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 78.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsSAAALEgHS3X78AAACT0lEQVQ4y4VUy27bMBDM/1/7Fz31F4oABXoo0EPbQ5xEtiXLsvUkKYqiSGm6u0pct3FQAgOuyd0hObPyHWik+xw/f2zw9JwgOxyQH4/Y7fdIswxpmqI4nfCcJEi2CTaPj8jzI/a0niRbyemUor0tDnmOOyb8/GmHjx9+Idmc0KoWShm0XYeiNsgbB2UssrJHSqjbDi2BScZxxOAcpmnCMDiM3q+EfozQyqLvLeYYJcFaipcFbvQUD4hxoWIiGAYhem8IYbp7QtMpNHqAsh56mND1HsYFDNMC62e4QIQ093Q4r9F02eNcruE9IcyzHZpWo6hanBv1Ao2666HpAEPJPCs7Stz1o8ARIaM1TtYtEy70LB6sxcPmgYROSPQcRVHgSOZwfCCjTmQM/z6fz7JXliVprWC0ljmQTPLkV0JL2mx3e9R1I5qxyLzGsTaGdA1v9GKN55kxS8xUF0Le8OTSsqwJMa5Jr4PDRYr+xZ+9EK+eHCM73cG59WZ9318OuAauDrkecY7yqrtlXhOyjcHjZk9NXJAmGoYIWRvdO7SWBHde1kKILzde60KYUSlqLeoIMwRyeWFDSCsqND3djDTjBp1CkOKJ4Kd1DjfA626cqGaivLC2zf2XexTkXtV0grJuZZZEShr9e1hJ+CJK9yTVyISrU2508rnx18JPdfRVLC9mzTfNeAvOu5jivYUP/i+hbxbNtzBfIIRfv31HWTV0QyV9yDcNomGQ/hOwZnH+q/gWhDDLC2htUFU1zmVF5DXpQn8W9AfBh7y63dn432f/Bhoh2ITlq9f0AAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;6&quot; title=&quot;6&quot; src=&quot;/static/d7f01193363160aa7fc92676172b7a68/7ae9c/6.png&quot; srcset=&quot;/static/d7f01193363160aa7fc92676172b7a68/5a46d/6.png 300w,
+/static/d7f01193363160aa7fc92676172b7a68/0a47e/6.png 600w,
+/static/d7f01193363160aa7fc92676172b7a68/7ae9c/6.png 972w&quot; sizes=&quot;(max-width: 972px) 100vw, 972px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Merge&lt;/strong&gt;가 되고난 후에 Swimat Github 메인 페이지를 보았는데&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 450px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 43%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABnUlEQVQoz4WSvU7bUBiGfStcBeoF0AUuooiJgYElSCxUDJ0QjKGCdgDx0wjU8lNUYKjSQFMqhIoMKHEsJUoiGoixTQJJnNjnwT6GgKCUs3yvvvP9v6/ieR4vPSHEY8cT/x1WLMtmN5kk+WuPeCLBj50dErs/SWsZTlIa17U6QajnJ3iuKxOFxC1ZwK0U8epWu6gSBvgfrofjNP1EfOvIgAAjXtgg+wWMg/bkiut3mll8Tzy+jZ5NMzk1Tr5wyuDIGKtrq+g1WM5fkz8z+BqLUcxlOSvkUGNvEdo8e5sf0L5/hNQMrqmhXNomg8MRJqITbG1v0TfQT2x9g45XXUSGIsQNl6EDi/1MjjfdPXxe+MS3pVl6X3diHq8wFx0l+m4A7BO5kRJMmsn+pXRRxWk45AolOX0qo1MuGwSXKl41pe9IPaZUOsc2L1DVFE19jdrRItb+NKJ8KG+t1BotNn6f80e3n6P430wHNzbUELSqeGY6ZDlIqFSqNBr1MMiXkWTRtyEOGb7z3bPsthuJB9JRxP/09owmRXvq+wbiVg03sr6dstdgrcwAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;7&quot; title=&quot;7&quot; src=&quot;/static/f3d3877094cc94bcf448657079936d5c/fc2a6/7.png&quot; srcset=&quot;/static/f3d3877094cc94bcf448657079936d5c/5a46d/7.png 300w,
+/static/f3d3877094cc94bcf448657079936d5c/fc2a6/7.png 450w&quot; sizes=&quot;(max-width: 450px) 100vw, 450px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;컨트리뷰터에 들어가있는 내 프로필을 보니 왠지 모를 뿌듯함이 ㅎㅎ 밀려왔다.&lt;br&gt;
+지금은 Swift를 시작한지 얼마되지 않아 README 파일 밖에 contribute하지 못했지만&lt;br&gt;
+실력이 조금 더 쌓인 후에는 코드를 통해 contribute를 할 수 있으면 좋겠다.&lt;br&gt;
+뭔가 오픈소스 프로젝트에 컨트리뷰트 하는게 막연하고 두렵기만 했었는데, 이번 기회를 통해&lt;br&gt;
+다음에 코드를 통해 하게 될 contribute의 발판을 마련하는 좋은 경험을 한 것 같았다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Swift에서의 Functions]]></title><description><![CDATA[…]]></description><link>https://noah0316.github.io/Swift/swift에서의-functions/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/swift에서의-functions/</guid><pubDate>Sat, 19 Dec 2020 15:12:37 GMT</pubDate><content:encoded>&lt;p&gt;이 글은 애플의 &lt;a href=&quot;https://docs.swift.org/swift-book/LanguageGuide/Functions.html&quot;&gt;스위프트 공식문서&lt;/a&gt; 를 스터디하며 중간중간 저의 개인적인 생각을 덧 붙여 쓴 글 입니다.&lt;/p&gt;
 &lt;p&gt;“함수란 특정 기능(작업)을 수행하는 코드의 집합이다.” &lt;/p&gt;
 &lt;p&gt;함수를 선언할때는 &lt;code class=&quot;language-text&quot;&gt;func&lt;/code&gt; 키워드를 이용하여 선언하며 사용할때는 함수의 이름을 호출하여 사용해야한다.&lt;/p&gt;
 &lt;p&gt;당연히 함수의 이름은 함수가 어떠한 기능을 수행하는지 다른 사람이 보아도 알 수 있게 직관적으로 표현 해주어야한다.&lt;/p&gt;
@@ -357,7 +452,7 @@
 &lt;p&gt;참조 : &lt;a href=&quot;https://docs.swift.org/swift-book/LanguageGuide/Functions.html&quot;&gt;애플 스위프트 공식문서&lt;/a&gt;
 ,&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://jusung.gitbook.io/the-swift-language-guide/language-guide/06-functions&quot;&gt;https://jusung.gitbook.io/the-swift-language-guide/language-guide/06-functions&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Temporal Dead Zone, Hoisting에 관하여]]></title><description><![CDATA[이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다. 원문 : https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/ 원문 : https://dmitripavlutin…]]></description><link>https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</link><guid isPermaLink="false">https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</guid><pubDate>Wed, 04 Nov 2020 23:38:01 GMT</pubDate><content:encoded>&lt;p&gt;이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Temporal Dead Zone, Hoisting에 관하여]]></title><description><![CDATA[이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다. 원문 : https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/ 원문 : https://dmitripavlutin…]]></description><link>https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</link><guid isPermaLink="false">https://noah0316.github.io/JavaScript/Temporal_Dead_Zone,_Hoisting에_관하여/</guid><pubDate>Wed, 04 Nov 2020 23:38:01 GMT</pubDate><content:encoded>&lt;p&gt;이글은 원문을 기반으로 하여 내용을 덧붙여 쓴 글 입니다.&lt;/p&gt;
 &lt;p&gt;원문 : &lt;a href=&quot;https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/&quot;&gt;https://dmitripavlutin.com/javascript-variables-and-temporal-dead-zone/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;원문 : &lt;a href=&quot;https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&quot;&gt;https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Temporal DeadZone, 줄여서 TDZ를 보기전에 Hoisting에 관하여 알아보자.&lt;/p&gt;
