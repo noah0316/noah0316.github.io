@@ -1,7 +1,7 @@
 ---
 title: Xcode Extension에 contribute를 하다니!!
 date: 2020-12-24 02:12:43
-category: swift
+category: Swift
 thumbnail: { thumbnailSrc }
 draft: false
 ---
@@ -27,7 +27,7 @@ Xcode Extension을 찾아보던 중 Indent formatting을 지원해주는 확장 
 Swimat이라는 프로그램을 보게 되었다.
 (마치 Vscode Extension인 prettier와 비슷하다.)
 
-Swimat의 공식 Github의 Star수도 1.3k 씩이나 되고 사용하는 사람도 많은 것 같아 사용을 해보기로 했다.  
+Swimat의 공식 Github의 Star도 1.3k 씩이나 되고 사용하는 사람도 많은 것 같아 사용을 해보기로 했다.  
 사용을 하기 위해 Swimat의 공식 Github에서 설치방법을 보고, 설치를 하기위해 터미널에 명령어를 쳤는데,
 
 <p align="center">
