@@ -1,7 +1,7 @@
 ---
-title: Xcode Extension에 contribute를 하다니!!
+title: 'Xcode Extension에 contribute를 하다니!!'
 date: 2020-12-24 02:12:43
-category: Swift
+category: 'Swift'
 thumbnail: { thumbnailSrc }
 draft: false
 ---
@@ -31,11 +31,11 @@ Swimat의 공식 Github의 Star도 1.3k 씩이나 되고 사용하는 사람도 
 사용을 하기 위해 Swimat의 공식 Github에서 설치방법을 보고, 설치를 하기위해 터미널에 명령어를 쳤는데,
 
 <p align="center">
-    <img src="assets/1.png"/>
+    <img src="assets/2020-12-24/1.png"/>
 </p>
 
 <p align="center">
-    <img src="assets/2.png"/>
+    <img src="assets/2020-12-24/2.png"/>
 </p>
 
 다음과 같이 `brew cask` install 대신에 `brew install --cask`라는 명령어를 사용하라고 하는 메시지가 출력되었다.  
@@ -56,28 +56,28 @@ Swimat의 공식 Github의 Star도 1.3k 씩이나 되고 사용하는 사람도 
 pull request를 보내 README파일을 update해보기로 마음을 먹었다.
 
 <p align="center">
-    <img src="assets/3.png"/>
+    <img src="assets/2020-12-24/3.png"/>
 </p>
 <p align="center">
-    <img src="assets/4.png"/>
+    <img src="assets/2020-12-24/4.png"/>
 </p>
 
 다음과 커밋을 하고 push를 하여 내용을 변경한뒤,
 
 <p align="center">
-    <img src="assets/5.png"/>
+    <img src="assets/2020-12-24/5.png"/>
 </p>
 
 다음과 같은 메시지와 함께 pull request를 보냈고 몇시간 후에
 **감사하게도** master(main) 브랜치에 Merge가 되었다!!
 
 <p align="center">
-    <img src="assets/6.png"/>
+    <img src="assets/2020-12-24/6.png"/>
 </p>
 
 **Merge**가 되고난 후에 Swimat Github 메인 페이지를 보았는데
 <p align="center">
-    <img src="assets/7.png"/>
+    <img src="assets/2020-12-24/7.png"/>
 </p>
 
 컨트리뷰터에 들어가있는 내 프로필을 보니 왠지 모를 뿌듯함이 ㅎㅎ 밀려왔다.  

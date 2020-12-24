@@ -1,7 +1,7 @@
 ---
-title: Temporal Dead Zone, Hoisting에 관하여
+title: 'Temporal Dead Zone, Hoisting에 관하여'
 date: 2020-11-04 23:38:01
-category: JavaScript
+category: 'JavaScript'
 thumbnail: { thumbnailSrc }
 draft: false
 ---

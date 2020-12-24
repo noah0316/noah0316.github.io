@@ -1,7 +1,7 @@
 ---
-title: Swift에서의 Functions
+title: 'Swift에서의 Functions'
 date: 2020-12-19 15:12:37
-category: Swift
+category: 'Swift'
 thumbnail: { thumbnailSrc }
 draft: false
 ---
