@@ -6,10 +6,10 @@ import './index.scss'
 import { description } from '../../../gatsby-meta-config'
 
 function NewlineText(props) {
-  const text = props.text;
-  const newText = text.split('\n').map(str => <p key={str}>{str}</p>);
-  
-  return newText;
+  const text = props.text
+  const newText = text.split('\n').map(str => <p key={str}>{str}</p>)
+
+  return newText
 }
 
 export const Bio = () => (
@@ -22,42 +22,30 @@ export const Bio = () => (
         <div className="bio">
           <div className="author">
             <div className="author-description">
-              <Image
-                className="author-image"
-                fixed={data.avatar.childImageSharp.fixed}
-                alt={author}
-                style={{
-                  borderRadius: `100%`,
-                }}
-              />
+              <Link to="/">
+                <Image
+                  className="author-image"
+                  fixed={data.avatar.childImageSharp.fixed}
+                  alt={author}
+                  style={{
+                    borderRadius: `100%`,
+                  }}
+                />
+              </Link>
               <div className="author-name">
                 <span className="author-name-prefix">Written by</span>
                 <div className="author-name-content">
                   <span>@{author}</span>
                 </div>
-                <div className="author-introduction"><NewlineText text={introduction}/></div>
+                <div className="author-introduction">
+                  <NewlineText text={introduction} />
+                </div>
                 <p className="author-socials">
-                  {social.github && (
-                    <a href={`https://github.com/${social.github}`}>GitHub</a>
-                  )}
-                  {social.instagram && (
-                    <a href={`https://instagram.com/${social.instagram}`}>Instagram</a>
-                  )}
-                  {social.twitter && (
-                    <a href={`https://twitter.com/${social.twitter}`}>
-                      Twitter
-                    </a>
-                  )}
-                  {social.facebook && (
-                    <a href={`https://www.facebook.com/${social.facebook}`}>
-                      Facebook
-                    </a>
-                  )}
-                  {social.linkedin && (
-                    <a href={`https://www.linkedin.com/in/${social.linkedin}/`}>
-                      LinkedIn
-                    </a>
-                  )}
+                  {social.github && <a href={`https://github.com/${social.github}`}>GitHub</a>}
+                  {social.instagram && <a href={`https://instagram.com/${social.instagram}`}>Instagram</a>}
+                  {social.twitter && <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>}
+                  {social.facebook && <a href={`https://www.facebook.com/${social.facebook}`}>Facebook</a>}
+                  {social.linkedin && <a href={`https://www.linkedin.com/in/${social.linkedin}/`}>LinkedIn</a>}
                 </p>
               </div>
             </div>

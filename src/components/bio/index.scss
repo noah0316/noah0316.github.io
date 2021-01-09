@@ -12,6 +12,9 @@
     margin-right: 12px;
     margin-bottom: 0;
     min-width: 72px;
+    &:hover {
+      opacity: 40%;
+    }
   }
 
   .author-name-prefix {
