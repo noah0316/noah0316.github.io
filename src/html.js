@@ -12,16 +12,13 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover"
           />
+          <meta name="naver-site-verification" content="7f6b42606d309ad47db64e1426c6dff7bd7bdecd" />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
           <noscript>You need to enable JavaScript to run this app.</noscript>
-          <div
-            key={`body`}
-            id="___gatsby"
-            dangerouslySetInnerHTML={{ __html: this.props.body }}
-          />
+          <div key={`body`} id="___gatsby" dangerouslySetInnerHTML={{ __html: this.props.body }} />
           {this.props.postBodyComponents}
         </body>
       </html>
