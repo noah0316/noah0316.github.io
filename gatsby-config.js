@@ -1,7 +1,6 @@
 const metaConfig = require('./gatsby-meta-config')
 
 module.exports = {
-  
   siteMetadata: metaConfig,
   plugins: [
     {
@@ -92,6 +91,14 @@ module.exports = {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://noah0316.github.io',
+        sitemap: 'https://noah0316.github.io/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     `gatsby-transformer-sharp`,
