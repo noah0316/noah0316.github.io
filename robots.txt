@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://noah0316.github.io/sitemap.xml
+Host: https://noah0316.github.io
