@@ -94,11 +94,15 @@ subscribe한 레포지토리에서 이벤트가 발생하면 slack으로 알람�
 - `commits:all` - All commits pushed to any branch
 - `+label:"your label"` - Filter issues, pull-requests and comments based on their labels.
 
-우리는 회의를 통해 reviews, comments기능을 추가하기로 하여 위 두개의 이벤트를 추가하기로 했다.
+우리는 회의를 통해 branches, commits:all, reviews, comments기능을 추가하기로 하여 위 네개의 이벤트를 추가하기로 했다.
+
+> branches 이벤트를 활성화 시켜 브랜치 생성 제거에 대한 알람을 받고,  
+> default 브랜치를 제외한 다른 브랜치의 commit 알람을 받기위해  
+> branches, commits:all 이벤트를 활성화 시키기로 하였다.
 
 명령어는 다음과 같다.
 
-`/github subscribe owner/repository reviews comments`
+`/github subscribe owner/repository branches, commits:all, reviews comments`
 
 <p align="center">
     <img src="assets/2021-01-09/8.png"/>
@@ -106,6 +110,6 @@ subscribe한 레포지토리에서 이벤트가 발생하면 slack으로 알람�
 
 비활성화 하기 원한다면 다음과 같은 명령어를 사용하면 된다.
 
-`/github unsubscribe owner/repository reviews comments`
+`/github unsubscribe owner/repository branches, commits:all, reviews comments`
 
 > 참고 : https://github.com/integrations/slack
