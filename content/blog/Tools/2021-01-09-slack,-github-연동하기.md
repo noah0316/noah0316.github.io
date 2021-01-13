@@ -102,7 +102,7 @@ subscribe한 레포지토리에서 이벤트가 발생하면 slack으로 알람�
 
 명령어는 다음과 같다.
 
-`/github subscribe owner/repository branches, commits:all, reviews comments`
+`/github subscribe owner/repository branches commits:all reviews comments`
 
 <p align="center">
     <img src="assets/2021-01-09/8.png"/>
@@ -110,6 +110,6 @@ subscribe한 레포지토리에서 이벤트가 발생하면 slack으로 알람�
 
 비활성화 하기 원한다면 다음과 같은 명령어를 사용하면 된다.
 
-`/github unsubscribe owner/repository branches, commits:all, reviews comments`
+`/github unsubscribe owner/repository branches commits:all reviews comments`
 
 > 참고 : https://github.com/integrations/slack
