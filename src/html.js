@@ -13,7 +13,6 @@ export default class HTML extends React.Component {
             content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover"
           />
           <meta name="naver-site-verification" content="7f6b42606d309ad47db64e1426c6dff7bd7bdecd" />
-          <link rel="canonical" href="https://noah0316.github.io/" />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>
