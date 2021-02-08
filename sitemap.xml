@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url> <loc>https://noah0316.github.io/Swift/2021-02-06-swift---일급-객체로서의-함수/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://noah0316.github.io/Swift/2021-02-09-swift의-함수는-일급함수인가/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://noah0316.github.io/Tools/2021-01-09-slack,-github-연동하기/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://noah0316.github.io/Swift/2020-12-24-xcode-extension에-contribute를-하다니!!/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://noah0316.github.io/Swift/2020-12-19-swift에서의-functions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
