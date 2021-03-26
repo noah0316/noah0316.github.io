@@ -2,6 +2,9 @@
 
 .bio {
   margin-bottom: 6px;
+  .hits > a > img {
+    margin: 0;
+  }
 
   .social-icon {
     width: 26px;
