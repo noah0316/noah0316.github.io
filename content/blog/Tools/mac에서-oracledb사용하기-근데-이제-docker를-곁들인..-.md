@@ -1,7 +1,7 @@
 ---
 title: Mac에서 OracleDB사용하기 근데 이제 docker를 곁들인..
 date: 2021-04-17 02:04:43
-category: tools
+category: Tools
 thumbnail: { thumbnailSrc }
 draft: false
 ---
