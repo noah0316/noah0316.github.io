@@ -106,7 +106,7 @@ Docker가 설치되어있지 않으신 분들은 <a href="https://subicura.com/2
 </p>
 
 이제 `docker exec -it oracle-xe-11g sqlplus` 명령어를 이용해  
- Oracle Database SQLPlus를 실행해주도록 하겠습니다.
+ Oracle Database SQL Plus를 실행해주도록 하겠습니다.
 
 <p align="center">
 <img src="assets/2021-04-17/10.png" width="300"/>
@@ -176,7 +176,7 @@ Password : oracle
 <img src="assets/2021-04-17/17.png" width="300"/>
 </p>
 
-이후에 자유롭게 SQL문을 이용하시면 됩니다 :)
+이후에 자유롭게 SQL문을 이용해 사용하시면 됩니다 :)
 
 네, 여기까지 mac에서 Oracle DB사용하기 근데 이제 docker를 곁들인.. 이었습니다!!
 
