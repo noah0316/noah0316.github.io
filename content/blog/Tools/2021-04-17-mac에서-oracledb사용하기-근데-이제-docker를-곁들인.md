@@ -1,5 +1,5 @@
 ---
-title: Mac에서 OracleDB사용하기 근데 이제 docker를 곁들인..
+title: Mac에서 OracleDB사용하기, 근데 이제 docker를 곁들인
 date: 2021-04-17 02:04:43
 category: Tools
 thumbnail: { thumbnailSrc }
@@ -8,7 +8,7 @@ draft: false
 
 <p align="center">
 <img src="assets/2021-04-17/1.png" width="300"/>
-<center>Oracle</center>
+<center>Oracle logo</center>
 </p>
 
 ### 안녕하세요 :) Noah입니다.
@@ -25,7 +25,7 @@ Oracle DB를 사용할 일이 생겨 Oracle DB를 Mac에서 설치하고 사용�
 
 <p align="center">
 <img src="assets/2021-04-17/2.gif" width="300"/>
-<center>Docker</center>
+<center>Docker logo</center>
 </p>
 
 #### 먼저 Mac OS에서 Oracle DB를 사용하기 위해서는 Docker를 사용해야합니다. 🐳
@@ -183,7 +183,9 @@ Password : oracle
 혹시 제가 잘못 알고 있는 부분이 있거나, 오타 혹은 궁금한 점 있으시면 댓글로 알려주시면 감사하겠습니다!!😎
 
 > 참고
-> [subicura님 블로그](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
 >
+> - [subicura님 블로그](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
+
 > 이미지 출처
-> https://noticon.tammolo.com/
+>
+> - https://noticon.tammolo.com
