@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Jun 2021 06:42:35 GMT</lastBuildDate><item><title><![CDATA[애자일 개발 프로세스 톺아보기]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 애자일을 검색해보면 여러 용어가 나옵니다. 애자일, 애자일 방법론, 익스트림 프로그래밍, 스크럼, 스프린트 등등 이러한 용어들을
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Jun 2021 07:13:19 GMT</lastBuildDate><item><title><![CDATA[애자일 개발 프로세스 톺아보기]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 애자일을 검색해보면 여러 용어가 나옵니다. 애자일, 애자일 방법론, 익스트림 프로그래밍, 스크럼, 스프린트 등등 이러한 용어들을
 살펴보며, 애자일 개발 프로세스에 대해 알아보도록 하겠습니다. 애자일(agile…]]></description><link>https://noah0316.github.io/Computer Science/2021-06-21-애자일-개발-프로세스-톺아보기/</link><guid isPermaLink="false">https://noah0316.github.io/Computer Science/2021-06-21-애자일-개발-프로세스-톺아보기/</guid><pubDate>Mon, 21 Jun 2021 14:06:49 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
 &lt;p&gt;애자일을 검색해보면 여러 용어가 나옵니다.&lt;br&gt;
 애자일, 애자일 방법론, 익스트림 프로그래밍, 스크럼, 스프린트 등등 이러한 용어들을
@@ -327,8 +327,8 @@ E : Estimation -&gt; 전체 개발 사이클 중에서 계획한 이슈를 어�
 &lt;/p&gt;&lt;center&gt;KPTE &amp;#xD68C;&amp;#xACE0; &amp;#xD504;&amp;#xB808;&amp;#xC784;&amp;#xC6CC;&amp;#xD06C;&lt;/center&gt;
 &lt;p&gt;&lt;/p&gt;
 &lt;p&gt;발표를 지켜보고, 애자일 프로세스에 대해 찾아보며 공부한 결과,&lt;br&gt;
-스크럼에 대한 용어 자체에 매몰되기보다는 현재 속해있는 팀의 배경과 상황에서&lt;br&gt;
-적절한 애자일 프로세스의 요소를 뽑아서 도입해야함을 조금이나마 알 수 있었습니다.&lt;/p&gt;
+애자일 프로세스의 장점만 보고, 무작정 도입하기 보다는 현재 속해있는 팀의 배경과 상황을 정확히 이해하고,&lt;br&gt;
+팀에 알맞는 애자일 프로세스의 요소를 적절히 뽑아서 도입해야함을 조금이나마 알 수 있었습니다.&lt;/p&gt;
 &lt;p&gt;또한 애자일 프로세스는 컴퓨터 과학의 divide and conquer 전략과 같이 작은 목표를 가지고,&lt;br&gt;
 꾸준히 개선해 나가며, 팀원 개별들의 능력을 중요하게 생각하며, 팀원들의 상호작용을 통해 협력을 통해 결과물을 만들어내는 구조를 띠고 있다는 점이 인상이 깊었습니다.&lt;/p&gt;
 &lt;p&gt;혹시 제가 잘못 알고 있는 부분이 있거나, 오타 혹은 궁금한 점 있으시면 댓글로 알려주시면 감사하겠습니다!!😎&lt;/p&gt;
