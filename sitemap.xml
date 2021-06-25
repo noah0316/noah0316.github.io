@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://noah0316.github.io/Algorithms/2021-06-24-해시-알고리즘(hash-algorithm)/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://noah0316.github.io/Computer Science/2021-06-21-애자일-개발-프로세스-톺아보기/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://noah0316.github.io/Tools/2021-04-17-mac에서-oracledb사용하기-근데-이제-docker를-곁들인/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://noah0316.github.io/Computer Science/2021-03-23-tcp-와-udp에-관하여/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

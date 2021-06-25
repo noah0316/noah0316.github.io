@@ -1,4 +1,145 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Jun 2021 07:13:19 GMT</lastBuildDate><item><title><![CDATA[애자일 개발 프로세스 톺아보기]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 애자일을 검색해보면 여러 용어가 나옵니다. 애자일, 애자일 방법론, 익스트림 프로그래밍, 스크럼, 스프린트 등등 이러한 용어들을
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 25 Jun 2021 17:54:09 GMT</lastBuildDate><item><title><![CDATA[해시 알고리즘(Hash algorithm)]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 오늘은 Hash algorithm의 개념에 대해 간략하게 알아보려 합니다. Hash는 Key-value를 쌍으로 데이터를 저장하는 자료구조입니다. 리소스를 포기하고 속도를 취한 자료구조이며, Space-Time trade…]]></description><link>https://noah0316.github.io/Algorithms/2021-06-24-해시-알고리즘(hash-algorithm)/</link><guid isPermaLink="false">https://noah0316.github.io/Algorithms/2021-06-24-해시-알고리즘(hash-algorithm)/</guid><pubDate>Thu, 24 Jun 2021 20:06:48 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+&lt;p&gt;오늘은 Hash algorithm의 개념에 대해 간략하게 알아보려 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hash&lt;/strong&gt;는 Key-value를 쌍으로 데이터를 저장하는 자료구조입니다.&lt;br&gt;
+리소스를 포기하고 속도를 취한 자료구조이며, &lt;strong&gt;Space-Time trade off&lt;/strong&gt;의 대표적인 알고리즘에 속합니다.&lt;/p&gt;
+&lt;p&gt;Hash algorithm은 O(1)의 시간 복잡도를 &lt;strong&gt;지향&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 49.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABTklEQVQoz41SzUrDQBjc5/PSF/KgIKVQRFTQXhSpSUG0ll489OZd8GBtrIoQqYKkbZo0aXaz2YybTaJplbYLwzf7N/myM6TU0FBq6NjQ6nBogOKI4/in5nzVIFfdB1xIXEpMgxkYY6CUIgz5nFhRdJk4KU48z4NlWRiPbdiTIWaB+0dgVaeEhiHCKALjfO7wbWeApmYgko0KESsUO4xElIFnSOckkmLJASFEhvRSS39HdbOHVsNEs27iWjMxdcLVb/grJDLhVPCmOcDe9iNq1T4Oywb2dwyMh1TtTegE50+n0J/PcNKrKSS8LtfI4hfy37K+ArwYLgamj077A0eVPkYWU3s2tbF7X8Fx9wDluy2FhCdrZB0XGeN4e/2E43gyAQF8z1/P5UXR3Iw0Aa50fwTXcVUSuHRLxEJVxUXKybIHzhv9LypcpiIxNKlF/g3FK/iwH+fsvwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;1&quot; title=&quot;1&quot; src=&quot;/static/0e71f29b6b9856d20b557768393f8f27/c1b63/1.png&quot; srcset=&quot;/static/0e71f29b6b9856d20b557768393f8f27/5a46d/1.png 300w,
+/static/0e71f29b6b9856d20b557768393f8f27/0a47e/1.png 600w,
+/static/0e71f29b6b9856d20b557768393f8f27/c1b63/1.png 1200w,
+/static/0e71f29b6b9856d20b557768393f8f27/d61c2/1.png 1800w,
+/static/0e71f29b6b9856d20b557768393f8f27/6274f/1.png 2098w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;&lt;center&gt;Hash&lt;/center&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Data를 Hash function을 거쳐 테이블에 넣어야 합니다.&lt;br&gt;
+이때 똑같은 데이터가 올 때마다 똑같이 분류되어야 하는 규칙이 필요합니다.&lt;br&gt;
+그 규칙성을 정의한 곳이 바로 &lt;strong&gt;Hash Function&lt;/strong&gt;입니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABg0lEQVQoz41STUvDQBDNX/PozZ/jQfDjIiJVT4IHKxQttGgVDwWrtKQgXhVMtYpt/Uz63aTdZJNs8txsWpragh14YbOZeXlvZqSl5AkWjxNYOIpDNQxEw/d9jvF5npCy5TLSD/c4LynQTROObYNSCsdxOMuIdIz/yCXxDIp5mISg0Wig0+lwtNAf9KYIwrMfcTD5M4lysna3C8qVRQvvZA3Jw0dYZpjseZMKmcfAfMapwzvP98SdxBiDwXvnui4v4pfMEwlXF9/YXFZwmqgJpOJVNDVrSBjx6HLQiOWAZAShhIXZ+ayKnTUFB7EX7G89I7aq4Ot9IL5R18ZlJSOwK29jPbuCs6cUMpX0sId/JhtEu0nxWtLxWSOQcxr2Nkr4qJBQFLd2+1NE8auAolqArOWRr17jppaDNO8UK28qH5Qhpk9ISAwvkkDDd2l678akwSBGLSCkj1ariV5PR71eh+3YMClfM27f9Vzohg6LWtOWZ9mfpTgYpmVZQnHQ/y7flED5L/0I+krO6G8wAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;2&quot; title=&quot;2&quot; src=&quot;/static/dc77108b7477e6cc47061aae2dea45e0/c1b63/2.png&quot; srcset=&quot;/static/dc77108b7477e6cc47061aae2dea45e0/5a46d/2.png 300w,
+/static/dc77108b7477e6cc47061aae2dea45e0/0a47e/2.png 600w,
+/static/dc77108b7477e6cc47061aae2dea45e0/c1b63/2.png 1200w,
+/static/dc77108b7477e6cc47061aae2dea45e0/d61c2/2.png 1800w,
+/static/dc77108b7477e6cc47061aae2dea45e0/7831d/2.png 2116w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;위와 같은 데이터가 있을 때 Hash Function을 거쳐&lt;/p&gt;
+&lt;p&gt;값이 다음과 같이 되었다면&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 49%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABg0lEQVQoz41STUvDQBDNX/PozZ/jQfDjIiJVT4IHKxQttGgVDwWrtKQgXhVMtYpt/Uz63aTdZJNs8txsWpragh14YbOZeXlvZqSl5AkWjxNYOIpDNQxEw/d9jvF5npCy5TLSD/c4LynQTROObYNSCsdxOMuIdIz/yCXxDIp5mISg0Wig0+lwtNAf9KYIwrMfcTD5M4lysna3C8qVRQvvZA3Jw0dYZpjseZMKmcfAfMapwzvP98SdxBiDwXvnui4v4pfMEwlXF9/YXFZwmqgJpOJVNDVrSBjx6HLQiOWAZAShhIXZ+ayKnTUFB7EX7G89I7aq4Ot9IL5R18ZlJSOwK29jPbuCs6cUMpX0sId/JhtEu0nxWtLxWSOQcxr2Nkr4qJBQFLd2+1NE8auAolqArOWRr17jppaDNO8UK28qH5Qhpk9ISAwvkkDDd2l678akwSBGLSCkj1ariV5PR71eh+3YMClfM27f9Vzohg6LWtOWZ9mfpTgYpmVZQnHQ/y7flED5L/0I+krO6G8wAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;3&quot; title=&quot;3&quot; src=&quot;/static/4718afbd410f36cc7150b9d041bf6b1f/c1b63/3.png&quot; srcset=&quot;/static/4718afbd410f36cc7150b9d041bf6b1f/5a46d/3.png 300w,
+/static/4718afbd410f36cc7150b9d041bf6b1f/0a47e/3.png 600w,
+/static/4718afbd410f36cc7150b9d041bf6b1f/c1b63/3.png 1200w,
+/static/4718afbd410f36cc7150b9d041bf6b1f/d61c2/3.png 1800w,
+/static/4718afbd410f36cc7150b9d041bf6b1f/6274f/3.png 2098w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;Hash Function은 어떤 &lt;strong&gt;분류 규칙&lt;/strong&gt;이 있었을까요?&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 49%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABiUlEQVQoz41SXUsCURDdv9Zjb/2YeokgInuIoHrpLRSiEoUsepA+RNOIXiKK1JJSSzS/v1bXvbt7755mdxXXAnPgLHfnzpw7M2ekheMjzB8eYM7nRVmW4TbTNAnj8ywmhTMZBJ+fcJpOoTsYQNc0MMag6zqxjEjH+I9csr9WMtlAUVCr1dBqtQgN9PqdPwTO2XR1MPmYxIis2W6DUWXuxPt4BX5vEkx10oWYrJALDm5yunN8whS2T+KcQ6bZGYZBSeTkwg64PCvBs5hE0PeOgDcL/34e9ao6JHT1aBCYq2WLZATrZcGd6JuLMjxLL9jbeMD26iM2l1MoFfr2HTM0nOdCNnbiW1gLr+DkNYBQLjic4S9lLWvWGT7eZBS/VNxGathdT6OQU5yiqLW77wQSxRgS5RjilSii+WtEPq8gzapiLlsmoWRbfUVxiCFcAcz5l/7u3ZjUEmI0AkXpodGoo9PpolqtQtM1DBitGbVvCANduQuVFJSmLem0ii0xVVW1K7bm36ZNsSr/AXJe+fEPsX5sAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;4&quot; title=&quot;4&quot; src=&quot;/static/9077f0304856ec936b5215a338fba812/c1b63/4.png&quot; srcset=&quot;/static/9077f0304856ec936b5215a338fba812/5a46d/4.png 300w,
+/static/9077f0304856ec936b5215a338fba812/0a47e/4.png 600w,
+/static/9077f0304856ec936b5215a338fba812/c1b63/4.png 1200w,
+/static/9077f0304856ec936b5215a338fba812/d61c2/4.png 1800w,
+/static/9077f0304856ec936b5215a338fba812/6274f/4.png 2098w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;Hash Function은 /100이라는 규칙을 가지고 있었습니다.&lt;br&gt;
+Data는 Hash Function의 규칙에 의해 &lt;strong&gt;Hash Code&lt;/strong&gt;를 가지게 되고,&lt;br&gt;
+그 값에 의해 &lt;strong&gt;Hash Table&lt;/strong&gt;의 해당 &lt;strong&gt;인덱스&lt;/strong&gt;로 들어가게 됩니다.&lt;/p&gt;
+&lt;p&gt;Hash Table에서 index에 해당하는 부분을 index 혹은 key라고 하며,&lt;br&gt;
+value에 해당하는 부분을 Hash Value 혹은 value라고 합니다.&lt;/p&gt;
+&lt;h3 id=&quot;hashing-process&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#hashing-process&quot; aria-label=&quot;hashing process permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Hashing process&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;데이터들이 Hash Function의 규칙에 의해 Hash Code를 가지게 된다.&lt;/li&gt;
+&lt;li&gt;Hash Code를 통해 Hash Table 안에 규칙에 의해 들어간다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 모든 과정을 Hashing이라고 합니다.&lt;/p&gt;
+&lt;p&gt;Hash는 리소스를 이용해 속도를 높인다고 하였는데, 여기서 정확한 Hash의 성격이 나옵니다.&lt;br&gt;
+123이라는 데이터가 Hash Table 안에 있나 없나를 확인하고 싶다면&lt;br&gt;
+123을 Hash Function에 의해 변환을 시킵니다.&lt;/p&gt;
+&lt;p&gt;1이라는 Hash Code를 Hash Function을 통해 뽑아내고,&lt;br&gt;
+1이라는 Hash Code에 해당하는 index에 123이라는 값이 Hash Table에 있나 없나를 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;하나하나 검사할 필요 없이 해당 Hash Code가 가리키는 index에 가면&lt;br&gt;
+해당 값이 있는지 없는지를 확인할 수 있습니다.
+이러한 방식이면 &lt;strong&gt;O(1)의 시간복잡도&lt;/strong&gt;를 가지게 됩니다.&lt;/p&gt;
+&lt;p&gt;하지만 Hash algorithm도 문제점을 가지고 있습니다.
+바로 &lt;strong&gt;충돌(collision)문제&lt;/strong&gt; 인데요.&lt;/p&gt;
+&lt;p&gt;충돌의 예로 다음과 같은 예를 들 수 있습니다.&lt;br&gt;
+만약 145가 다음 Data로 들어온다면?&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1046px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 53%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAEDAgX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAB7TpOGaE//8QAGxAAAgEFAAAAAAAAAAAAAAAAAQIAEBESIjH/2gAIAQEAAQUCOqhrjKi9n//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAEDAQE/AYf/xAAWEQEBAQAAAAAAAAAAAAAAAAABEEH/2gAIAQIBAT8BXJ//xAAaEAACAgMAAAAAAAAAAAAAAAAAARARIjGB/9oACAEBAAY/AsVwumacOP/EABsQAQEAAgMBAAAAAAAAAAAAAAERABAhMUHx/9oACAEBAAE/IQlzx6Y9RNkw+LStfHX/2gAMAwEAAgADAAAAEOf/AP/EABYRAQEBAAAAAAAAAAAAAAAAACEAAf/aAAgBAwEBPxDATf/EABYRAQEBAAAAAAAAAAAAAAAAAAEQQf/aAAgBAgEBPxARNM//xAAbEAACAwADAAAAAAAAAAAAAAABIQARMRBhcf/aAAgBAQABPxAXKDKVuMJQtlSwXT0eBNpI8gAn/9k=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;5&quot; title=&quot;5&quot; src=&quot;/static/27e8cff4bc7b265ff455b99be1fe1637/b4719/5.jpg&quot; srcset=&quot;/static/27e8cff4bc7b265ff455b99be1fe1637/f93b5/5.jpg 300w,
+/static/27e8cff4bc7b265ff455b99be1fe1637/b4294/5.jpg 600w,
+/static/27e8cff4bc7b265ff455b99be1fe1637/b4719/5.jpg 1046w&quot; sizes=&quot;(max-width: 1046px) 100vw, 1046px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;&lt;center&gt;Collision Example&lt;/center&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;위와 같이 충돌이 발생합니다.&lt;/p&gt;
+&lt;p&gt;이러한 충돌 관련 문제를 해결하기 위해 많은 방법을 고안해냈으며,&lt;br&gt;
+지금까지도 많은 논문이 쓰이고 있습니다.&lt;/p&gt;
+&lt;p&gt;우리는 그 중 충돌에 대처하는 방법들에 대해 간단하게 살펴보겠습니다.&lt;/p&gt;
+&lt;h3 id=&quot;chaining&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#chaining&quot; aria-label=&quot;chaining permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Chaining&lt;/h3&gt;
+&lt;p&gt;첫 번째로 체이닝이라는 기법입니다.&lt;br&gt;
+해당 index에 값이 있으면 그 뒤에 리스트와 같은 자료구조를 이용해&lt;br&gt;
+Chain처럼 연결하는 것입니다. 마치 그림과 같이 말이죠.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1100px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 41.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAduQuD//xAAWEAEBAQAAAAAAAAAAAAAAAAABEQD/2gAIAQEAAQUCiFZv/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGBAAAgMAAAAAAAAAAAAAAAAAABARIjH/2gAIAQEABj8CpBi//8QAGhAAAgIDAAAAAAAAAAAAAAAAACEBETFBgf/aAAgBAQABPyGVaDwJJe2cP//aAAwDAQACAAMAAAAQCA//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAYEAEBAQEBAAAAAAAAAAAAAAABEQAhYf/aAAgBAQABPxAgIFK4Ji28pLEfMLOrf//Z&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;6&quot; title=&quot;6&quot; src=&quot;/static/f2c7e513f59c725f89ae5899fb781bf6/ddced/6.jpg&quot; srcset=&quot;/static/f2c7e513f59c725f89ae5899fb781bf6/f93b5/6.jpg 300w,
+/static/f2c7e513f59c725f89ae5899fb781bf6/b4294/6.jpg 600w,
+/static/f2c7e513f59c725f89ae5899fb781bf6/ddced/6.jpg 1100w&quot; sizes=&quot;(max-width: 1100px) 100vw, 1100px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;&lt;center&gt;Chaining&lt;/center&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;하지만 계속 사용하다 보면 리스트가 커져 리스트를 순회하여 값을 탐색하는 데 시간이 오래 걸린다는 단점이 있습니다.&lt;/p&gt;
+&lt;h3 id=&quot;open-addressing&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#open-addressing&quot; aria-label=&quot;open addressing permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Open Addressing&lt;/h3&gt;
+&lt;p&gt;Open Addressing은 충돌이 발생했을 경우,&lt;br&gt;
+Hash Function으로 얻은 Hash Code에 해당하는 주소가 아닌,&lt;br&gt;
+다른 주소에 데이터를 저장하는 방법입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Linear Probing&lt;/strong&gt;&lt;br&gt;
+Linear Probing 방식은 충돌이 일어나면,&lt;br&gt;
+인덱스의 위치를 이동하며
+충돌이 일어나지 않을 때까지 빈 Slot을 찾아 값을 저장합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 376px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 82.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAQABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDBAX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAB68tiyKUD/8QAGhAAAwADAQAAAAAAAAAAAAAAAAECEBITMf/aAAgBAQABBQJzTObkW2K8P//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAEDAQE/AYf/xAAVEQEBAAAAAAAAAAAAAAAAAAAQEf/aAAgBAgEBPwGH/8QAGxAAAQQDAAAAAAAAAAAAAAAAAAECESESICL/2gAIAQEABj8CXqici3af/8QAHBAAAgICAwAAAAAAAAAAAAAAAREAMWGBECFR/9oACAEBAAE/IR4EGxUacCq6UAaDqeTAdcf/2gAMAwEAAgADAAAAEND/AP/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/EIR//8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQIBAT8QhH//xAAeEAEAAwACAgMAAAAAAAAAAAABABEhMUFRYXGRwf/aAAgBAQABPxBs5cCtOoDJM0w+2mGo7dnGjxHnK7+dwC7XfnE9T//Z&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;7&quot; title=&quot;7&quot; src=&quot;/static/2ac707f724165271979bb955c07b1bea/80d0c/7.jpg&quot; srcset=&quot;/static/2ac707f724165271979bb955c07b1bea/f93b5/7.jpg 300w,
+/static/2ac707f724165271979bb955c07b1bea/80d0c/7.jpg 376w&quot; sizes=&quot;(max-width: 376px) 100vw, 376px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;&lt;center&gt;Linear Probing&lt;/center&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Hash Code 충돌로 원래 위치의 다음 위치,&lt;br&gt;
+그 다음 위치 순으로 입력되다보니&lt;br&gt;
+특정 Hash Code에 값이 모이게 되면 Open Addressing의 효율성이 크게 떨어집니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Quadratic Probing&lt;/strong&gt;&lt;br&gt;
+Quadratic Probing은 고정 폭으로 다음 위치로 이동하는 Linear Probing과는 달리&lt;br&gt;
+다음 위치로 이동하는 폭이 제곱수로 늘어난다는 특징을 가지고 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;만약 table이 꽉 찬다면 table resizing이 필요합니다.&lt;br&gt;
+table의 크기들을 늘려준 다음 Data를 Hash Function을 이용해 재정렬합니다.&lt;/p&gt;
+&lt;p&gt;잘 짜인 Hash Function을 이용하면 Hash Table 안에 잘 정리가 됩니다.&lt;br&gt;
+&lt;strong&gt;잘 짜인 Hash Function&lt;/strong&gt;이란 &lt;strong&gt;충돌이 잘 발생하지 않으며&lt;/strong&gt;, &lt;strong&gt;Hash Code가 모이지 않고&lt;/strong&gt;,&lt;br&gt;
+들어오는 Data를 테이블의 곳곳에 골고루 잘 분배할 수 있는 Hash Function을 말합니다.&lt;/p&gt;
+&lt;p&gt;여기까지 Hash 알고리즘의 개념과 충돌(Collision)문제 해결에 대해 간략하게 알아보았습니다😄&lt;/p&gt;
+&lt;p&gt;혹시 제가 잘못 알고 있는 부분이 있거나, 오타 혹은 궁금한 점 있으시면 댓글로 알려주시면 감사하겠습니다!!😎&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;참고&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ratsgo.github.io/data%20structure&amp;#x26;algorithm/2017/10/25/hash/&quot;&gt;해싱, 해시함수, 해시테이블&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=xls6jEZNA7Y&quot;&gt;해시-해시테이블-해싱 5분만에 이해하기 - Gunny&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[애자일 개발 프로세스 톺아보기]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 애자일을 검색해보면 여러 용어가 나옵니다. 애자일, 애자일 방법론, 익스트림 프로그래밍, 스크럼, 스프린트 등등 이러한 용어들을
 살펴보며, 애자일 개발 프로세스에 대해 알아보도록 하겠습니다. 애자일(agile…]]></description><link>https://noah0316.github.io/Computer Science/2021-06-21-애자일-개발-프로세스-톺아보기/</link><guid isPermaLink="false">https://noah0316.github.io/Computer Science/2021-06-21-애자일-개발-프로세스-톺아보기/</guid><pubDate>Mon, 21 Jun 2021 14:06:49 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
 &lt;p&gt;애자일을 검색해보면 여러 용어가 나옵니다.&lt;br&gt;
 애자일, 애자일 방법론, 익스트림 프로그래밍, 스크럼, 스프린트 등등 이러한 용어들을
