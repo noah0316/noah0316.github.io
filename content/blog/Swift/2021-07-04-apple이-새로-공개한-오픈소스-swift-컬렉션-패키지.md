@@ -1,7 +1,7 @@
 ---
 title: Apple이 새로 공개한 오픈소스 Swift 컬렉션 패키지!
 date: 2021-07-04 23:07:41
-category: swift
+category: Swift
 thumbnail: { thumbnailSrc }
 draft: false
 ---
@@ -141,7 +141,7 @@ responses.elements[0] // (200, "OK") (index-based subscript)
 
 ## 아...
 
-이 좋은 패키지는 swift에 내장되어있는 것이 아닌,
+이 좋은 패키지는 Swift에 내장되어있는 것이 아닌,
 
 Swift Package Manager를 통해 설치한 다음 import를 하는 과정을 거쳐야 하므로
 
