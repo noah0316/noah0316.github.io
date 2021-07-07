@@ -26,7 +26,7 @@ draft: false
 
 ## Selection Sort
 
-먼저 Selection Sort의 데이터가 정렬되는 모습부터 먼저 살펴보겠습니다.
+먼저 Selection Sort가 데이터를 정렬하는 모습부터 먼저 살펴보겠습니다.
 
 <p align="center">
 <img src="assets/2021-07-05/1.gif" width="300"/>
@@ -53,13 +53,12 @@ draft: false
 ```swift
 import Foundation
 
-func selectionSort(_ array: [Int]) {
-    var array = array
+func selectionSort(_ array: inout [Int]) {
     var min: Int = 0
 
     for i in 0..<array.count {
         min = i
-        for j in i+1..<array.count {
+        for j in i + 1..<array.count {
             if(array[j] < array[min]) {
                 min = j
             }
@@ -69,7 +68,7 @@ func selectionSort(_ array: [Int]) {
 }
 
 var array = [8, 5, 2, 6, 9, 3, 1, 4, 0, 7]
-selectionSort(array)
+selectionSort(&array)
 ```
 
 위의 `array`가 정렬되는 모습은 다음과 같습니다.  
