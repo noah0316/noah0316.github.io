@@ -72,6 +72,7 @@ func selectionSort(_ array: inout [Int]) {
 
 var array = [8, 5, 2, 6, 9, 3, 1, 4, 0, 7]
 selectionSort(&array)
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 위의 `array`가 정렬되는 모습은 다음과 같습니다.  

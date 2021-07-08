@@ -15,6 +15,8 @@ draft: false
 **Bubble Sort**는 이해하기 쉬워 교육용으로 가장 많이 쓰이는 정렬 알고리즘입니다.  
 그만큼 **직관적이며, 이해하기 쉽습니다.**
 
+## Bubble Sort
+
 먼저 Bubble Sort가 데이터를 정렬하는 모습부터 먼저 살펴보겠습니다.
 
 <p align="center">
@@ -49,6 +51,7 @@ func bubbleSort(_ array: inout [Int]) {
 
 var array = [5, 3, 1, 6, 7, 2, 4, 8]
 bubbleSort(&array)
+// [1, 2, 3, 4, 5, 6, 7, 8]
 ```
 
 위의 `array`가 정렬되는 모습은 다음과 같습니다.
