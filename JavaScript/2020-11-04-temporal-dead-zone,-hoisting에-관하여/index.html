@@ -94,7 +94,8 @@ import구문을 상단으로 끌어올려 사용할 수 있게 하는 방식을 
 <p>variable이라는 변수를 선언해주지 않았기 때문에 위의 코드는 당연히 참조에러를 발생시킵니다.</p>
 <div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable<span class="token punctuation">)</span> <span class="token comment">// undefined</span>
 <span class="token keyword">var</span> variable <span class="token operator">=</span> <span class="token number">10</span></code></pre></div>
-<p>위의 코드는 undefined가 출력된다. 자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석합니다.</p>
+<p>위의 코드는 undefined가 출력됩니다.<br>
+자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석합니다.</p>
 <div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> variable
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable<span class="token punctuation">)</span> <span class="token comment">// undefined</span>
 variable <span class="token operator">=</span> <span class="token number">10</span></code></pre></div>
