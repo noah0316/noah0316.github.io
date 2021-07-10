@@ -47,7 +47,8 @@ console.log(variable) // undefined
 var variable = 10
 ```
 
-위의 코드는 undefined가 출력된다. 자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석합니다.
+위의 코드는 undefined가 출력됩니다.  
+자바스크립트 엔진은 내부적으로 위의 코드를 다음과 같이 해석합니다.
 
 ```javascript
 var variable
