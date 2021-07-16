@@ -207,7 +207,7 @@ print(array)
 
 현재 배열의 크기는 **1보다 크지 않기** 때문에 해당 재귀 함수는 **현재 array인 `[6]`을 반환**하고 종료됩니다.
 
-이제 현재 **스택의 상단**에 위치한 **leftArray 상수**에는 방금 반환받은 **array인 `[6]`**이 들어가고  
+이제 현재 **스택의 상단**에 위치한 **leftArray 상수**에는 방금 반환받은 **array인 `[6]`**이 들어가고,  
 <br>
 
 <p align="center">
@@ -218,7 +218,7 @@ print(array)
 <img src="assets/2021-07-16/15.png" width="300"/>
 </p>
 
-**middleIndex**부터 `array.count - 1`까지 **partial array**를 인자로 하여 **mergeSort()**를 호출합니다.
+이번에는 **middleIndex**부터 `array.count - 1`까지 **partial array**를 인자로 하여 **mergeSort()**를 호출합니다.
 
 <p align="center">
 <img src="assets/2021-07-16/16.png" width="300"/>
