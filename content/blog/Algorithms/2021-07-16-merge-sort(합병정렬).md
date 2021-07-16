@@ -428,7 +428,7 @@ func merge(leftPile: [Int], rightPile: [Int]) -> [Int] {
 > 참고
 >
 > - [Raywenderlich Swift Algorithm Club](https://github.com/raywenderlich/swift-algorithm-club/tree/master/Merge%20Sort)
-> - [위키 백과 삽입 정렬](https://ko.wikipedia.org/wiki/%ED%95%A9%EB%B3%91_%EC%A0%95%EB%A0%AC)
+> - [위키 백과 합병 정렬](https://ko.wikipedia.org/wiki/%ED%95%A9%EB%B3%91_%EC%A0%95%EB%A0%AC)
 > - [머지소트 병합정렬 5분만해 이해하기-Gunny](https://www.youtube.com/watch?v=FCAtxryNgq4&t=2s)
 
 > 이미지 출처
