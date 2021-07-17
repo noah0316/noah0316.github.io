@@ -49,7 +49,7 @@ Github을 검색하고 Slack workspace에 설치를 진행합니다.
     <img src="assets/2021-01-09/4.png"/>
 </p>
 
-특정 채널 (github-alert)을 선택하고 설치를 진행한다. Install이 진행되며,
+특정 채널 (github-alert)을 선택하고 설치를 진행합니다. Install이 진행되며,
 
 Slack app으로 redirecting되어 다음과 같은 메시지를 받으면 workspace에 github가 설치 완료 됩니다.
 
