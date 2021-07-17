@@ -38,7 +38,7 @@ func mergeSort(_ array: [Int]) -> [Int] {
 
     let leftArray = mergeSort(Array(array[0..<middleIndex]))
 
-    let rightArray = mergeSort(Array(array[middleIndex..<array.count])) // 4
+    let rightArray = mergeSort(Array(array[middleIndex..<array.count]))
 
     return merge(leftPile: leftArray, rightPile: rightArray)
 }
