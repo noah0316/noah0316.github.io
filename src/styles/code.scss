@@ -6,6 +6,7 @@
  */
 
 @import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css);
+@import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200&display=swap);
 @import './variables.scss';
 
 .gatsby-highlight-code-line {
@@ -26,8 +27,7 @@ code[class*='language-'],
 pre[class*='language-'] {
   color: #e0e0e0;
   background: none;
-  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono',
-    monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
