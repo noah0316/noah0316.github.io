@@ -1,5 +1,5 @@
 ---
-title: Selection Sort(선택정렬)
+title: Swift Selection Sort(선택정렬)
 date: 2021-07-05 18:07:74
 category: Algorithms
 thumbnail: { thumbnailSrc }

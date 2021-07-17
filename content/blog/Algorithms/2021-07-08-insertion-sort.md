@@ -1,5 +1,5 @@
 ---
-title: Insertion Sort(삽입정렬)
+title: Swift Insertion Sort(삽입정렬)
 date: 2021-07-08 16:07:77
 category: Algorithms
 thumbnail: { thumbnailSrc }

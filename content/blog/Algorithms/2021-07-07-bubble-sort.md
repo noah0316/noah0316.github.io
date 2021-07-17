@@ -1,5 +1,5 @@
 ---
-title: Bubble Sort(거품정렬)
+title: Swift Bubble Sort(거품정렬)
 date: 2021-07-07 15:07:76
 category: Algorithms
 thumbnail: { thumbnailSrc }

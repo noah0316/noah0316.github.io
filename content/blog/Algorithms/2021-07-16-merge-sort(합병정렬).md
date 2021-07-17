@@ -1,5 +1,5 @@
 ---
-title: Merge Sort(합병정렬)
+title: Swift Merge Sort(합병정렬)
 date: 2021-07-16 17:07:73
 category: Algorithms
 thumbnail: { thumbnailSrc }
