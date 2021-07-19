@@ -1,4 +1,267 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 17 Jul 2021 17:23:04 GMT</lastBuildDate><item><title><![CDATA[Swift Merge Sort(합병정렬)]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 이번 시간에는 Sorting 알고리즘 톺아보기 1부보다 조금 더 난이도가 있는 Sorting 알고리즘을 다루는 Sorting 알고리즘 톺아보기 2부를 진행하도록 하겠습니다 😄 이번 시간에 살펴볼 Sorting…]]></description><link>https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(합병정렬)/</link><guid isPermaLink="false">https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(합병정렬)/</guid><pubDate>Fri, 16 Jul 2021 17:08:13 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 19 Jul 2021 16:56:52 GMT</lastBuildDate><item><title><![CDATA[Swift Quick Sort(퀵 정렬)]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 이번 시간에는 Sorting 알고리즘 톺아보기 2부 마지막 시간입니다!!🥺 🥺 이번에 살펴볼 Sorting 알고리즘은 Quick Sort입니다. Quick Sort…]]></description><link>https://noah0316.github.io/Algorithms/2021-07-19-quick-sort(퀵-정렬)/</link><guid isPermaLink="false">https://noah0316.github.io/Algorithms/2021-07-19-quick-sort(퀵-정렬)/</guid><pubDate>Mon, 19 Jul 2021 23:07:13 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+&lt;p&gt;이번 시간에는 &lt;strong&gt;Sorting 알고리즘 톺아보기 2부&lt;/strong&gt; 마지막 시간입니다!!🥺 🥺&lt;/p&gt;
+&lt;p&gt;이번에 살펴볼 Sorting 알고리즘은 &lt;strong&gt;Quick Sort&lt;/strong&gt;입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt;는 정렬 알고리즘 중 가장 인기 있는 알고리즘 중에 하나인데요,&lt;/p&gt;
+&lt;p&gt;1959년에 영국의 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%ED%86%A0%EB%8B%88_%ED%98%B8%EC%96%B4&quot;&gt;Tony Hoare&lt;/a&gt;란 분에 의해 고안되었다고 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt; 역시 &lt;strong&gt;divide and conquer&lt;/strong&gt; 전략을 사용해 정렬을 진행하는데요, &lt;strong&gt;Quick Sort&lt;/strong&gt;에 대해 한번 알아봅시다!&lt;/p&gt;
+&lt;h2 id=&quot;quick-sort&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#quick-sort&quot; aria-label=&quot;quick sort permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Quick Sort&lt;/h2&gt;
+&lt;p&gt;먼저 &lt;strong&gt;Quick Sort&lt;/strong&gt;가 데이터를 정렬하는 모습부터 먼저 살펴보겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/d4e5d0a778dba725091d8317e6bac939/1.gif&quot; width=&quot;300&quot;&gt;
+&lt;/p&gt;&lt;center&gt;Quick Sort&lt;/center&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;그림을 통해 기준이 되는 &lt;strong&gt;pivot(기준점)&lt;/strong&gt;을 기점으로 &lt;strong&gt;정렬이 진행&lt;/strong&gt;되는 것을 볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;그림에서는 맨 우측 요소가 &lt;strong&gt;pivot&lt;/strong&gt;이 되는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pivot&lt;/strong&gt;을 어디로 두느냐에 따라 &lt;strong&gt;Quick Sort&lt;/strong&gt;는 &lt;strong&gt;여러 방법&lt;/strong&gt;으로 구현이 가능합니다.&lt;/p&gt;
+&lt;p&gt;또한 &lt;strong&gt;pivot&lt;/strong&gt;을 어디로 두느냐에 따라 같은 &lt;strong&gt;Quick Sort&lt;/strong&gt;라도 큰 속도 차가 발생합니다.&lt;/p&gt;
+&lt;p&gt;먼저 &lt;strong&gt;Swift&lt;/strong&gt;를 이용해 &lt;strong&gt;Quick Sort&lt;/strong&gt;를 구현해보도록 하겠습니다.&lt;/p&gt;
+&lt;h3 id=&quot;quicksort&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#quicksort&quot; aria-label=&quot;quicksort permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;quickSort&lt;/h3&gt;
+&lt;hr&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;quickSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;_&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;guard&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; array &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; pivot &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; less &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; $&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; pivot &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;equal&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; $&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; pivot &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; greater &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; $&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; pivot &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;quickSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;less&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;equal&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;quickSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;greater&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;quickSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;27&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// [-1, 0, 1, 2, 3, 5, 8, 8, 9, 10, 14, 26, 27]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;배열이 주어지면 배열은 &lt;strong&gt;pivot&lt;/strong&gt;을 기준으로 &lt;strong&gt;3개의 부분&lt;/strong&gt;으로 나눠집니다.&lt;/p&gt;
+&lt;p&gt;pivot보다 &lt;strong&gt;작은 부분&lt;/strong&gt;, pivot과 &lt;strong&gt;같은 부분&lt;/strong&gt;, pivot보다 &lt;strong&gt;큰 부분&lt;/strong&gt;으로 나누어집니다.&lt;/p&gt;
+&lt;p&gt;한번 &lt;strong&gt;Quick Sort&lt;/strong&gt;의 흐름을 따라가 보도록 해보겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 14.666666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAhElEQVQI11WOyRLCMAxD8/9/WAr0RsnuOM0CF5GkTKGHN5ZlacYipwAmiRQNNtaIQR10/6T5pzs9T279ZiQCKQj2D1g5Idj7gMwNXl+P3crL8DrmOYH+cn06NYPd0joz9DpD1MLtO4uSPGreKcntutDptrFpk/CuPLwysh6vEpBbJwaDD6I5415qUVSoAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;2&quot; title=&quot;2&quot; src=&quot;/static/89f0261e21d130c94a415149c79ef42a/c1b63/2.png&quot; srcset=&quot;/static/89f0261e21d130c94a415149c79ef42a/5a46d/2.png 300w,
+/static/89f0261e21d130c94a415149c79ef42a/0a47e/2.png 600w,
+/static/89f0261e21d130c94a415149c79ef42a/c1b63/2.png 1200w,
+/static/89f0261e21d130c94a415149c79ef42a/d61c2/2.png 1800w,
+/static/89f0261e21d130c94a415149c79ef42a/97a96/2.png 2400w,
+/static/89f0261e21d130c94a415149c79ef42a/60ab9/2.png 2450w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;&lt;center&gt;array&lt;/center&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;먼저 위와 같은 배열이 &lt;strong&gt;quickSort()&lt;/strong&gt;의 인자로 주어진다고 가정해보겠습니다.&lt;/p&gt;
+&lt;p&gt;지난 시간에 알아보았던 &lt;a href=&quot;https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(%ED%95%A9%EB%B3%91%EC%A0%95%EB%A0%AC)/&quot;&gt;Merge Sort&lt;/a&gt;와 같이 guard문의 조건대로 array가 들어오면&lt;br&gt;
+element가 &lt;strong&gt;하나만 남을 때&lt;/strong&gt;까지 계속 &lt;strong&gt;분할&lt;/strong&gt;이 진행됩니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 48%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAAB/ElEQVQoz5WR3U/TUBjG+3d4gWGj27rR9rRd242tK91XXFcdrEEHSKJ3cqGJN8Y74UYj3qjzAojRRRxg4lwUPwIq8T97fM9BIzHccPHLc855z3ne522l3YNjDMbf8WZ0hJ3xIXF0isNTehYn94Yff2Dv8zH2v/yCtHrnPnrxVXRWFtGa7yHsXENL0ENrrvdvfRZUb88voRkt4Pa9B9g9+AkpCmPMmdNw2hYuTjMkUkTGJNWRkFVMZRiSKQ1yRkMyrdE5V36uiTrfX5iQcTm+jsH7r5Dq7RgJxUFBb8IptuEEMexqF1aJ9jM1eEGIfMFH4FfheU0w20fFa2DWr8NwKtDzZaSyJq4srGB7OIbUCLuQFQZFy8OxanDMKkzbg+X6MDmOjyzVTFaGbdSQ01wUrCYsFghDt1RHJpdH1F3G5tsRJWx1xViKakPXStDMGTDqmtNdqGLtCVOeRLWKlNATDTTDgUzJ0jkLkzR61F3C5g4ZNmhkWTEooQNGKQwy4J1VowjdKgkzw64QnlBuqDIXullEhkJk6V0yrSOKl08Mg2aHEhqiE//ovJhM/dG/6/+YSjNR45PxMBOTCkL641vDD5AWb66iHLTg1UKh54W/K81ewo1bd/Fy/xOk/qs9PHy6hfWNPtY2nmPt8Tmg++tP+nj0bBsvXr/DYPQNvwHd8IkgJx3BOQAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;3&quot; title=&quot;3&quot; src=&quot;/static/00ec3e027850ecabccef07ec7420b96a/c1b63/3.png&quot; srcset=&quot;/static/00ec3e027850ecabccef07ec7420b96a/5a46d/3.png 300w,
+/static/00ec3e027850ecabccef07ec7420b96a/0a47e/3.png 600w,
+/static/00ec3e027850ecabccef07ec7420b96a/c1b63/3.png 1200w,
+/static/00ec3e027850ecabccef07ec7420b96a/62da8/3.png 1262w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;array&lt;/strong&gt;의 크기가 &lt;strong&gt;1보다 클 때만&lt;/strong&gt; 이후의 &lt;strong&gt;코드를 진행&lt;/strong&gt;하고 1보다 크지 않다면 &lt;strong&gt;현재 배열을 반환&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;현재 배열의 크기&lt;/strong&gt;가 1보다 크기 때문에 &lt;strong&gt;pivot&lt;/strong&gt;을 정하는 코드를 만나게 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pivot&lt;/strong&gt;은 &lt;code class=&quot;language-text&quot;&gt;array.count / 2&lt;/code&gt; 를 하는 것으로 보아&lt;br&gt;
+pivot을 정하는데 아무런 연산을 하지 않고, &lt;strong&gt;주어진 array의 가운데 위치한 요소&lt;/strong&gt;를 &lt;strong&gt;pivot&lt;/strong&gt;으로 하는&lt;br&gt;
+&lt;strong&gt;Quick Sort&lt;/strong&gt;임을 알 수 있습니다.&lt;/p&gt;
+&lt;p&gt;따라서 현재 array의 크기는 12이기 때문에 pivot은 6번째 인덱스에 있는 &lt;code class=&quot;language-text&quot;&gt;8&lt;/code&gt;이 &lt;strong&gt;pivot&lt;/strong&gt;이 됩니다.&lt;/p&gt;
+&lt;p&gt;이제 우리는 array를 &lt;strong&gt;pivot&lt;/strong&gt;을 기준으로 &lt;strong&gt;세 부분&lt;/strong&gt;으로 나눌 것입니다. 바로 다음 코드를 통해 말이죠.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 63.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACWElEQVQ4y5VSa2sTQRTNT6lNk91kt9nZzb4mu9ndNLtJmwZLH4L6UQQ/Vz8IxfcLqyAtrVJBW1tSWylpUVQMivjPjncmKmpF6IfDvfO45545d3L7H76h9+4LNvsDbB98wnafcPgD/b9w+I+c4s7hAL23n7H3/ityO0cDXLy0iLOzc5g6t4C0O4+sMzfE9LxE2vkz/swFWt0FwhmJ5fVN5DZeH6HTmsG0rcPMHIzqFvKlKsbKDvKqiTGVoVgaRlVjKJQM5BUDStlAscwwWqzgVGEcI3kNV28tI/f01Rsk7RmMqDZ8lsHj03CTOTgTs7DDNtygibDRge1FaCYpgiCD6SRoRBnq9RTMiVCxaiiNO7hy7T5ya5t7aLROSxVFUmexCA6LYVgcllOH6UYwqgEUzYJRCWAaMfSKD8togBkRql4soWpVLC7dGRImRFggQtGFGSFMO4JFl3TGiSykggRerUnKKPdjahKTKhdaxcaYEFK2ZP3i0t3jhJ6VgvMWanFbKgviSbhhBpZMwqDnhvWEEMH2J8DrGREHsu4/hBlqtTbitEtFCXwik+T1FsaTKVg8RjoRw+UJAlrziPZNTvXsOKGq2+QRdSfTxTCEN5rhw/HJL/JSo1imIbheAMflciAOb0jC4u8KxVAUzYYuDsh8hQwWvggo+jAXeypFlc6L8rz6654QIuJlQbi+tY+InpdXmLxQoL8n1J4Uo/QXpcKNXh/z5y/AC1Pph09GnwQ8Eh63EDQmcf3BCnJbBx+x+mIX9548w83lVdx4uHJi3H68hkfrL/F89wjfAUv48iddSMFgAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;4&quot; title=&quot;4&quot; src=&quot;/static/5d796781f1e6a55d9f6d56e6a7213465/c1b63/4.png&quot; srcset=&quot;/static/5d796781f1e6a55d9f6d56e6a7213465/5a46d/4.png 300w,
+/static/5d796781f1e6a55d9f6d56e6a7213465/0a47e/4.png 600w,
+/static/5d796781f1e6a55d9f6d56e6a7213465/c1b63/4.png 1200w,
+/static/5d796781f1e6a55d9f6d56e6a7213465/9cea8/4.png 1278w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;filter를 이용해 array를 &lt;strong&gt;세 부분&lt;/strong&gt;으로 나눕니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;less&lt;/strong&gt;에는 pivot보다 &lt;strong&gt;작은&lt;/strong&gt; 요소를,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;equal&lt;/strong&gt;에는 pivot과 &lt;strong&gt;같은&lt;/strong&gt; 요소를,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;greater&lt;/strong&gt;에는 pivot보다 &lt;strong&gt;큰&lt;/strong&gt; 요소를 할당합니다.&lt;/p&gt;
+&lt;p&gt;위의 코드를 진행하고 난 뒤에는 &lt;code class=&quot;language-text&quot;&gt;less, equal, greater&lt;/code&gt;에는 다음과 같은 요소들이 할당됩니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;less:    [ 0, 3, 2, 1, 5, -1 ]
+equal:   [ 8, 8 ]
+greater: [ 10, 9, 14, 27, 26 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;less&lt;/code&gt;와 &lt;code class=&quot;language-text&quot;&gt;greater&lt;/code&gt;가 비슷한 수의 요소를 분할되었기 때문에&lt;/p&gt;
+&lt;p&gt;우리는 이번에 &lt;strong&gt;좋은 pivot&lt;/strong&gt;을 골랐다고 할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;좋은 pivot&lt;/strong&gt;에 대한 기준은 뒤에서 다시 살펴보겠습니다.&lt;/p&gt;
+&lt;p&gt;이제 다음 코드를 진행해보도록 하겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAB7klEQVQoz52SOZPTQBCF9VsofOkcjTQaXZa0stdrU0AREBEDEZBwhIREGBaSXRao4ihMuGzIr3u8Ga8pTEIVQVe3Zqa/fq9t53RzgTs3buPm9RbptR6pYs5NdEjyA8Y2S+a02GbzbWpV9jakbtEvb+H99ws4xx82KHQDJTOIrIGb9vD0IVw5RRAXEKqBkJqDSoyDDGlW2O+hm2AwFhhOYlwZhnw3xRuynFennzn1AINJCila5HpFBXOoao6snFmFQhao9AKRrFEyK7VVKNIak0ARLq3KNVnOy5NPtmnASV6gIaKKynL4IkcgS0RJhZBKw9icV/AjjbGf2jAwk02vpLv1yR/AqxNB2BR1vkLRLvigRdksoLsVRLuErmfoOu6NynQ1gxdpq+yfwFIvUbZHFqhpWdWH8JsjRKzbZsqzDkWzJLj/rdBa3gdyh24MP8wRy4b76ex+jO2Eu/Foe8IBZhUqyxFyFbGq4YaZhe0pXF8CR15igSru2djAz6lMzxHrzj42e0xYe6Lg+Yz3VK17az/mvXFpga/PvtqHdsm+gutnrBmhxoh/E2NrZ80Nt3nMH88G33tUObq0bFjO2eYHnj5/gfuPnuHewye4++AxY5d39d+xf2d6DcOwnC/nP/Hu2zneftzYCf8TptcwDOsXTKuggLCsbtYAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;5&quot; title=&quot;5&quot; src=&quot;/static/6abc35c33774e8b1794a5091d045e3d9/c1b63/5.png&quot; srcset=&quot;/static/6abc35c33774e8b1794a5091d045e3d9/5a46d/5.png 300w,
+/static/6abc35c33774e8b1794a5091d045e3d9/0a47e/5.png 600w,
+/static/6abc35c33774e8b1794a5091d045e3d9/c1b63/5.png 1200w,
+/static/6abc35c33774e8b1794a5091d045e3d9/07a9c/5.png 1440w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pivot을 기준&lt;/strong&gt;으로 &lt;code class=&quot;language-text&quot;&gt;less&lt;/code&gt;와 &lt;code class=&quot;language-text&quot;&gt;greater&lt;/code&gt;로 나눴으므로, &lt;code class=&quot;language-text&quot;&gt;equal&lt;/code&gt;의 자리는 현재 &lt;strong&gt;확정&lt;/strong&gt;되었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;less&lt;/code&gt;와&lt;code class=&quot;language-text&quot;&gt;greater&lt;/code&gt; 의 자리는 아직 확정되지 않았기 때문에 &lt;strong&gt;quickSort()&lt;/strong&gt;를 다시 호출합니다.&lt;/p&gt;
+&lt;p&gt;호출하는 &lt;strong&gt;quickSort()&lt;/strong&gt;는 방금 진행한 code와 &lt;strong&gt;같은 일&lt;/strong&gt;을 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pivot을 기준&lt;/strong&gt;으로 인자로 전달하는 subarray를 다시 &lt;strong&gt;less, equal, greater&lt;/strong&gt; 세 부분으로 나눕니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;quickSort(less)&lt;/code&gt; code를 따라가 보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;quickSort(less)&lt;/code&gt;에 전달된 subarray는 다음과 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[ 0, 3, 2, 1, 5, -1 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 664px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 30%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsSAAALEgHS3X78AAABGklEQVQY012R2VLCQBRE+f/vcnmxSi00IiKSDNlYAiHLLMlM2zMRHnxI5VTXne67zJxz0KoH3ACjeyjZwllz46AbCfmnD2T1j6e3EuM4YmatRXtOMX++w6FcQbUFvhZPOJJNX2L+ck/+hu4KRPNHlOkna3K8vT7c2L/d5UvYUXvDEXUlkIkIp/0PmpPAvlih2q0ZtEUaRzgfNricEqRJFPS6irHLloGDHk+6n2Rm2Wbf5ExboKu3kE0Wkq/sO/XGni9VQhahK2/Y0GzS4/ANRk0ddpccYvPOgi16ciYWE4egJbsQgas9O+U0kmtJkw/UR29YMHTNKWg40NAfZTCai7UUeAyy88x/YAYGXSvuaAisye5a73U76f4ev4cKx+dkUevQAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;6&quot; title=&quot;6&quot; src=&quot;/static/94c772f7c52edaaf3c7df77372fe25f0/31493/6.png&quot; srcset=&quot;/static/94c772f7c52edaaf3c7df77372fe25f0/5a46d/6.png 300w,
+/static/94c772f7c52edaaf3c7df77372fe25f0/0a47e/6.png 600w,
+/static/94c772f7c52edaaf3c7df77372fe25f0/31493/6.png 664w&quot; sizes=&quot;(max-width: 664px) 100vw, 664px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 48%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAAB/ElEQVQoz5WR3U/TUBjG+3d4gWGj27rR9rRd242tK91XXFcdrEEHSKJ3cqGJN8Y74UYj3qjzAojRRRxg4lwUPwIq8T97fM9BIzHccPHLc855z3ne522l3YNjDMbf8WZ0hJ3xIXF0isNTehYn94Yff2Dv8zH2v/yCtHrnPnrxVXRWFtGa7yHsXENL0ENrrvdvfRZUb88voRkt4Pa9B9g9+AkpCmPMmdNw2hYuTjMkUkTGJNWRkFVMZRiSKQ1yRkMyrdE5V36uiTrfX5iQcTm+jsH7r5Dq7RgJxUFBb8IptuEEMexqF1aJ9jM1eEGIfMFH4FfheU0w20fFa2DWr8NwKtDzZaSyJq4srGB7OIbUCLuQFQZFy8OxanDMKkzbg+X6MDmOjyzVTFaGbdSQ01wUrCYsFghDt1RHJpdH1F3G5tsRJWx1xViKakPXStDMGTDqmtNdqGLtCVOeRLWKlNATDTTDgUzJ0jkLkzR61F3C5g4ZNmhkWTEooQNGKQwy4J1VowjdKgkzw64QnlBuqDIXullEhkJk6V0yrSOKl08Mg2aHEhqiE//ovJhM/dG/6/+YSjNR45PxMBOTCkL641vDD5AWb66iHLTg1UKh54W/K81ewo1bd/Fy/xOk/qs9PHy6hfWNPtY2nmPt8Tmg++tP+nj0bBsvXr/DYPQNvwHd8IkgJx3BOQAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;3&quot; title=&quot;3&quot; src=&quot;/static/00ec3e027850ecabccef07ec7420b96a/c1b63/3.png&quot; srcset=&quot;/static/00ec3e027850ecabccef07ec7420b96a/5a46d/3.png 300w,
+/static/00ec3e027850ecabccef07ec7420b96a/0a47e/3.png 600w,
+/static/00ec3e027850ecabccef07ec7420b96a/c1b63/3.png 1200w,
+/static/00ec3e027850ecabccef07ec7420b96a/62da8/3.png 1262w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;현재 &lt;strong&gt;array의 크기&lt;/strong&gt;는 6이므로 1보다 크기 때문에 &lt;strong&gt;pivot&lt;/strong&gt;을 정해줍니다.&lt;/p&gt;
+&lt;p&gt;따라서 &lt;strong&gt;pivot&lt;/strong&gt;은 index 3번째에 위치한 &lt;code class=&quot;language-text&quot;&gt;1&lt;/code&gt;이 됩니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 63.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACWElEQVQ4y5VSa2sTQRTNT6lNk91kt9nZzb4mu9ndNLtJmwZLH4L6UQQ/Vz8IxfcLqyAtrVJBW1tSWylpUVQMivjPjncmKmpF6IfDvfO45545d3L7H76h9+4LNvsDbB98wnafcPgD/b9w+I+c4s7hAL23n7H3/ityO0cDXLy0iLOzc5g6t4C0O4+sMzfE9LxE2vkz/swFWt0FwhmJ5fVN5DZeH6HTmsG0rcPMHIzqFvKlKsbKDvKqiTGVoVgaRlVjKJQM5BUDStlAscwwWqzgVGEcI3kNV28tI/f01Rsk7RmMqDZ8lsHj03CTOTgTs7DDNtygibDRge1FaCYpgiCD6SRoRBnq9RTMiVCxaiiNO7hy7T5ya5t7aLROSxVFUmexCA6LYVgcllOH6UYwqgEUzYJRCWAaMfSKD8togBkRql4soWpVLC7dGRImRFggQtGFGSFMO4JFl3TGiSykggRerUnKKPdjahKTKhdaxcaYEFK2ZP3i0t3jhJ6VgvMWanFbKgviSbhhBpZMwqDnhvWEEMH2J8DrGREHsu4/hBlqtTbitEtFCXwik+T1FsaTKVg8RjoRw+UJAlrziPZNTvXsOKGq2+QRdSfTxTCEN5rhw/HJL/JSo1imIbheAMflciAOb0jC4u8KxVAUzYYuDsh8hQwWvggo+jAXeypFlc6L8rz6654QIuJlQbi+tY+InpdXmLxQoL8n1J4Uo/QXpcKNXh/z5y/AC1Pph09GnwQ8Eh63EDQmcf3BCnJbBx+x+mIX9548w83lVdx4uHJi3H68hkfrL/F89wjfAUv48iddSMFgAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;4&quot; title=&quot;4&quot; src=&quot;/static/5d796781f1e6a55d9f6d56e6a7213465/c1b63/4.png&quot; srcset=&quot;/static/5d796781f1e6a55d9f6d56e6a7213465/5a46d/4.png 300w,
+/static/5d796781f1e6a55d9f6d56e6a7213465/0a47e/4.png 600w,
+/static/5d796781f1e6a55d9f6d56e6a7213465/c1b63/4.png 1200w,
+/static/5d796781f1e6a55d9f6d56e6a7213465/9cea8/4.png 1278w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pivot&lt;/strong&gt;을 기준으로 array를 다시 &lt;strong&gt;세 부분&lt;/strong&gt;으로 나누면 다음과 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;less:    [ 0, -1 ]
+equal:   [ 1 ]
+greater: [ 3, 2, 5 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;equal&lt;/code&gt;의 자리는 확정되었지만, 아직 &lt;code class=&quot;language-text&quot;&gt;less&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;greater&lt;/code&gt;가 정렬이 되지 않았기 때문에&lt;/p&gt;
+&lt;p&gt;다시 &lt;code class=&quot;language-text&quot;&gt;less&lt;/code&gt;와 &lt;code class=&quot;language-text&quot;&gt;greater&lt;/code&gt;를 대상으로 &lt;strong&gt;quickSort()&lt;/strong&gt;를 호출합니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAB7klEQVQoz52SOZPTQBCF9VsofOkcjTQaXZa0stdrU0AREBEDEZBwhIREGBaSXRao4ihMuGzIr3u8Ga8pTEIVQVe3Zqa/fq9t53RzgTs3buPm9RbptR6pYs5NdEjyA8Y2S+a02GbzbWpV9jakbtEvb+H99ws4xx82KHQDJTOIrIGb9vD0IVw5RRAXEKqBkJqDSoyDDGlW2O+hm2AwFhhOYlwZhnw3xRuynFennzn1AINJCila5HpFBXOoao6snFmFQhao9AKRrFEyK7VVKNIak0ARLq3KNVnOy5NPtmnASV6gIaKKynL4IkcgS0RJhZBKw9icV/AjjbGf2jAwk02vpLv1yR/AqxNB2BR1vkLRLvigRdksoLsVRLuErmfoOu6NynQ1gxdpq+yfwFIvUbZHFqhpWdWH8JsjRKzbZsqzDkWzJLj/rdBa3gdyh24MP8wRy4b76ex+jO2Eu/Foe8IBZhUqyxFyFbGq4YaZhe0pXF8CR15igSru2djAz6lMzxHrzj42e0xYe6Lg+Yz3VK17az/mvXFpga/PvtqHdsm+gutnrBmhxoh/E2NrZ80Nt3nMH88G33tUObq0bFjO2eYHnj5/gfuPnuHewye4++AxY5d39d+xf2d6DcOwnC/nP/Hu2zneftzYCf8TptcwDOsXTKuggLCsbtYAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;5&quot; title=&quot;5&quot; src=&quot;/static/6abc35c33774e8b1794a5091d045e3d9/c1b63/5.png&quot; srcset=&quot;/static/6abc35c33774e8b1794a5091d045e3d9/5a46d/5.png 300w,
+/static/6abc35c33774e8b1794a5091d045e3d9/0a47e/5.png 600w,
+/static/6abc35c33774e8b1794a5091d045e3d9/c1b63/5.png 1200w,
+/static/6abc35c33774e8b1794a5091d045e3d9/07a9c/5.png 1440w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pivot&lt;/strong&gt;을 기준으로 subarray를 다시 &lt;strong&gt;less, equal, greater&lt;/strong&gt; 세 부분으로 나눕니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;quickSort(less)&lt;/code&gt; code를 따라가 보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;quickSort(less)&lt;/code&gt;에 전달된 subarray는 다음과 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[ 0, -1 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;array의 크기는 2이기 때문에 &lt;code class=&quot;language-text&quot;&gt;guard&lt;/code&gt; 문을 통과하고,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pivot&lt;/strong&gt;은 &lt;strong&gt;1번째 index&lt;/strong&gt;인 &lt;code class=&quot;language-text&quot;&gt;-1&lt;/code&gt;이 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;-1&lt;/code&gt;을 기준으로 subarray를 다시 &lt;strong&gt;less, equal, greater&lt;/strong&gt; 세 부분으로 나누면 다음과 같이 됩니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;less:    [ ]
+equal:   [ -1 ]
+greater: [ 0 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;less&lt;/code&gt;에는 아무것도 들어가지 않습니다.&lt;/p&gt;
+&lt;p&gt;전달된 subarray에는 -1보다 작은 요소가 없기 때문입니다.&lt;/p&gt;
+&lt;p&gt;따라서 이 level에서 &lt;code class=&quot;language-text&quot;&gt;quickSort(less)&lt;/code&gt;를 호출한다면,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;array.count&lt;/strong&gt;가 &lt;code class=&quot;language-text&quot;&gt;0&lt;/code&gt;이기 때문에 &lt;strong&gt;guard&lt;/strong&gt;문을 &lt;strong&gt;통과하지 못해&lt;/strong&gt; 다시 돌아올 것입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;equal&lt;/strong&gt;의 자리는 확정되었고, &lt;code class=&quot;language-text&quot;&gt;quickSort(greater)&lt;/code&gt;역시 &lt;strong&gt;array.count가 1&lt;/strong&gt;이기 때문에&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;guard문을 통과하지 못하고,&lt;/strong&gt; 전달한 subarray인&lt;code class=&quot;language-text&quot;&gt;[0]&lt;/code&gt;을 반환받아 올 것입니다.&lt;/p&gt;
+&lt;p&gt;따라서 여기까지 정복이 끝나게 되면&lt;br&gt;
+더 큰 배열을 정렬하기 위해 현재 level의 subarray를 호출한 위 level로 &lt;code class=&quot;language-text&quot;&gt;[-1, 0]&lt;/code&gt;을 반환하여 올라갑니다.&lt;/p&gt;
+&lt;p&gt;현재 subarray를 호출한 곳의 &lt;strong&gt;greater&lt;/strong&gt; 배열의 요소는 다음과 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[ 3, 2, 5 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;quickSort(greater)&lt;/code&gt; 를 호출하면 subarray는 &lt;strong&gt;pivot&lt;/strong&gt;을 &lt;code class=&quot;language-text&quot;&gt;2&lt;/code&gt;로 하여 코드를 진행하게 되면&lt;/p&gt;
+&lt;p&gt;다음과 같이 세 부분으로 나누어집니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;less:    [ ]
+equal:   [ 2 ]
+greater: [ 3, 5 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;여기서 &lt;strong&gt;pivot&lt;/strong&gt;을 &lt;code class=&quot;language-text&quot;&gt;3&lt;/code&gt;으로 선택하면 &lt;strong&gt;더 좋았을 것&lt;/strong&gt;입니다. &lt;strong&gt;3으로 pivot을 선택했을 경우&lt;/strong&gt;&lt;br&gt;
+분할이 더 이뤄지지 않기 때문이죠!&lt;/p&gt;
+&lt;p&gt;아래는 3으로 pivot을 선택했을 경우입니다. 참고만 해주세요!!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;less:    [ 2 ]
+equal:   [ 3 ]
+greater: [ 5 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;만약 분할을 진행할 때 방금과 같은 &lt;strong&gt;Bad Pivot&lt;/strong&gt;을 많이 고르게 될 경우&lt;br&gt;
+&lt;strong&gt;분할이 더 이루어져&lt;/strong&gt; &lt;strong&gt;정렬이 느리게 진행&lt;/strong&gt;될 것입니다.&lt;/p&gt;
+&lt;p&gt;이것이 지금까지도 &lt;strong&gt;좋은 pivot&lt;/strong&gt;을 결정함에 있어 &lt;strong&gt;아직도 많은 논문&lt;/strong&gt;이 나오고 있는 이유 중 하나입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;less:    [ ]
+equal:   [ 2 ]
+greater: [ 3, 5 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;다시 원래 선택한 pivot으로 돌아와서&lt;/strong&gt; 이번 level에서 역시 &lt;strong&gt;equal&lt;/strong&gt;의 자리가 확정되고&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;greater&lt;/strong&gt;를 대상으로 &lt;strong&gt;quickSort()&lt;/strong&gt;를 호출하게 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;quickSort(greater)&lt;/code&gt; 를 진행하게 될 경우 subarray는 다음과 같이 분할됩니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;less:    [ 3 ]
+equal:   [ 5 ]
+greater: [ ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이렇게 되면 분할이 완료되어 &lt;code class=&quot;language-text&quot;&gt;return quickSort(less) + equal + quickSort(greater)&lt;/code&gt;
+을 통해&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;[3, 5]&lt;/code&gt; 배열이 반환될 것입니다.&lt;/p&gt;
+&lt;p&gt;우리가 위에서 본 &lt;strong&gt;일련의 과정&lt;/strong&gt;은 모든 subarray가 &lt;strong&gt;정렬&lt;/strong&gt;될 때까지 반복됩니다.&lt;/p&gt;
+&lt;p&gt;모든 정렬이 진행되고 난 후의 사진은 다음과 같습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 834px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 59.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABkUlEQVQoz31Sa1ODMBDk//8pnanWVp3xQ9sxrVgeFgghEAKBlEfBFVp8je6HTC7Zu73bxOgv6LoOK+f8bYDruo7jWJaFve/7QRBQSvvvMH7ETdOAKoQIw9B23FJrKSVCFErTdNL4llxegBxQR4Zv7dmbOxKSJDkcDlmW5QM+k0+nUxRFuLNtG8mFUjhs29Z+XJDZVVvXCJVS+/3+1TRt2/I8rxtwVgY1VwpNVsdj/weqqi71EWib9qwM2TiO4Ucac39H0DP01SA+oa7rg+cxxpzNOk8FpSFcRBUD6rA0irjOs8g2VVEQQjDh1ycAj2w/6gbmVqsct+vV6qi1UVVVkgjknAYeNNF/UZYYZFKGkTAqG3xCuVRK7NGOwTg3nx7J3cx73mBmGgS75a2HN3bdMR+yLAx3y/l6PvN2z2VVWVuynl1v7+cGLMhFLKNQiQTFtNYFQpliKtgxvjwOQZCcqVQ0bauyTIRURsz47SqkRBwzSvE9+n9hjGN8GDOufe+unl4eFmRxw5OkaerJue5CmMJ3Fnmq+/oVDWIAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;7&quot; title=&quot;7&quot; src=&quot;/static/4e3b740ec82525fad6b2c8399f75f86e/5d72a/7.png&quot; srcset=&quot;/static/4e3b740ec82525fad6b2c8399f75f86e/5a46d/7.png 300w,
+/static/4e3b740ec82525fad6b2c8399f75f86e/0a47e/7.png 600w,
+/static/4e3b740ec82525fad6b2c8399f75f86e/5d72a/7.png 834w&quot; sizes=&quot;(max-width: 834px) 100vw, 834px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;모든 &lt;strong&gt;분할과 정복&lt;/strong&gt;의 과정을 마치게 되면 다음과 같은 &lt;strong&gt;정렬된 배열&lt;/strong&gt;을 얻게 됩니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[ -1, 0, 1, 2, 3, 5, 8, 8, 9, 10, 14, 26, 27 ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;summary&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#summary&quot; aria-label=&quot;summary permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summary&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;동작을 크게 구분 지으면 세 가지로 나누어집니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;최초에 &lt;strong&gt;pivot&lt;/strong&gt;을 잡은 다음에 &lt;strong&gt;pivot&lt;/strong&gt;보다&lt;br&gt;
+작은 숫자는 &lt;strong&gt;less&lt;/strong&gt;로 같은 숫자는 &lt;strong&gt;equal&lt;/strong&gt;로, 큰숫자는 &lt;strong&gt;greater&lt;/strong&gt;로 분류한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;greater, less&lt;/strong&gt;의 요소가 &lt;strong&gt;한 개의 요소&lt;/strong&gt;를 가질 때까지 &lt;strong&gt;분할&lt;/strong&gt;을 진행한다.&lt;br&gt;
+&lt;strong&gt;pivot&lt;/strong&gt;보다 작은 부분(less)에 대해서 &lt;strong&gt;quickSort(less)&lt;/strong&gt;를 호출하고,&lt;br&gt;
+&lt;strong&gt;equal&lt;/strong&gt;은 자리를 &lt;strong&gt;확정&lt;/strong&gt;하게 되고,&lt;br&gt;
+&lt;strong&gt;pivot&lt;/strong&gt;보다 큰 부분(greater)에 대해서 &lt;strong&gt;quickSort(greater)&lt;/strong&gt;를 호출한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;greater, less&lt;/strong&gt;의 요소가 &lt;strong&gt;한 개의 요소&lt;/strong&gt;를 가지게 되면 &lt;strong&gt;정복의 과정&lt;/strong&gt;을 거쳐 &lt;strong&gt;정렬된 배열&lt;/strong&gt;을 가지게 됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt;는 &lt;strong&gt;pivot&lt;/strong&gt;을 어떠한 element로 정하느냐에 따라서 다양한 &lt;strong&gt;Quick Sort&lt;/strong&gt;가 존재합니다.&lt;/p&gt;
+&lt;p&gt;대표적으로 &lt;strong&gt;좋은 pivot&lt;/strong&gt;을 (분할을 적게 진행할 수 있는 pivot)고르는 것을 &lt;strong&gt;운에 맡기는&lt;/strong&gt; Random,&lt;br&gt;
+항상 &lt;strong&gt;index의 가운데&lt;/strong&gt;에 있는 값을 &lt;strong&gt;pivot&lt;/strong&gt;으로 정하는 &lt;strong&gt;Median&lt;/strong&gt;,&lt;br&gt;
+&lt;strong&gt;맨 왼쪽, 오른쪽을 pivot&lt;/strong&gt;으로 정하는 &lt;strong&gt;Quick Sort&lt;/strong&gt;들이 존재합니다.&lt;/p&gt;
+&lt;h3 id=&quot;시간-복잡도&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84&quot; aria-label=&quot;시간 복잡도 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;시간 복잡도&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;- Best : &lt;strong&gt;O(n log n)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;- Worst : &lt;strong&gt;O(n^2)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;- Average : &lt;strong&gt;O(n log n)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt;는 매 단계 적어도 1개 이상의 원소가 자리를 찾게 되므로 이후 &lt;strong&gt;정렬할 개수가 줄어들어&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;다른 &lt;strong&gt;O(n log n)&lt;/strong&gt;으로 동작하는 정렬하는 알고리즘보다 &lt;strong&gt;빨리 동작&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;이러한 &lt;strong&gt;빠른 동작&lt;/strong&gt;이 &lt;strong&gt;Quick Sort&lt;/strong&gt;라는 이름의 기원이 되었다고 합니다⚡️&lt;/p&gt;
+&lt;p&gt;또한 &lt;strong&gt;Quick Sort&lt;/strong&gt;는 배열의 요소 중에 같은 값이 있으면&lt;/p&gt;
+&lt;p&gt;정렬 이후 순서가 초기 순서와 달라질 수 있어 Merge Sort와는 달리 &lt;strong&gt;불안정(Unstable) 정렬&lt;/strong&gt;에 속합니다.&lt;/p&gt;
+&lt;p&gt;평균과 가장 좋은 상황일 때 &lt;strong&gt;O(n log n)&lt;/strong&gt;이며, 가장 나쁜 상황에서는 &lt;strong&gt;O(n^2)&lt;/strong&gt;이 나옵니다.&lt;/p&gt;
+&lt;p&gt;여기서 말하는 &lt;strong&gt;가장 나쁜 상황&lt;/strong&gt;이란 주어지는 모든 배열의 요소가 &lt;strong&gt;정렬&lt;/strong&gt;되어있어&lt;br&gt;
+&lt;strong&gt;분할이 가장 많이 일어나는&lt;/strong&gt; 경우입니다.&lt;/p&gt;
+&lt;p&gt;이번 구현에서는 &lt;strong&gt;재귀 함수&lt;/strong&gt;를 이용해 &lt;strong&gt;Quick Sort&lt;/strong&gt;를 구현했습니다.&lt;/p&gt;
+&lt;p&gt;재귀 함수를 이용하게 되면 &lt;strong&gt;스택 메모리&lt;/strong&gt;를 사용하기 때문에 과도한 재귀 호출을 하게 될 경우&lt;br&gt;
+&lt;strong&gt;스택 오버플로우&lt;/strong&gt;와 같은 문제가 발생할 수 있기 때문에 이 부분은 주의하셔야 할 것 같습니다.&lt;/p&gt;
+&lt;p&gt;이를 해결하기 위해 꼬리 재귀를 이용하면 되는데, 이에 대해서는 다음 기회에 포스팅하도록 하겠습니다 :)&lt;/p&gt;
+&lt;p&gt;여기까지 &lt;strong&gt;Sorting 알고리즘 톺아보기 2부&lt;/strong&gt; 마지막 시간인 &lt;strong&gt;Quick Sort&lt;/strong&gt;였습니다😄&lt;/p&gt;
+&lt;p&gt;혹시 제가 잘못 알고 있는 부분이 있거나, 오타 혹은 궁금한 점 있으시면 댓글로 알려주시면 감사하겠습니다!!😎&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;참고&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/raywenderlich/swift-algorithm-club/tree/master/Quicksort&quot;&gt;Raywenderlich Swift Algorithm Club&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/%ED%80%B5_%EC%A0%95%EB%A0%AC&quot;&gt;위키 백과 퀵 정렬&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=cWH49IKDIiI&quot;&gt;퀵소트 / 퀵정렬 5분만에 이해하기 - Gunny&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이미지 출처&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://commons.wikimedia.org/wiki/File:Sorting_quicksort_anim.gif&quot;&gt;퀵 정렬 애니메이션&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/raywenderlich/swift-algorithm-club/blob/master/Quicksort/Images/Example.png&quot;&gt;퀵 정렬 시뮬레이션&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;관련 포스트&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(%ED%95%A9%EB%B3%91%EC%A0%95%EB%A0%AC)/&quot;&gt;Swift Merge Sort(합병정렬)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://noah0316.github.io/Algorithms/2021-07-08-insertion-sort/&quot;&gt;Swift Insertion Sort(삽입정렬)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://noah0316.github.io/Algorithms/2021-07-07-bubble-sort/&quot;&gt;Swift Bubble Sort(거품정렬)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://noah0316.github.io/Algorithms/2021-07-05-selection-sort/&quot;&gt;Swift Selection Sort(선택정렬)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Swift Merge Sort(합병정렬)]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 이번 시간에는 Sorting 알고리즘 톺아보기 1부보다 조금 더 난이도가 있는 Sorting 알고리즘을 다루는 Sorting 알고리즘 톺아보기 2부를 진행하도록 하겠습니다 😄 이번 시간에 살펴볼 Sorting…]]></description><link>https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(합병정렬)/</link><guid isPermaLink="false">https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(합병정렬)/</guid><pubDate>Fri, 16 Jul 2021 17:08:13 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
 &lt;p&gt;이번 시간에는 &lt;a href=&quot;https://noah0316.github.io/Algorithms/2021-07-05-selection-sort/&quot;&gt;&lt;strong&gt;Sorting 알고리즘 톺아보기 1부&lt;/strong&gt;&lt;/a&gt;보다 조금 더 난이도가 있는 &lt;strong&gt;Sorting 알고리즘&lt;/strong&gt;을 다루는&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Sorting 알고리즘 톺아보기 2부&lt;/strong&gt;를 진행하도록 하겠습니다 😄&lt;/p&gt;
 &lt;br&gt;
