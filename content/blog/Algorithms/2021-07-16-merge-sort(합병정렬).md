@@ -435,3 +435,10 @@ func merge(leftPile: [Int], rightPile: [Int]) -> [Int] {
 >
 > - [합병 정렬 애니메이션](https://en.wikipedia.org/wiki/File:Merge_sort_animation2.gif)
 > - [합병 정렬 시뮬레이션](https://commons.wikimedia.org/wiki/File:Merge-sort-example-300px.gif)
+
+> 관련 포스트
+>
+> - [Swift Quick Sort(퀵 정렬)](<https://noah0316.github.io/Algorithms/2021-07-19-quick-sort(%ED%80%B5-%EC%A0%95%EB%A0%AC)/>)
+> - [Swift Insertion Sort(삽입정렬)](https://noah0316.github.io/Algorithms/2021-07-08-insertion-sort/)
+> - [Swift Bubble Sort(거품정렬)](https://noah0316.github.io/Algorithms/2021-07-07-bubble-sort/)
+> - [Swift Selection Sort(선택정렬)](https://noah0316.github.io/Algorithms/2021-07-05-selection-sort/)

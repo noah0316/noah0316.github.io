@@ -154,3 +154,10 @@ array = insertionSort(array)
 >
 > - [삽입 정렬 애니메이션](https://commons.wikimedia.org/wiki/File:Insertion_sort_animation.gif)
 > - [삽입 정렬 시뮬레이션](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif)
+
+> 관련 포스트
+>
+> - [Swift Quick Sort(퀵 정렬)](<https://noah0316.github.io/Algorithms/2021-07-19-quick-sort(%ED%80%B5-%EC%A0%95%EB%A0%AC)/>)
+> - [Swift Merge Sort(합병정렬)](<https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(%ED%95%A9%EB%B3%91%EC%A0%95%EB%A0%AC)/>)
+> - [Swift Bubble Sort(거품정렬)](https://noah0316.github.io/Algorithms/2021-07-07-bubble-sort/)
+> - [Swift Selection Sort(선택정렬)](https://noah0316.github.io/Algorithms/2021-07-05-selection-sort/)

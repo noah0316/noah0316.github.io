@@ -116,3 +116,10 @@ Outer loop를 한번 순회할 때 마다 **Inner loop**를 한 번씩 순회합
 >
 > - [선택 정렬 애니메이션](https://ko.wikipedia.org/wiki/%EC%84%A0%ED%83%9D_%EC%A0%95%EB%A0%AC)
 > - [선택 정렬 시뮬레이션](https://en.wikipedia.org/wiki/Selection_sort)
+
+> 관련 포스트
+>
+> - [Swift Quick Sort(퀵 정렬)](<https://noah0316.github.io/Algorithms/2021-07-19-quick-sort(%ED%80%B5-%EC%A0%95%EB%A0%AC)/>)
+> - [Swift Merge Sort(합병정렬)](<https://noah0316.github.io/Algorithms/2021-07-16-merge-sort(%ED%95%A9%EB%B3%91%EC%A0%95%EB%A0%AC)/>)
+> - [Swift Insertion Sort(삽입정렬)](https://noah0316.github.io/Algorithms/2021-07-08-insertion-sort/)
+> - [Swift Bubble Sort(거품정렬)](https://noah0316.github.io/Algorithms/2021-07-07-bubble-sort/)
