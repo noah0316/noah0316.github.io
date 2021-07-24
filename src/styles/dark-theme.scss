@@ -93,4 +93,11 @@ body.dark {
   td {
     border-bottom: 1px solid #eee;
   }
+
+  // Sponsor Widget
+  @media all and(max-width: 768px) {
+    #bmc-wbtn {
+      display: none !important;
+    }
+  }
 }

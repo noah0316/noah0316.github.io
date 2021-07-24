@@ -81,4 +81,11 @@ body.light {
       color: $navigator-text-color;
     }
   }
+
+  // Sponsor Widget
+  @media all and(max-width: 768px) {
+    #bmc-wbtn {
+      display: none !important;
+    }
+  }
 }

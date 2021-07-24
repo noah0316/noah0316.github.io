@@ -4,6 +4,11 @@
 
   .bmc-button {
     display: inline-block;
+
+    @media all and(min-width: 768px) {
+      display: none !important;
+    }
+
     padding: 0px 7px;
     width: 133px;
     height: 33px;
