@@ -8,7 +8,8 @@ draft: false
 
 ### 안녕하세요 :) Noah입니다.
 
-친구들과 Slack을 조금 더 효율적으로 사용하기 위해 Slack에 Github을 연동하였는데, 그 과정을 나눠보려 합니다 :)
+친구들과 Slack을 조금 더 효율적으로 사용하기 위해 Slack에 Github을 연동하였는데,  
+그 과정을 나눠보려 합니다 :)
 
 ## 채널 개설하기
 
@@ -18,7 +19,7 @@ draft: false
     <img src="assets/2021-01-09/1.png"/>
 </p>
 
-그 다음 Connect an app을 클릭하게 되면 다음과 같은 창이 뜨게 되는데,
+그 다음 채팅창에 `/add apps to this channel`를 입력하게 되면 다음과 같은 창이 뜨게 되는데,
 
 <p align="center">
     <img src="assets/2021-01-09/2.png"/>
@@ -32,11 +33,7 @@ Github을 검색하고 Slack workspace에 설치를 진행합니다.
 
 설치를 진행하고, continue버튼을 클릭한 다음,
 
-<p align="center">
-    <img src="assets/2021-01-09/4.png"/>
-</p>
-
-특정 채널 (github-alert)을 선택하고 설치를 진행합니다. Install이 진행되며,
+Install이 진행되며,
 
 Slack app으로 redirecting되어 다음과 같은 메시지를 받으면 workspace에 github가 설치 완료 됩니다.
 
