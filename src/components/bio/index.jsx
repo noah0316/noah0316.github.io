@@ -35,7 +35,7 @@ export const Bio = () => (
               <div className="author-name">
                 <div className="hits">
                   <a href="https://hits.seeyoufarm.com">
-                    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnoah0316.github.io&count_bg=%23573DC8&title_bg=%230CD5B9&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" />
+                    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnoah0316.github.io&count_bg=%23C8D3C6&title_bg=%23DE5C43&icon=swift.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false" />
                   </a>
                 </div>
                 <span className="author-name-prefix">Written by</span>
