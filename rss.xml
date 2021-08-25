@@ -1,4 +1,210 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 04 Aug 2021 11:47:59 GMT</lastBuildDate><item><title><![CDATA[if let과 guard let]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 날이 아주 덥습니다 여러분~! ⛱☀️ 건강 유의하셔서 즐코딩하세요 ㅎㅎ🍉 오늘은 if문을 이용한 Optional Binding과 guard문을 이용한 Optional Binding…]]></description><link>https://noah0316.github.io/Swift/2021-07-21-if-let과-guard-let/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2021-07-21-if-let과-guard-let/</guid><pubDate>Wed, 21 Jul 2021 16:08:06 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 25 Aug 2021 05:29:19 GMT</lastBuildDate><item><title><![CDATA[Xcode의 새식구 Vim]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 이번 Xcode 13.0 베타에는 새로운 기능이 추가되었는데요, 여러 기능들이 추가되었지만 그중에 단연 돋보이는 신기능은 Vim입니다~!!🎉🎉🎉 Xcode1…]]></description><link>https://noah0316.github.io/Tools/2021-08-25-xcode의-새식구-vim/</link><guid isPermaLink="false">https://noah0316.github.io/Tools/2021-08-25-xcode의-새식구-vim/</guid><pubDate>Wed, 25 Aug 2021 01:08:22 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 812px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 43%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAACGElEQVQoz2NgwAFMsYh5eHgw4APJyUlA8v9/5ulN2zSPlC/W9y1pK4uLTc7c2t3IDVJQHa7B8G6vK1jxpRU2YDo4KJQxPjWe28fcg8svxF+MT1qA0yvKh7uvposRrKBo67PeQ5P3/C9ZcuOn19p7/x3DUv/7RWcuB8mtXejGfHNvMuPHnYaMB1ZGMP7/f5wJJL5m5aqNi9csfqFTZP5k/YZ1zzasWgtSDzHwaN2aI6VzgAZt/fs3eMrh745NW/57Lribg89ru3fs3LTpyJb/dQua/+05sfd/SE1UAUi8cUkbE0NS/bk9DvO///ee9uCXRXDhT8dpr/77L/8fBVLw5aTn3K9HnGrebtSS+XLUZeH/S54gi7jap3fcvHPj5v9Na9Z/d+z3+69cY3ToAEMe2PUM1m0vDnlM+//fOKznr2FY73+36f//2za+jAXJvd1tu/rzAXsHEPvTfpvsD7utekHszRs3bj5y7vD/2OKE/1Fl8f/LasqOAIWZwQY61rwtN88++1PXMvi7ec6FF9blL2/bld/VweflpbMXBQUWh9WZ5todDg4KjspNybZkAMfvf4gCK+dYaS0jJyPf/v8CvjEbWEBipVN2MP7/FMH0/2EaOLD/P81g/P8uiOn366fIZjPDGHDDNHyrGdFd4Nb4DCy2f7ITw5MFkmCxR3NEGR6v8QOz7964xdi+oAscZiERIcypKSlMMEMBY77rwEjaakQAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;1&quot; title=&quot;1&quot; src=&quot;/static/802a9bebd0ba3a5e407a3c3bf4b73368/63ec5/1.png&quot; srcset=&quot;/static/802a9bebd0ba3a5e407a3c3bf4b73368/5a46d/1.png 300w,
+/static/802a9bebd0ba3a5e407a3c3bf4b73368/0a47e/1.png 600w,
+/static/802a9bebd0ba3a5e407a3c3bf4b73368/63ec5/1.png 812w&quot; sizes=&quot;(max-width: 812px) 100vw, 812px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;이번 &lt;strong&gt;Xcode 13.0 베타&lt;/strong&gt;에는 새로운 기능이 추가되었는데요,&lt;/p&gt;
+&lt;p&gt;여러 기능들이 추가되었지만 그중에 단연 돋보이는 신기능은 &lt;strong&gt;Vim&lt;/strong&gt;입니다~!!🎉🎉🎉&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Xcode13에 추가된 다양한 기능은 &lt;a href=&quot;https://developer.apple.com/kr/xcode/&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;이곳&lt;/u&gt;&lt;/a&gt;을 참조해주세요:)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;p&gt;그동안 &lt;strong&gt;Xcode&lt;/strong&gt;에서 &lt;strong&gt;Vim&lt;/strong&gt;을 사용하기 위해서는 &lt;a href=&quot;https://github.com/XVimProject/&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;XVim&lt;/u&gt;&lt;/a&gt;과 같은 플러그인을 이용해 &lt;strong&gt;Vim&lt;/strong&gt;을 사용했었는데요,&lt;/p&gt;
+&lt;p&gt;설치도 &lt;a href=&quot;https://github.com/XVimProject/XVim2#xvim2&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;문서&lt;/u&gt;&lt;/a&gt;를 보며 따라 하면 되지만&lt;br&gt;
+플러그인이 아닌 &lt;strong&gt;IDE 자체&lt;/strong&gt;에서 지원되는 편리함을 따라올 수는 없는 것 같습니다 🤓&lt;/p&gt;
+&lt;p&gt;학부생 1학년 때 학교에 있는 &lt;strong&gt;Linux 서버&lt;/strong&gt;에 접속해 &lt;strong&gt;C&lt;/strong&gt;를 연습하며 처음 &lt;strong&gt;Vim&lt;/strong&gt;을 마주한 이후로,&lt;br&gt;
+&lt;strong&gt;터미널&lt;/strong&gt;을 이용하거나, &lt;strong&gt;Amazon EC2 인스턴스&lt;/strong&gt;에 접근할 때 이외에는 사용해본 적이 없었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vi&lt;/strong&gt; 즉, &lt;strong&gt;Visual Interface&lt;/strong&gt;는 편집기가 지원해야 할 기능의 명세로&lt;br&gt;
+&lt;strong&gt;Vi&lt;/strong&gt;를 한번 제대로 익혀두면 다른 &lt;strong&gt;IDE&lt;/strong&gt;를 사용할 상황이 생겼을 때&lt;/p&gt;
+&lt;p&gt;각 &lt;strong&gt;IDE&lt;/strong&gt;에 특화된 많은 단축어를 따로 외우고 있지 않아도&lt;br&gt;
+&lt;strong&gt;Vim&lt;/strong&gt;을 활용하면 편리하게 코딩할 수 있다는 점이 끌려 이번 기회에 &lt;strong&gt;Vim&lt;/strong&gt;을 제대로 연습해 생산성을 높이고 싶어&lt;br&gt;
+&lt;strong&gt;Xcode 13 Beta&lt;/strong&gt;를 다운로드한 후 &lt;strong&gt;Vim mode&lt;/strong&gt;를 적용하고,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;다양한 IDE : EX) JetBrains사의 IDE, Android Studio 등등&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;자주 사용하는 &lt;strong&gt;Vscode&lt;/strong&gt;에도 Vim extension을 설치해 &lt;strong&gt;Vim&lt;/strong&gt;에 익숙해지기 위해&lt;br&gt;
+노력 중입니다💪💪&lt;/p&gt;
+&lt;p&gt;아직 여러 단축키를 외우며 익숙해지는 단계에 있지만 지금까지 사용하며 느낀 점은&lt;br&gt;
+평소 제가 키보드와 함께 트랙패드를 사용하며 코딩을 하는데,&lt;/p&gt;
+&lt;p&gt;단축키 몇 개를 조합하여 트랙패드를 사용하지 않고 키보드로만 코딩을 하니 아직 입문 단계라 그런지&lt;br&gt;
+신세계를 경험하는 중입니다 ㅎㅎ&lt;/p&gt;
+&lt;p&gt;사용하며 좋았던 또다른 점은 &lt;strong&gt;Vim&lt;/strong&gt;의 유용한 기능들과 함께 기존에 &lt;strong&gt;Xcode&lt;/strong&gt;에서 사용하는&lt;br&gt;
+단축키를 그대로 사용할 수 있다는 점이었습니다.&lt;/p&gt;
+&lt;p&gt;라인을 이동하는 다음과 같은 명령어도 말이죠!!&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;cmd&lt;/code&gt; + &lt;code class=&quot;language-text&quot;&gt;[&lt;/code&gt; OR &lt;code class=&quot;language-text&quot;&gt;]&lt;/code&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/ba71696b0bd64f7c09502a0582e38bdd/2.gif&quot; width=&quot;600&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;사용하던 &lt;strong&gt;IDE&lt;/strong&gt;에서 &lt;strong&gt;Vim&lt;/strong&gt;을 사용할 수 있게 되니 기존에 사용하던 단축키와 더불어 사용하면 작업시간을 단축시킬 수 있는 장점이 있는 것 같습니다 ㅎㅎ &lt;del&gt;빨리 코딩하고 놀러 가자(?)&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;아직 자잘한 오류가 있긴 하지만 &lt;strong&gt;Xcode&lt;/strong&gt;에서 &lt;strong&gt;Vim&lt;/strong&gt;을 하루빨리 사용해 익숙해지고 싶다면&lt;/p&gt;
+&lt;p&gt;다음과 같이 베타 버전을 다운로드하여 플레이그라운드나, 간단한 프로젝트에서&lt;br&gt;
+사용하여 연습하시면 좋을 것 같습니다 :)&lt;/p&gt;
+&lt;h2 id=&quot;xcode-13-베타-다운로드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#xcode-13-%EB%B2%A0%ED%83%80-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C&quot; aria-label=&quot;xcode 13 베타 다운로드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Xcode 13 베타 다운로드&lt;/h2&gt;
+&lt;p&gt;먼저 &lt;a href=&quot;https://developer.apple.com/download/&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Xcode beta 다운로드 페이지&lt;/u&gt;&lt;/a&gt;에 들어갑니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1067px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 90.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAAsSAAALEgHS3X78AAAC6UlEQVQ4y42Uy27TQBSGfYuTOI1CaBrfEl8Tx3WdpkmapKSQChZc2sIu6oIVCxB7eACegh2PwJ63YMEbEAk2UKkVEkLK5HBmarelikot/f7H45lvzsyfmOO4XCb0rYNGyzvq9UfTXn/I1O0Npn4jmFq2M7UdF/1CdcueqoY5VXVzapjWVFe1I9fxnhquJ3OFkm6O+lunwzsDuHvvPjzZP4SHj/ZhsvcA2ptd8PwmIPhc9DkII+hv9aHf60PcbkNvPIHOYOe3rWkWx3Oc3Qqjn8PhDvh+Y65pGjEMk+i6sVSarpNarU6CZkDW1yMSb8TzMN4EpxGcKLLscXjZ2ax8nMvlQJZlIoniQkTxPL8QBOHcr4qOyeeVxa1SieTyCsg55VQUBY/DFzZCj1GAItSxDxRFAboI9Ww2y9qpUyEUkjmLxE+xz+PwZmMVDIjOgOVyGbrdLrRaIcRxDFEUQRiGsLFx1u71elAoFCCZs0j8Ani1QioBqxQTZTKZtJpzKbk8KLjVtMJ/gLwgMGBe88ngzQcoqRbUDJ1VaNs2q6pcvk0n4QISCDh2/PglTA5fg8QvA/IJcM0n7efvoVBtgl6tYOpNsCwbPM/Dts/g1NkZShmsXL44w/9teWVlhUlRCuy8aDj5fJ75pUCuD4UB+bPBkiSxLdLJ1K+e4c2BaSgJLBUN5/Ize4+6ccq8wCchiMypaNU0cbYAnqEoycuBacoFp0p2P74D89kOdMM23Nvbg9FoBOPxLmxvb0On0wHDMNiC6vAV1PbeYhjiMiD/gwXRrMwnn14Q/WCdqKU10mwFxDRrxLIs4nk+WV1dJZgwwX8MEbJFwssFuqN5AjxBlkuBDnb8SrcqKiJz/ECA67rgOA77ubiux9pBEACCl4XzB1k+BRpI/4wd39G/os/QZ9VqdVav12emabK2qqqzSqWCbXVWLBZn6bhkzjf0L8iq0a+NREtFxYIoRFIuE1HH/muFYUU4J1XMzg9ZfwEWrmZG9xQPrgAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;3&quot; title=&quot;3&quot; src=&quot;/static/c8851c4dcbbecdc0dd625059010c44c8/abe2a/3.png&quot; srcset=&quot;/static/c8851c4dcbbecdc0dd625059010c44c8/5a46d/3.png 300w,
+/static/c8851c4dcbbecdc0dd625059010c44c8/0a47e/3.png 600w,
+/static/c8851c4dcbbecdc0dd625059010c44c8/abe2a/3.png 1067w&quot; sizes=&quot;(max-width: 1067px) 100vw, 1067px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1067px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 90.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAAsSAAALEgHS3X78AAADDElEQVQ4y41Uy27aQBQdPzBgSIkhBT8Agw0EjAlgSAh5FCVq2iZ97FAWVbf9gaqLLrvsD3TXX+iq/1Gpn5BI7aaNlKhSu8hwe2cwoYlQG6TDubZnzpw7Z2xCSDxSd4uPK6vOcdAbjIPeBkc3WB+7ldq4aJfGdqmMPEehaI9zpjXOGdbYtIpjI6cfOyXnqVl2FJJIGdag17nYGK7Dzu4eHB49gQcPj+DeaB9aa11w3Cqg8BXYda3uQa/Tg17QA7/VgmDrHrTXN3/ZOb1IBELs1br3Y2NjE1y3cqnrOjVNixqGuRC6YdB8vkBr1RptNDzqN/3Lur8GpUrtXFUUl+DPjkaVs1gsBoqiUFmSJhJCEISJKIpXfBNsTDyuTpZTKRqLq6DE1AtJEh2CD2wUPUMAgjLGe6CqKrBFGEejUV7PmEEQRQjnTEK+wIUcgn82uuCCyFxQ0zTodruwuloH3/fB8zyo1+vQbE7rIAhgKalCOGcS8lzwpkMGEV1KISKRyMzNFQRlCcRo6srhNUG0zwXjukvXX32AVK4IedPgDm3b5q40Lc0mgSTLXNDaewOlo3dAJGWBoBAK3nVp6/l7SGSrYGRXMPUqFIs2OI6DtcvFGbM9RCEQZWW+h/9rOZlMcqhqAhKJBA8nHo9zFueB/DsULihMB8vYGmuRTWZ8cw9vLzgLJRSbgYXz9zV/jrh1yoIoTENAIWE6kbtmifMF5AhCWSwoStNQEqUc3f74FvLPhtBttGB3NILBYABbW9vQ7/eh3e4AvpZ8QX3wEgqj10BEORQUrzn8zm5GS3cuh59e0OyjKs0uZWilVqWWZdJCoUAxaZpOaxTfFqpEIpRIMUrEKOvoMuzqHOEQbKG0spL9aeDKum5AzjYgnclAuexCpVrjYMdnVjcaTbCsAmjLGqTxbGrpDCxrGca/8QS46FAyd3b3P98/OPy2t39w0g82Tzud/il+uk791hSt1rxu+h3+rI1jGNbawclaMPyK9RfDMApEUSIyWi0jfISH3zOPMSbo4XYsBB93HT5vlxD5D/t3cY+aTAGgAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;4&quot; title=&quot;4&quot; src=&quot;/static/49728f9c1174e361a8ceb3175e60ea35/abe2a/4.png&quot; srcset=&quot;/static/49728f9c1174e361a8ceb3175e60ea35/5a46d/4.png 300w,
+/static/49728f9c1174e361a8ceb3175e60ea35/0a47e/4.png 600w,
+/static/49728f9c1174e361a8ceb3175e60ea35/abe2a/4.png 1067w&quot; sizes=&quot;(max-width: 1067px) 100vw, 1067px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;계속해서 다운로드를 진행해줍니다.&lt;/p&gt;
+&lt;p&gt;다운로드가 완료되었다면 압축을 풀어주세요!&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 264px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 44.31818181818182%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABtElEQVQoz62Ry24SURjH50U0bSwwDHNlgBmgSuUiUG4DAwwX24YSbU1TsTFNExdVF7ow0Sdx4xP4FMala+POF/h55iRN6loXv/y/6znf+Y5y3KpxEjR4sd6ldbhHfVXj7es3RIsxo8mAyWzEYNSVdn/YkX5sd/ptqePpkCDsM1tOabYbKM8fPWTTrnB96lI7LlJal/j04SPzx5FsmIvC6TyUTbG/EPHJLCScBCLWY7aYiAt7omZMvVlFSTlp0kWNbS2JoWcwDI176hapzA5pI/kXmpmSquoJdDuN4WgSO29iZnXsnIHi7Tl8+fqZq3cX1PYrnF+csXl5zvpkxerJkdTTs6cyNj+IWB7NuXp1SemBR7VZkfloOZa6OJyh+HWXX79/8v3HN7yGQzAaEIx7hFFAvVVlIJ4V0xP7G4RdusE+Q/H0ZqeBfz9PznfEhAbZgkXWs1AsT+fy/YbN9TNsX6dc8WVhUUzgFEy8co6SiMUT+bt5CmWXfMmVtuvbqEaCjK2iWSmJEjtbO3fYTtwlY6moZoK0mZTEuRv7NnHjjeriD24jDzRcsdysJg/4VxQrp/M/+QOKMTzdyo+r9QAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;5&quot; title=&quot;5&quot; src=&quot;/static/26dcac4dd67d81f0dabc4fb2f1abbea4/e61aa/5.png&quot; srcset=&quot;/static/26dcac4dd67d81f0dabc4fb2f1abbea4/e61aa/5.png 264w&quot; sizes=&quot;(max-width: 264px) 100vw, 264px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Apple&lt;/strong&gt; 개발자 사이트를 통해 파일을 내려받게 되면 &lt;strong&gt;xip 확장자&lt;/strong&gt; 파일을 받게 될 것입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;xip 파일&lt;/strong&gt; 형식은 &lt;strong&gt;zip 파일&lt;/strong&gt;의 형식과 같이 압축파일과 비슷하지만&lt;br&gt;
+압축을 해제하기 전에 먼저 파일의 변경이 없었는지 여부를 &lt;strong&gt;Apple&lt;/strong&gt;로부터 인증을 받는&lt;br&gt;
+특별한 형식이니 걱정 마세요!!&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 892px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 45.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABeElEQVQoz62SuW7CQBCGKbLPkbwRSY9lKmh5A6QgR4mUAl6CAiQu+S2QOwqb+75B4sb2eiczK7wCKeky0q/ZmdF+86/lCABEKAzDeMpmsyyVSrFYLMY0TWOJRIIVCgWWz+dZsVhktVqNJZNJOYvH40zXdZUj9+E4jjYajZzBYFCfTqfWcrmUms/nVrvdVmq1WtZisbBWq5Wc33Ids93pdHQF7Ha7X+gUrtcrBEEAQggq5dn3fSnP8+Q8rENRj6LX630r4Gw2yxwOB2g0Gq5t2xwXcMroijebTY7bZW+32/HL5cLP57MUwkguAfF1hgLiczPkBp/obTYbQVqv12K73YqwpvN+vxe4WByPR4FAMR6PBX4Cn4D9fv9DASeTiUH20baPm2gIw+GQakAYuK4L6AwQ8iBcALiA3xx+KiBeTFOTnoSCe9EldPSrTqcTZQnET/KugLlc7tk0zddKpRKtVqsPol65XP5TpVIpinffkPEiYeF/+B9BrB+QFNjIiR7YQAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;6&quot; title=&quot;6&quot; src=&quot;/static/c4ad7c08e5eea5b0c1e86cc47ab8f635/1568e/6.png&quot; srcset=&quot;/static/c4ad7c08e5eea5b0c1e86cc47ab8f635/5a46d/6.png 300w,
+/static/c4ad7c08e5eea5b0c1e86cc47ab8f635/0a47e/6.png 600w,
+/static/c4ad7c08e5eea5b0c1e86cc47ab8f635/1568e/6.png 892w&quot; sizes=&quot;(max-width: 892px) 100vw, 892px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;압축을 해제할 때 다음과 같이 인증 과정을 거칩니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1184px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 47.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABgUlEQVQoz62RQUsCQRTHRSKPdY8+RZi7bifv3br4DfwE3bsJngo1CAIhs1MQuB0MJDqGQaJUiCGBSu6uq+GuO6tv304zgy4RQRA9+PHezPznz3szIUpp6L8i8KpUKhuWZV0Sx7l2CSlPp1OVuER1HEclhENUe2qrTPOdsm2L/atqtboZOJ8Vz2N0Ee7MFXk+A4qeTz1A6s09+luUSiUpMCwUjuV+z5ztHdW8/eId6HoPHhr38NxuQrNVh8bLI3S1NzAtHcaTEbAJgHUm4DXr0M9ms/HA8OL0MN55t2H34NY/uenhmPSxNaxj22wIXkcNbBl1fBrUsGt20LZsnEwmyIyW0FwupwSGfMHejrL52JgcpAi+GHmJz6DIJR710KOISAFA4Ps+zefzO4FhOp3e0nRdGw6HH7phjHRDH/+EYRjjwWAgMtOKWtM0vjYzmUz064+vybIclWQ5EYvFEpIk/Qg/kxeaZa0oCq+3I5HIunBKJpM8hRkrjNU/wu+GU6lU6BPg4ZVMZfmyOQAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;7&quot; title=&quot;7&quot; src=&quot;/static/e395922ebfa37ec68beea67f4216e793/7321b/7.png&quot; srcset=&quot;/static/e395922ebfa37ec68beea67f4216e793/5a46d/7.png 300w,
+/static/e395922ebfa37ec68beea67f4216e793/0a47e/7.png 600w,
+/static/e395922ebfa37ec68beea67f4216e793/7321b/7.png 1184w&quot; sizes=&quot;(max-width: 1184px) 100vw, 1184px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;압축해제가 완료되었다면 다음과 같이 추가적으로 필요한 컴포넌트를 설치합니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1200px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAAsSAAALEgHS3X78AAAEz0lEQVQ4ywHEBDv7AKGLdVxSSiIiJgQIEwACDwIJFQoRHg8WIwwUJA0YKUROXZCXoNTX3P39/f////////////z8/f39/v///wD00Kn206zgv56slX5qX1QsKy0HDBYAAhACCRcJER4ECxkABhgNGCo7RlWAh5PHy9H5+vv///////////8A376b48Kf6smk9NKr9dSs5MWgtp6Ed2pdNjQ0CxAaAAUSAwsZCA8dBw4cAQkZCxUmMTpKdn2HvcLH9PX2AOPDn+nJoeXFoOHDn+HDnubHoe/Pp/TTq+rLpMKpjYJ0ZD06OQ0RGwACEQEIFwYNGwQNGQAHFgcRHyUuOwCNfHGwmYTStJTixJ/mx6Hgw53dwZzewpznyaL006r93bHz1avLs5KKe2lDPzwSFh4GDBcACBUFDBgFDBcAQz45UUpJYFpZfm5hpZB7zbKT38Kd58mg5cig5ceh58mi7tGn+duu/+K199it1rqYsJl/cWNXLSwuERQcAEs+MjtZdDRzokVDQ0tIRlVMRnxuX6iUe9K5lujLo/LTqO/QpezOpOnLouvMpO7PpvHRqO/Opta6lrCYfgBUSkJgXFlMUlZVVVZHTVIvMjY2OT9APj1UTER9b16sl33avpntzqTwz6XmyKDgw5zdwJravpjavZnZu5gAJCMmWk5EV0o+SD84VUpAVExGRkZJOT5GOj9HPEBDR0Q/W1FEiHditZ2A1ruW3cGZ4MOb2byX1LiUz7KPADEuLUlBOywqKisrLEM9OXFjVkpCOFZORFVQSU1OUENITkRMUzw/QEdCO2FXSp2IcLmggs+zj9S3lNS3lQBaUUtSSUE9Ozs2NTVKQz01MjEoKCkzMC1yZldZT0RXTkRXU05KS0kzNzovLy5aUEM+ODJyY1TJro3YupYAOTU1VUxHZlpQS0Q/XVRMLSwqKyoqNzQxUktDKCgoNjQzX1VJdGZVVEtBbF9QZVlMGBgZemxa3b+byq6KACAiJjc1NlBJRkZBQFZOSGBXTkpEP1hQSUA7NjY1MyopKFZORTc0MDczLVBHPV9USF1RRbykh9C0kMeriAAQEhYzLy9BP0AjJiopKS1UTUhEQDtaU0tbVEpUTURIQzxSSkIfHh4kIiEpJiMkIR1LQznOs5PIrYrKrYsAQj09UUlHOjg6FhcbISEjQj49Hh8gJSYoOzczZVxRWVBHaV5SPTgzLCkmIyIgOjg3ZltN0raUyq6LzrCNACIiKE1GRlVNSj04OE1GQzQyMS0tLiEiI0dDPi4sKysrKygnJ3FlV19VSllPRVBJQpKAa9S4lMuui9KzkQAZGyIyMTUhIiUiIyVIQ0BhWFJLRkQ8OTdKRT8oJycyMTIsKihNRj8rKSc+OTRWTEC7oYbQtJDOsY7UtZIAFxgfLSwwFhkeGhwhHB4hPz08JygpSkVBYlpRUUtFOzg1RD03Qz03LCsqNTEsRT01waaK0rSQ0bOQ1reTAEZBRTw5PCAiJhUYHDUzNCUmKBodIRAUGUA8OEVAO0ZBO3JkV1ZMQ0dBOyclIW1hU8+zks2wjNCyj9e2kwAfISksKzBSS0pDQD9BPj0cHiEbHiAdHyE9OTcWFxoZGhshICA9NzNcUUd0ZVWdiHTQsZDKrYrSs47VtZEJ1tzMNEULqAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;8&quot; title=&quot;8&quot; src=&quot;/static/4ecc861190b0c73b10333777105f8bff/c1b63/8.png&quot; srcset=&quot;/static/4ecc861190b0c73b10333777105f8bff/5a46d/8.png 300w,
+/static/4ecc861190b0c73b10333777105f8bff/0a47e/8.png 600w,
+/static/4ecc861190b0c73b10333777105f8bff/c1b63/8.png 1200w,
+/static/4ecc861190b0c73b10333777105f8bff/d61c2/8.png 1800w,
+/static/4ecc861190b0c73b10333777105f8bff/97a96/8.png 2400w,
+/static/4ecc861190b0c73b10333777105f8bff/669cd/8.png 3024w&quot; sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;설치 중 가장 설레는 순간 저만 그런가요..&lt;/del&gt; &lt;strong&gt;Touch ID&lt;/strong&gt;를 이용해 인증을 진행합니다.&lt;/p&gt;
+&lt;p&gt;완료되었다면 이제 다음과 같은 화면이 보일 텐데요 프로젝트 하나를 만든 다음&lt;br&gt;
+&lt;strong&gt;Vim&lt;/strong&gt;모드를 활성화시켜보겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 558px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 100.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAADGElEQVQ4y61US2tTQRRO8wIXjYm2f0Ga5L6fucnN+4FN0kJbalK0tgktVnDfrmzrxoU7FdyKoAF3KvgL3Lh148b/oKkLwUvneM7Em0YaiqAXPs7MmTPffOecmRtwXTfw37/5+fmEqqpPZFl+LUnSK8TgDPJAUdSBomoDEcci+jBuMBlDc1EUB6ZlDjjh3NycrGkaGIYBZHVd59DI4lyQBJCEJFiqApZpYow6jvGBgiDn5oATJhIJG0/4qijKKZ72E+HJiuKpaBdUzbtz99A7PHrpFY9feKV62zMM06MYjB9bVOrZGdvjhPF4PIOOE1wADGBkCaIsg6Pq8OjoDXTfM1h8/AGce09B1gxQcM2PI+B+yGRsuIBQxbEEpm5D8cFnKD/8BO7OMyjc/8g3T5JdSIhgmD4IggjcYqDefwdK+xiUrbeg33wOQvIaSKiQ1uXfSi9UmM1moVgsAlnLMjEwC7phg52t4NgBN5fDBpqQQ0tNJNKphNSpdDrNlpeXYX9/H/b29mB3dxexA9vbW7B1+xZ0ux3u7/V6cHBwAPV6nfZw0ukKFZn5J1qWBYVCgSsplUrgunmuvFwug4nX5++aIp0REmjsY3JO9fNBflGcIMR7mEHHiWaqYFZUVq1XYaO7AZT66uoqrK+vc6ytrYHjOLy2+XweCTJ8ThlQuWzbOk9o1TTm5nNQq9WgUqlwSylWq1WeLm0mMoLfPMJUQt3SINPWWGOxDp0bHa6q0+lgI7qwubkJjUYD6+jyetIBVGNBEKalHB8pNPCNFhRWqZWh3WpDq9VEtKDZbHKVtm3zNEkZpUpveOo9HBGKQ05Ykk+RkC0tLTEkYisrKwxJGSpi2HGGChmWgqE6egD0qjiQkOFbZiPCKwkHf1M/iNDOmWBbNr8WlJJvCb5C+itRzSYhywo4WWekMHZ5Vk0tpL6IWvp79rr1rVQsD1HNENPkFos+BvnwkGEymRzihR4jlUoN8dUMA7FYjDivhiPhRjQc7QUDof7MzEw/GAyO7STIFw6H+9FotB+JRP4A+bjCUDgUQnMJMUuC/wW/AK9BDCOhH98DAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;9&quot; title=&quot;9&quot; src=&quot;/static/86c94488776317a65ea64a3dc40c64e6/42a8d/9.png&quot; srcset=&quot;/static/86c94488776317a65ea64a3dc40c64e6/5a46d/9.png 300w,
+/static/86c94488776317a65ea64a3dc40c64e6/42a8d/9.png 558w&quot; sizes=&quot;(max-width: 558px) 100vw, 558px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 784px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 3.6666666666666665%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAAAsSAAALEgHS3X78AAAARUlEQVQI12NYvHXq/wWbJ/9Hp0F45qqe/1NWtP9vmFwCpmes7P6/YNOk/zNX9/6fu37C/znr+8FqZgH5S7ZP+z97bd9/APseOMf0nPHcAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;10&quot; title=&quot;10&quot; src=&quot;/static/8e043ac2ec8792019110646e8448976c/4971b/10.png&quot; srcset=&quot;/static/8e043ac2ec8792019110646e8448976c/5a46d/10.png 300w,
+/static/8e043ac2ec8792019110646e8448976c/0a47e/10.png 600w,
+/static/8e043ac2ec8792019110646e8448976c/4971b/10.png 784w&quot; sizes=&quot;(max-width: 784px) 100vw, 784px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;메뉴바에서 &lt;strong&gt;Editor&lt;/strong&gt;를 클릭하신 다음&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 322px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 273.6666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,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&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;11&quot; title=&quot;11&quot; src=&quot;/static/ec7eb1e4a9aa7c75dfa43d2919dab817/fc778/11.png&quot; srcset=&quot;/static/ec7eb1e4a9aa7c75dfa43d2919dab817/5a46d/11.png 300w,
+/static/ec7eb1e4a9aa7c75dfa43d2919dab817/fc778/11.png 322w&quot; sizes=&quot;(max-width: 322px) 100vw, 322px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vim Mode&lt;/strong&gt;를 활성화시켜주시면 됩니다.&lt;/p&gt;
+&lt;p&gt;저는 아직 &lt;strong&gt;Vim&lt;/strong&gt;이 익숙하지 않아 실수를 자주 범했는데요&lt;/p&gt;
+&lt;p&gt;자주 하는 실수는 다음과 같았습니다 🥲&lt;/p&gt;
+&lt;p&gt;명령어가 아예 입력이 되지 않아 에러인가..?라고 생각하고 있다가 메뉴바를 보니&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 169px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 17.15976331360947%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsSAAALEgHS3X78AAAA4klEQVQI1yWLT0vCcACG94W6dPMj1C3P9g1C6BImIUVFxYgQCdNNg5+kzt82Qtti4v50iFxJHqy8BBX0PZ62dXgP7/s8r+IvJOG7hftyw13cIXgzs3ivfe5n3Yz5CxNVr7CnbjOaCqKljTfvMwiamZs6wyeBcGooj5/DZJTkN9cpnWyR9umXg+E3kKFG/O0QfdhsFNZYza3QG9eZ/XqMYkFVHGb+849L3TilfFZEMcMWxkTj4GKHpnmO/XCNDP633rhBymWSo9oupeMiHfcSK2oz8HW63lXi6ljJp31bRdX2+QPnnrIJx0c2HwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;12&quot; title=&quot;12&quot; src=&quot;/static/de807ffa7753e0ba0b4369c6e58dec45/d23e3/12.png&quot; srcset=&quot;/static/de807ffa7753e0ba0b4369c6e58dec45/d23e3/12.png 169w&quot; sizes=&quot;(max-width: 169px) 100vw, 169px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;한글이 켜져 있었고..&lt;/p&gt;
+&lt;p&gt;명령어를 사용할 때는 항상 꼭 영어로 놓고 명령어를 입력해야 함을.. 깨닫게 되었습니다ㅎㅎ 부끄럽습니다..&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vim&lt;/strong&gt;을 처음 사용하시거나 이번 기회에 익숙해지실 분들은&lt;br&gt;
+아래 명령어들을 자연스레 익히며 저와 같이 연습해보아요:)&lt;/p&gt;
+&lt;h2 id=&quot;자주-사용하는-명령어&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%AA%85%EB%A0%B9%EC%96%B4&quot; aria-label=&quot;자주 사용하는 명령어 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;자주 사용하는 명령어&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;1. 입력 모드
+
+i : 커서 자리부터 쓰기
+
+o : 다음 라인부터 쓰기
+
+s : 커서가 가리키는 문자 지우고 새로 쓰기
+
+a : 맨 뒤에 붙여쓰기
+
+
+
+2. 편집시 자주 사용하는 명령어
+
+dd : 라인 삭제
+
+dG : 현재 라인 이후 모두 삭제
+
+yy : 라인 복사
+
+p : 라인 붙여 넣기
+
+u : 되돌리기
+
+U : 되돌리기 취소
+
+
+
+3. 커서 이동
+
+h, j, k, l : 좌, 하, 상, 우 이동
+
+gg : 파일 맨 처음 라인으로 이동
+
+G : 파일 맨 마지막 라인으로 이동
+
+e : 단어 끝으로 이동
+
+w : 다음 단어로 이동
+
+b : 이전 단어로 이동
+
+0 : 라인의 시작으로 커서 이동
+
+$ : 라인의 마지막으로 커서 이동
+{숫자}gg : 숫자에 해당하는 곳으로 커서 이동
+
+{숫자} + h, j, k, l : 숫자만큼 이동
+
+{숫자}w
+
+{숫자}dd
+
+{숫자}yy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;여기까지 &lt;strong&gt;Xcode 13&lt;/strong&gt;에 새로 들어온 &lt;strong&gt;Vim&lt;/strong&gt;에 대해 소개해보았습니다 ;)&lt;/p&gt;
+&lt;p&gt;혹시 제가 잘못 알고 있는 부분이 있거나, 오타 혹은 궁금한 점 있으시면 댓글로 알려주시면 감사하겠습니다!! 😎&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;참고&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://sungdoo.dev/programming/why-xcode-supports-vim/?fbclid=IwAR1mka7iAOVwTIHxbTM3uR_llQVeNIjyIySFnjB_lEjbyjR7VEW2Zpn1Gew&quot;&gt;왜 Vim이 Xcode 에 들어왔을까?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[if let과 guard let]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 날이 아주 덥습니다 여러분~! ⛱☀️ 건강 유의하셔서 즐코딩하세요 ㅎㅎ🍉 오늘은 if문을 이용한 Optional Binding과 guard문을 이용한 Optional Binding…]]></description><link>https://noah0316.github.io/Swift/2021-07-21-if-let과-guard-let/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2021-07-21-if-let과-guard-let/</guid><pubDate>Wed, 21 Jul 2021 16:08:06 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
 &lt;p&gt;날이 아주 덥습니다 여러분~! ⛱☀️&lt;/p&gt;
 &lt;p&gt;건강 유의하셔서 즐코딩하세요 ㅎㅎ🍉&lt;/p&gt;
 &lt;p&gt;오늘은 &lt;strong&gt;if문&lt;/strong&gt;을 이용한 &lt;strong&gt;Optional Binding&lt;/strong&gt;과&lt;br&gt;
