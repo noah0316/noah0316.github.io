@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 25 Aug 2021 05:29:19 GMT</lastBuildDate><item><title><![CDATA[Xcode의 새식구 Vim]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 이번 Xcode 13.0 베타에는 새로운 기능이 추가되었는데요, 여러 기능들이 추가되었지만 그중에 단연 돋보이는 신기능은 Vim입니다~!!🎉🎉🎉 Xcode1…]]></description><link>https://noah0316.github.io/Tools/2021-08-25-xcode의-새식구-vim/</link><guid isPermaLink="false">https://noah0316.github.io/Tools/2021-08-25-xcode의-새식구-vim/</guid><pubDate>Wed, 25 Aug 2021 01:08:22 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 25 Aug 2021 06:01:38 GMT</lastBuildDate><item><title><![CDATA[Xcode의 새식구 Vim]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 이번 Xcode 13.0 베타에는 새로운 기능이 추가되었는데요, 여러 기능들이 추가되었지만 그중에 단연 돋보이는 신기능은 Vim입니다~!!🎉🎉🎉 Xcode1…]]></description><link>https://noah0316.github.io/Tools/2021-08-25-xcode의-새식구-vim/</link><guid isPermaLink="false">https://noah0316.github.io/Tools/2021-08-25-xcode의-새식구-vim/</guid><pubDate>Wed, 25 Aug 2021 01:08:22 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 812px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 43%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAACGElEQVQoz2NgwAFMsYh5eHgw4APJyUlA8v9/5ulN2zSPlC/W9y1pK4uLTc7c2t3IDVJQHa7B8G6vK1jxpRU2YDo4KJQxPjWe28fcg8svxF+MT1qA0yvKh7uvposRrKBo67PeQ5P3/C9ZcuOn19p7/x3DUv/7RWcuB8mtXejGfHNvMuPHnYaMB1ZGMP7/f5wJJL5m5aqNi9csfqFTZP5k/YZ1zzasWgtSDzHwaN2aI6VzgAZt/fs3eMrh745NW/57Lribg89ru3fs3LTpyJb/dQua/+05sfd/SE1UAUi8cUkbE0NS/bk9DvO///ee9uCXRXDhT8dpr/77L/8fBVLw5aTn3K9HnGrebtSS+XLUZeH/S54gi7jap3fcvHPj5v9Na9Z/d+z3+69cY3ToAEMe2PUM1m0vDnlM+//fOKznr2FY73+36f//2za+jAXJvd1tu/rzAXsHEPvTfpvsD7utekHszRs3bj5y7vD/2OKE/1Fl8f/LasqOAIWZwQY61rwtN88++1PXMvi7ec6FF9blL2/bld/VweflpbMXBQUWh9WZ5todDg4KjspNybZkAMfvf4gCK+dYaS0jJyPf/v8CvjEbWEBipVN2MP7/FMH0/2EaOLD/P81g/P8uiOn366fIZjPDGHDDNHyrGdFd4Nb4DCy2f7ITw5MFkmCxR3NEGR6v8QOz7964xdi+oAscZiERIcypKSlMMEMBY77rwEjaakQAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -19,7 +19,7 @@
 &lt;p&gt;학부생 1학년 때 학교에 있는 &lt;strong&gt;Linux 서버&lt;/strong&gt;에 접속해 &lt;strong&gt;C&lt;/strong&gt;를 연습하며 처음 &lt;strong&gt;Vim&lt;/strong&gt;을 마주한 이후로,&lt;br&gt;
 &lt;strong&gt;터미널&lt;/strong&gt;을 이용하거나, &lt;strong&gt;Amazon EC2 인스턴스&lt;/strong&gt;에 접근할 때 이외에는 사용해본 적이 없었습니다.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Vi&lt;/strong&gt; 즉, &lt;strong&gt;Visual Interface&lt;/strong&gt;는 편집기가 지원해야 할 기능의 명세로&lt;br&gt;
-&lt;strong&gt;Vi&lt;/strong&gt;를 한번 제대로 익혀두면 다른 &lt;strong&gt;IDE&lt;/strong&gt;를 사용할 상황이 생겼을 때&lt;/p&gt;
+&lt;strong&gt;Vi&lt;/strong&gt;의 향상된 버전인 &lt;strong&gt;Vim&lt;/strong&gt;을 한번 제대로 익혀두면 다른 &lt;strong&gt;IDE&lt;/strong&gt;를 사용할 상황이 생겼을 때&lt;/p&gt;
 &lt;p&gt;각 &lt;strong&gt;IDE&lt;/strong&gt;에 특화된 많은 단축어를 따로 외우고 있지 않아도&lt;br&gt;
 &lt;strong&gt;Vim&lt;/strong&gt;을 활용하면 편리하게 코딩할 수 있다는 점이 끌려 이번 기회에 &lt;strong&gt;Vim&lt;/strong&gt;을 제대로 연습해 생산성을 높이고 싶어&lt;br&gt;
 &lt;strong&gt;Xcode 13 Beta&lt;/strong&gt;를 다운로드한 후 &lt;strong&gt;Vim mode&lt;/strong&gt;를 적용하고,&lt;/p&gt;
@@ -35,7 +35,7 @@
 &lt;p&gt;사용하며 좋았던 또다른 점은 &lt;strong&gt;Vim&lt;/strong&gt;의 유용한 기능들과 함께 기존에 &lt;strong&gt;Xcode&lt;/strong&gt;에서 사용하는&lt;br&gt;
 단축키를 그대로 사용할 수 있다는 점이었습니다.&lt;/p&gt;
 &lt;p&gt;라인을 이동하는 다음과 같은 명령어도 말이죠!!&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;cmd&lt;/code&gt; + &lt;code class=&quot;language-text&quot;&gt;[&lt;/code&gt; OR &lt;code class=&quot;language-text&quot;&gt;]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;cmd&lt;/code&gt; + &lt;code class=&quot;language-text&quot;&gt;opt&lt;/code&gt; + &lt;code class=&quot;language-text&quot;&gt;[&lt;/code&gt; OR &lt;code class=&quot;language-text&quot;&gt;]&lt;/code&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/ba71696b0bd64f7c09502a0582e38bdd/2.gif&quot; width=&quot;600&quot;&gt;
 &lt;/p&gt;
@@ -129,6 +129,10 @@
     &lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Vim Mode&lt;/strong&gt;를 활성화시켜주시면 됩니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/88fd183e8dde352939ec06554211a5e4/13.gif&quot; width=&quot;700&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vim mode&lt;/strong&gt;가 활성화되면 위와 같이 사용이 가능합니다:)&lt;/p&gt;
 &lt;p&gt;저는 아직 &lt;strong&gt;Vim&lt;/strong&gt;이 익숙하지 않아 실수를 자주 범했는데요&lt;/p&gt;
 &lt;p&gt;자주 하는 실수는 다음과 같았습니다 🥲&lt;/p&gt;
 &lt;p&gt;명령어가 아예 입력이 되지 않아 에러인가..?라고 생각하고 있다가 메뉴바를 보니&lt;/p&gt;
