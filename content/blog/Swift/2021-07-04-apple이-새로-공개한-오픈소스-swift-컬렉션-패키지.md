@@ -13,8 +13,8 @@ draft: false
 
 2021년 4월 5일 **Apple**이 공개한 **Swift 컬렉션 패키지**를 알게 되었습니다.
 
-Swift의 공식 blog 글에 따르면 Swift 컬렉션 패키지에서는 3가지의 범용 데이터 구조인  
-Array, Set 그리고, Dictionary에 대한 기능을 제공한다고 합니다.
+Swift의 공식 blog 글에 따르면 이번에 새로 공개한 Swift 컬렉션 패키지에서는 3가지의 범용 데이터 구조인  
+Array, Set 그리고, Dictionary를 위한 새로운 기능을 제공한다고 합니다.
 
 ## Deque
 
