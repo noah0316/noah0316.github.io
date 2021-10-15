@@ -10,8 +10,6 @@ draft: false
 
 오늘은 **SwiftLint**를 좀 더 효율적으로, **Git-Hook**과 함께 사용하는 방법에 대해 소개해보려 합니다 :)
 
-재밌게 봐주세요 👀
-
 <p align="center">
   <img src="assets/2021-10-15/1.png" width="300"/>
 </p>
