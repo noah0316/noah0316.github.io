@@ -333,7 +333,7 @@ Swift는 `main()` 함수가 따로 없죠?
 
 ## Scene Delegate
 
-<img src="assets/2021-10-25/12.png"/>
+<img src="assets/2021-10-25/12.png" width="100"/>
 
 **iOS 13**부터는
 
