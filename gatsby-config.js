@@ -37,8 +37,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1200,
+              maxWidth: 650,
               linkImagesToOriginal: false,
+              backgroundColor: 'transparent',
             },
           },
           {
@@ -64,6 +65,7 @@ module.exports = {
           `gatsby-remark-smartypants`,
           `gatsby-remark-autolink-headers`,
           `gatsby-remark-emoji`,
+          `gatsby-plugin-open-graph-images`,
         ],
       },
     },
