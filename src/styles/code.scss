@@ -102,6 +102,7 @@ pre[class*='language-'] {
 .token.number,
 .token.function {
   color: #41a1c0;
+  font-weight: 900;
 }
 
 .token.property,
@@ -117,6 +118,7 @@ pre[class*='language-'] {
 .token.keyword,
 .token.builtin {
   color: #ee228c;
+  font-weight: 900;
 }
 
 .token.string,
