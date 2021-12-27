@@ -1,4 +1,444 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 21 Dec 2021 13:03:37 GMT</lastBuildDate><item><title><![CDATA[Swift 성능 이해하기 struct-class]]></title><description><![CDATA[안녕하세요 Noah…]]></description><link>https://noah0316.github.io/Swift/2021-12-21-swift-성능-이해하기-struct-class/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2021-12-21-swift-성능-이해하기-struct-class/</guid><pubDate>Tue, 21 Dec 2021 16:13:38 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 27 Dec 2021 10:03:20 GMT</lastBuildDate><item><title><![CDATA[Observer Pattern]]></title><description><![CDATA[안녕하세요 Noah입니다 :) 오늘은 Gang of Four 소프트웨어 디자인 패턴 중 행위 패턴에 속하는 Observer Pattern 에 대해서 알아보도록 하겠습니다. iOS에서 Observer Pattern은 Foundation framework…]]></description><link>https://noah0316.github.io/Design Pattern/observer-pattern/</link><guid isPermaLink="false">https://noah0316.github.io/Design Pattern/observer-pattern/</guid><pubDate>Sat, 25 Dec 2021 22:12:28 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
+&lt;p&gt;오늘은 &lt;strong&gt;G&lt;/strong&gt;ang &lt;strong&gt;o&lt;/strong&gt;f &lt;strong&gt;F&lt;/strong&gt;our &lt;strong&gt;소프트웨어 디자인 패턴&lt;/strong&gt; 중 행위 패턴에 속하는&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observer Pattern&lt;/strong&gt; 에 대해서 알아보도록 하겠습니다.&lt;/p&gt;
+&lt;h3 id=&quot;ios에서-observer-pattern은&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ios%EC%97%90%EC%84%9C-observer-pattern%EC%9D%80&quot; aria-label=&quot;ios에서 observer pattern은 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;iOS에서 Observer Pattern은&lt;/h3&gt;
+&lt;p&gt;Foundation framework의 NotificationCenter, KVO(Key Value Observing), Property Observer, Combine framework의 Publisher, Subscriber 등에서 쓰이는데요,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Combine framework의 Publisher(Observable), Subscriber(Observer)과 Notification Center는
+Observer Pattern과 비슷하지만 약간의 차이를 가진 Pub/Sub Pattern을 사용합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이러한 여러 기술들의 &lt;strong&gt;기본 구현 철학&lt;/strong&gt;이 되는 소프트웨어 &lt;strong&gt;디자인 패턴&lt;/strong&gt;인 &lt;strong&gt;Observer Pattern&lt;/strong&gt;에 대해 알아봅시다!!&lt;/p&gt;
+&lt;h1 id=&quot;observer-pattern&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#observer-pattern&quot; aria-label=&quot;observer pattern permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Observer Pattern&lt;/h1&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.44171779141104%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABFklEQVQoz42SSW/DIBCFfYyX2CzepDhKWtU5OXEPcZVF8f//STM+FTBYFFMph08jBnh6byDoug7HcZx+hgGH6xW/+x6fj8d0v91w3zSYpSlQQpBk2QrZ1wDRNUjiGMLNBuIoUsh1FIaKdLuIgUdEQ5WQEQ4YpcgZQ1ld5CGuq7MHZt8ILYKm6cRZnGUSEXubJJAK5CUtBm8JqrV28flxxNfzPp3aFvvLBc/dGcuiQEt0vusTtGfCKMOqLKHZ7fDUfqGs8oGOh4Maj+PO79Awz4hBXVVYVzUIARXZ8E5ksJFRhUvIOZf4Hkuc+XvHJiBeh3TVW4/Gi+Nw/g6KnDMoBDmj2jVZVa9DN66hyGdBLuZp9/8V1L1fouAFlSrM5FsAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;1&quot; title=&quot;1&quot; src=&quot;/static/1bf397f5f72f89322abc57172cf5f962/a6d36/1.png&quot; srcset=&quot;/static/1bf397f5f72f89322abc57172cf5f962/222b7/1.png 163w,
+/static/1bf397f5f72f89322abc57172cf5f962/ff46a/1.png 325w,
+/static/1bf397f5f72f89322abc57172cf5f962/a6d36/1.png 650w,
+/static/1bf397f5f72f89322abc57172cf5f962/e548f/1.png 975w,
+/static/1bf397f5f72f89322abc57172cf5f962/3c492/1.png 1300w,
+/static/1bf397f5f72f89322abc57172cf5f962/29114/1.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observer&lt;/strong&gt;를 그대로 직역하면 &lt;strong&gt;감시자&lt;/strong&gt; 라고 할 수 있겠네요!&lt;/p&gt;
+&lt;p&gt;이름에서부터 느낌이 오지만 지켜보는 것과 관련 있는 디자인 패턴입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observer Pattern&lt;/strong&gt;의 컨셉을 간단하게 GIF로 나타내면 다음과 같은데요&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/a213d176c0bca334e605c045c09988c1/2.gif&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;하나 이상의 &lt;strong&gt;Observer&lt;/strong&gt;(감시자) 들이 한 곳, 하나의 &lt;strong&gt;Subject&lt;/strong&gt;를 바라보고 있다가 그곳에서 어떠한 event가 발생하면 &lt;strong&gt;Subject&lt;/strong&gt;를 바라보던 &lt;strong&gt;Observer&lt;/strong&gt; 들이 그에 따른 반응을 하는 패턴입니다.&lt;/p&gt;
+&lt;p&gt;그림과 같이 &lt;strong&gt;Observer Pattern&lt;/strong&gt;은 &lt;strong&gt;Observer&lt;/strong&gt; 들이 한 곳 하나의 &lt;strong&gt;Subject&lt;/strong&gt;를 바라보고 있는데요,&lt;/p&gt;
+&lt;p&gt;다시 말해 하나의 &lt;strong&gt;Observer&lt;/strong&gt; 혹은 다수의 &lt;strong&gt;Observer&lt;/strong&gt;들은 하나의 &lt;strong&gt;Subject&lt;/strong&gt;의 event, 상태 변화에 귀 기울이고 있습니다.&lt;/p&gt;
+&lt;p&gt;이를 통해 &lt;strong&gt;Observer Pattern&lt;/strong&gt;은 &lt;strong&gt;one to many&lt;/strong&gt; 즉, 1 대 다의 의존 관계를 갖는 것을 알 수 있습니다.&lt;/p&gt;
+&lt;p&gt;우리가 만약 &lt;strong&gt;Observer Pattern&lt;/strong&gt;을 사용하지 않고 &lt;strong&gt;Subject&lt;/strong&gt;의 상태 변화, event를 탐지, 알아차리기 위해서는 일정한 간격의 시간 즉, Time interval을 두고 &lt;strong&gt;Subject&lt;/strong&gt;의 상태를 계속해서 체크해야 할 텐데요,&lt;/p&gt;
+&lt;p&gt;이러한 방식을 &lt;strong&gt;컴퓨터 과학&lt;/strong&gt;에서는 &lt;strong&gt;“Polling”&lt;/strong&gt;이라고 합니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.44171779141104%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABFUlEQVQoz4WRzW6DMBCEOQZowGvMj6JUSpWGphJScggNTSTe/5F2cyo2NjXGTQ+jldf25/Fs0DQN9X3/+Gpbai8XOp9OdL/dHt9dR6/bLaVJgsAYsTRdSPa1kOkavMQxhqsVxlGkJNdRGCol6zValwxk1gMGdg8DDkAZ5ySrK3NIuhxgaC4Oe2jtz4H269NXdJUXizynsihIZNkvCGyH/wDNOhdCgvBttyOZb3e9Tpk67oj5gHYmHDhVZamAH3VN9eFAn8cjve/3JHN1gfAMOOangLipKulUDcfkqGH4DIi2ZE6DSxwyU/IMSp9hXgXM6xAWvWU0XjkOxykqiYxjPkhwmBy51evQ/a5RLkZgBnzW/xOoez/ghQW2040S1wAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;3&quot; title=&quot;3&quot; src=&quot;/static/8728b05092590fa05b1a088ed5be8efc/a6d36/3.png&quot; srcset=&quot;/static/8728b05092590fa05b1a088ed5be8efc/222b7/3.png 163w,
+/static/8728b05092590fa05b1a088ed5be8efc/ff46a/3.png 325w,
+/static/8728b05092590fa05b1a088ed5be8efc/a6d36/3.png 650w,
+/static/8728b05092590fa05b1a088ed5be8efc/e548f/3.png 975w,
+/static/8728b05092590fa05b1a088ed5be8efc/3c492/3.png 1300w,
+/static/8728b05092590fa05b1a088ed5be8efc/29114/3.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;물론 모든 상황에 &lt;strong&gt;Polling&lt;/strong&gt;과 &lt;strong&gt;Observer Pattern&lt;/strong&gt; 중 &lt;strong&gt;Observer Pattern&lt;/strong&gt;만 적용할 수는 없지만,&lt;/p&gt;
+&lt;p&gt;주기적으로 &lt;strong&gt;Subject&lt;/strong&gt;의 상태를 계속 체크해야 하는 &lt;strong&gt;Polling&lt;/strong&gt; 방식보다 &lt;strong&gt;Subject&lt;/strong&gt;의 상태변화 혹은 event가 있을 때만 &lt;strong&gt;Observer&lt;/strong&gt;에게 알리는 &lt;strong&gt;Observer Pattern&lt;/strong&gt;이 훨씬 효율적일 것입니다.&lt;/p&gt;
+&lt;p&gt;계속해서 &lt;strong&gt;Subject&lt;/strong&gt;의 상태를 체크해야 하는 경우 &lt;strong&gt;Polling&lt;/strong&gt;은 리소스 낭비로 이어질 수 있겠습니다.&lt;/p&gt;
+&lt;p&gt;자, 이제 &lt;strong&gt;Observer Pattern&lt;/strong&gt;의 구조를 파헤쳐봅시다.&lt;/p&gt;
+&lt;h2 id=&quot;observer-pattern의-구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#observer-pattern%EC%9D%98-%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;observer pattern의 구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Observer Pattern의 구조&lt;/h2&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 41.104294478527606%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsSAAALEgHS3X78AAABIElEQVQY02WRXYuCYBCF/f+/RhS88kokSETTKCxNJU0x0MoKU/vYZzPaaOdiOM7MOXPmVXg8436/k8MwFEVRluXpdNo0zeFwOB6P2+3WNM3JZGLbNnk2mwVBsNls9vu98PiI0+nkOI7ruufz+a1IMA3TsixaURTFcZymKdJ/5Ov1Sm7bdrfbAbquG+q32+1yuTTPYBu6TDLGgDDIYw8OYmR81nUNwAitoihWqxULsQqmVVUVKix/bYbc9/3nCXwyB0ARpud5uEVlsVgg8SL7vk+Vk2iDaZRlyRCfFKFxJ5XBCwFmE6Z+b5YkSVVVXdfH4zF5uVyirSiKpmmj0cgwDPL7/q8QeP35fJ4kSZ7nWEAYwJvz27Is4871ej285f/4AUvjt07nqF6kAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;4&quot; title=&quot;4&quot; src=&quot;/static/f299e1b96dd180cd03f7b7e7ae35dd23/a6d36/4.png&quot; srcset=&quot;/static/f299e1b96dd180cd03f7b7e7ae35dd23/222b7/4.png 163w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/ff46a/4.png 325w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/a6d36/4.png 650w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/e548f/4.png 975w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/3c492/4.png 1300w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/29114/4.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observer Pattern&lt;/strong&gt;의 UML은 위와 같이 생겼습니다.&lt;/p&gt;
+&lt;p&gt;먼저 &lt;strong&gt;Observer&lt;/strong&gt; 부분부터 보겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 41.104294478527606%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsSAAALEgHS3X78AAABBElEQVQY042QS4qDQBCGW0Xv5y2y8wDqNXIBGVeuFNwoCBIXWcQHSPCBD1AUFyJGXYjGTDEJQ5jM61v8VFNd/f9d6PbBtm2gaZpKknQ4HGiaRggRBIF+5/bEOI6n06ksS4ZhoEVRFIZh/xpe1xV0miZQlmWhRZLkH873wMMwdF3X933btpfLRdM0juP2+/1ut4M7OI5j3/FwhuFlWZ6/cD8qigLDP4aP4zjPc8dxgiCAumkaMIfC933P8wzD4HleEARRFN9eQLIs67oOGz4ej6BRFIVhqKqqaZqWZdm2Da98CfUJcl33fD4XRVHXNUQAWyjAM0mSqqpg81mWzfN8vV7XF94Bfk4RtRM8ZYsAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;5&quot; title=&quot;5&quot; src=&quot;/static/3b16a11c9c72a6c2faa2b21ca0ff6a59/a6d36/5.png&quot; srcset=&quot;/static/3b16a11c9c72a6c2faa2b21ca0ff6a59/222b7/5.png 163w,
+/static/3b16a11c9c72a6c2faa2b21ca0ff6a59/ff46a/5.png 325w,
+/static/3b16a11c9c72a6c2faa2b21ca0ff6a59/a6d36/5.png 650w,
+/static/3b16a11c9c72a6c2faa2b21ca0ff6a59/e548f/5.png 975w,
+/static/3b16a11c9c72a6c2faa2b21ca0ff6a59/3c492/5.png 1300w,
+/static/3b16a11c9c72a6c2faa2b21ca0ff6a59/29114/5.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;h3 id=&quot;observer-protocolinterface&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#observer-protocolinterface&quot; aria-label=&quot;observer protocolinterface permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Observer Protocol(Interface)&lt;/h3&gt;
+&lt;p&gt;먼저 event, 알림을 감지할 &lt;strong&gt;Observer Protocol&lt;/strong&gt;(Interface)을 만들어줍니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 299px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 57.05521472392638%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsSAAALEgHS3X78AAAB3klEQVQoz01SScuxYRQ2/Af/zNbCxsbGQikbkrIkc8pnnueZT4bXkHnOVETEhlBKivf5Lt7n03stTuec+z7XOee6bwpBEH6/X61WBwIBh8Nhs9lMJpPRaPzzxsdB8hOazWaDwcBgMCgoRup0Og2Hw81ms9/v7/c78R/fbxC/8Hg8YFutFgWAF4lEwuGwSCSSSqVcLhesPp8vFArBWq3WYDCo0+kKhUI0GlUqlYlEwu12VyoVOp3+KsY9TC4WiyUSCY/HY7PZQqGQw+GwWCyEAoGgWq0ymUyZTAbL5/NBOpvNyM52u/16vS6Xy+PxeD6fMfnlctntdj/+7XZ7Pp+HwwF2u93iCCXYkUajvYoxjNPpLJfLf9/I5XLZbDafz8PCRyaZTMJPpVJIZjKZYrGIRcixtVptPB7HGl9v4KxUKn39QvmNzwWoBS3IznK5HEE6nYZyUAWSQAI4sVgMaoEXDvb0eDwI4SCjUCjIzlBvvV6vVitsOJlMptMpiHq93mg0QkOE4/F4sVjgFEL8PFi/3yc7e71eTAI+fBKNRqNSqVwul16vB2m9XrdYLNi22+2iAVg+xVQq9VWMh63VavP5vNFoYPJOp9NsNkGH5u12G3YwGOACdgYFynAT3xFj/wM9KtkggN3sdQAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;6&quot; title=&quot;6&quot; src=&quot;/static/36dd4f3a1bb109834adaeb633228f858/aeb78/6.png&quot; srcset=&quot;/static/36dd4f3a1bb109834adaeb633228f858/222b7/6.png 163w,
+/static/36dd4f3a1bb109834adaeb633228f858/aeb78/6.png 299w&quot; sizes=&quot;(max-width: 299px) 100vw, 299px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observer Protocol&lt;/strong&gt;은&lt;/p&gt;
+&lt;p&gt;메소드로 Subject의 event, 알림을 감지했을 때&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observer&lt;/strong&gt;가 &lt;strong&gt;해야 할 일&lt;/strong&gt;을 담을 update 메소드를 가지고 있습니다.&lt;/p&gt;
+&lt;p&gt;그러면 이제 이 Protocol을 채택 및 준수하여 각 Observer에서 해야 할 일을&lt;/p&gt;
+&lt;p&gt;정의한 실제 Observer를 정의해줄 수 있습니다.&lt;/p&gt;
+&lt;p&gt;다음과 같이 말이죠&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 41.104294478527606%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsSAAALEgHS3X78AAABHElEQVQoz5VRwaqCUBTUXPR7foY7F23rN/oBqY0rF24iQqlFC6WU0BSUQFEElaIQQWse94DQosfrDQxz7j3nDnM53Ov1AsPz+SSNogiqqmK73UIURXAcB0EQSL8iM2Gmg/Hj8YBlWUjTFLIs09B4PMZoNPqfIUPXdaRN05BOJpPvkw0cvnq/31HXNa7XK8qyxO12w2q1wnQ6xXw+hyRJ9IAlZeR5/iMp4Xuq32AYxncJwzDE5XLB4XCA7/tg56IoUFUV1a7rUm+z2WA2m0FRFCyXSywWi4/kNE3Der3GbrfDfr+n7QZBgPP5DF3XYZom9Wzbxul0wl/gjscjPM9DkiTIsozSsnR5nsNxHMRxTPds66xu2xZ939MCP/EHJ3KwxwDKp5MAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;7&quot; title=&quot;7&quot; src=&quot;/static/b9fd9a78f41c793538b698e7194c3a1b/a6d36/7.png&quot; srcset=&quot;/static/b9fd9a78f41c793538b698e7194c3a1b/222b7/7.png 163w,
+/static/b9fd9a78f41c793538b698e7194c3a1b/ff46a/7.png 325w,
+/static/b9fd9a78f41c793538b698e7194c3a1b/a6d36/7.png 650w,
+/static/b9fd9a78f41c793538b698e7194c3a1b/e548f/7.png 975w,
+/static/b9fd9a78f41c793538b698e7194c3a1b/3c492/7.png 1300w,
+/static/b9fd9a78f41c793538b698e7194c3a1b/29114/7.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;ConcreteObserverA&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;ConcreteObserverB&lt;/code&gt; 는&lt;/p&gt;
+&lt;p&gt;각각 자신이 event, 알림을 감지해야 할 일을 정의한 &lt;code class=&quot;language-text&quot;&gt;update()&lt;/code&gt; 메소드를 가지고 있기 때문에&lt;/p&gt;
+&lt;p&gt;Subject의 event, 알림을 감지했을 때는 각 Observer에 맞는 &lt;code class=&quot;language-text&quot;&gt;update()&lt;/code&gt;메소드가 실행될 것입니다.&lt;/p&gt;
+&lt;p&gt;여기까지 Swift Code로 작성해보면 다음과 같습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;편의상 별도의 동등 비교 연산을 추가하지 않고 &lt;a href=&quot;https://developer.apple.com/documentation/swift/1538988&quot;&gt;===&lt;/a&gt; 연산자를 이용해 같은 instance를 가리키는지(point)에 대한 여부로 객체를 비교하기 위해 class로 구현하도록 하겠습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;observer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#observer&quot; aria-label=&quot;observer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Observer&lt;/h3&gt;
+&lt;hr&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;AnyObject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ConcreteObserverA&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;ConcreteObserverA: Subject의 state가 변경되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ConcreteObserverB&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;ConcreteObserverB: Subject의 state가 변경되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;자, 이제 Observer의 관찰의 대상이 되는 Subject를 봐야 하는데요,&lt;/p&gt;
+&lt;h3 id=&quot;subject&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#subject&quot; aria-label=&quot;subject permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Subject&lt;/h3&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 41.104294478527606%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsSAAALEgHS3X78AAABIElEQVQY02WRXYuCYBCF/f+/RhS88kokSETTKCxNJU0x0MoKU/vYZzPaaOdiOM7MOXPmVXg8436/k8MwFEVRluXpdNo0zeFwOB6P2+3WNM3JZGLbNnk2mwVBsNls9vu98PiI0+nkOI7ruufz+a1IMA3TsixaURTFcZymKdJ/5Ov1Sm7bdrfbAbquG+q32+1yuTTPYBu6TDLGgDDIYw8OYmR81nUNwAitoihWqxULsQqmVVUVKix/bYbc9/3nCXwyB0ARpud5uEVlsVgg8SL7vk+Vk2iDaZRlyRCfFKFxJ5XBCwFmE6Z+b5YkSVVVXdfH4zF5uVyirSiKpmmj0cgwDPL7/q8QeP35fJ4kSZ7nWEAYwJvz27Is4871ej285f/4AUvjt07nqF6kAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;8&quot; title=&quot;8&quot; src=&quot;/static/f299e1b96dd180cd03f7b7e7ae35dd23/a6d36/8.png&quot; srcset=&quot;/static/f299e1b96dd180cd03f7b7e7ae35dd23/222b7/8.png 163w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/ff46a/8.png 325w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/a6d36/8.png 650w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/e548f/8.png 975w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/3c492/8.png 1300w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/29114/8.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observer&lt;/strong&gt;와 &lt;strong&gt;Subject&lt;/strong&gt;의 화살표의 모양을 보면&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Subject&lt;/strong&gt;와 &lt;strong&gt;Observer&lt;/strong&gt;의 &lt;strong&gt;관계&lt;/strong&gt;는 &lt;strong&gt;has 관계&lt;/strong&gt;입니다.&lt;/p&gt;
+&lt;p&gt;다시 말해, &lt;strong&gt;Subject&lt;/strong&gt;가 &lt;strong&gt;Observer&lt;/strong&gt;를 소유하고 있습니다.&lt;/p&gt;
+&lt;p&gt;이를 쉽게 그림으로 표현하면 다음과 같습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.44171779141104%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABZ0lEQVQoz3VS2W7CMBDMBwCJc0JI1VAK5CBAKZUQov//Sx6e6vEBCaIPq/Ve4/GOvW3b4vd6vf2cTvg+HrHf7XC5XG7n8xlvRQF/MpEiCBD4vqQ9naUQAvSBytN749FIF6IwxGw6RRxFemAyHmvrASC0w/Tsc7EwYAaQBTL5XC7Rdd1tvVrpOEtT9BlxOJ/N4OqcY8x88ACVHpuTOMY0y0BGbtA9iTWVkwT4WCzQ1DU26zWK+VzPRPZFd8Bqs9FN9ATi7U3doNtuUVeVZmr3KNnTNg2490rVuCIRPDHkTQSa5znIJkszdXuBRVmifC81C9ZpBKB/5HKkSTJkyNud6eVTMT+QqlEqdpLDu67DYb/Xr/g6HNAqhoxr9TKuwYhnBPJ6CmnjDmlka5WU/AlOdXe+5+y3smorUf4BfJV7ZcKo/Pg2Dtl+UqosjaqhTJTFoYnt/xv4VzYADHuASWwAIxEO8v8C2twfY/oN7rMYmfMAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;9&quot; title=&quot;9&quot; src=&quot;/static/6eefcc1e0192a77d7315a80a629af40f/a6d36/9.png&quot; srcset=&quot;/static/6eefcc1e0192a77d7315a80a629af40f/222b7/9.png 163w,
+/static/6eefcc1e0192a77d7315a80a629af40f/ff46a/9.png 325w,
+/static/6eefcc1e0192a77d7315a80a629af40f/a6d36/9.png 650w,
+/static/6eefcc1e0192a77d7315a80a629af40f/e548f/9.png 975w,
+/static/6eefcc1e0192a77d7315a80a629af40f/3c492/9.png 1300w,
+/static/6eefcc1e0192a77d7315a80a629af40f/29114/9.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Subject&lt;/strong&gt;가 &lt;code class=&quot;language-text&quot;&gt;observerCollection&lt;/code&gt;에 &lt;strong&gt;Observer&lt;/strong&gt;를 소유하고 있습니다.&lt;/p&gt;
+&lt;p&gt;이를 더 이해하기 쉽게 참조 관계를 보면 다음과 같습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.44171779141104%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABg0lEQVQoz3VSWY7CMAztAaBN2qQ7ogxboRvbSAgx979SzNfYSVoogg/L8fbyvDh1VcHf/f74vVzgfDpB17Zwu90e1+sVZnkOnusqzhgwz1Mkb2/FOQfSDP2knelkogOB70MSxyCCQBd406lyUQiAe54W3xaTprze5gbMAFKAmKyWS2iaBtbrtbbDMATPstCMOFdJkgxxqkvRJlD2BFUOJUshII4iYNiewIScEpFRhO9MYgz1DAG2RQHVbgflZgN5lumawHY0AJbbLewoCfUcgVb4+3G/h3NdQ1uWUCDT2HUhxYIOc04Ya3DuJcZoRJy9MaSfiHqWpiCQKbWaZTkUyKaYzyFBFsSY2o0QQGv0UU2apBBKOWZIW+yFDTNjKpJSRWGoqLjF2R66TndxPBygQoZkU2c/iwWY5ZkFOS8b0kJDJqG5SrNJRZfg2q3378Fnz8puG5fyBfCT75Nws+Xn2fTI9kjpxrSIwFcSRfjGtvc30p9kBOi/AEphAAPuj/xfAa3vH1c6DlwvMpeRAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;10&quot; title=&quot;10&quot; src=&quot;/static/8fa50fcb3dd357cc6ac4cc596b907e58/a6d36/10.png&quot; srcset=&quot;/static/8fa50fcb3dd357cc6ac4cc596b907e58/222b7/10.png 163w,
+/static/8fa50fcb3dd357cc6ac4cc596b907e58/ff46a/10.png 325w,
+/static/8fa50fcb3dd357cc6ac4cc596b907e58/a6d36/10.png 650w,
+/static/8fa50fcb3dd357cc6ac4cc596b907e58/e548f/10.png 975w,
+/static/8fa50fcb3dd357cc6ac4cc596b907e58/3c492/10.png 1300w,
+/static/8fa50fcb3dd357cc6ac4cc596b907e58/29114/10.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;h4 id=&quot;subject가-observer를-소유한다라는-개념까지-swift-code로-작성해보면-다음과-같습니다&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#subject%EA%B0%80-observer%EB%A5%BC-%EC%86%8C%EC%9C%A0%ED%95%9C%EB%8B%A4%EB%9D%BC%EB%8A%94-%EA%B0%9C%EB%85%90%EA%B9%8C%EC%A7%80-swift-code%EB%A1%9C-%EC%9E%91%EC%84%B1%ED%95%B4%EB%B3%B4%EB%A9%B4-%EB%8B%A4%EC%9D%8C%EA%B3%BC-%EA%B0%99%EC%8A%B5%EB%8B%88%EB%8B%A4&quot; aria-label=&quot;subject가 observer를 소유한다라는 개념까지 swift code로 작성해보면 다음과 같습니다 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;“Subject가 Observer를 소유한다”라는 개념까지 Swift Code로 작성해보면 다음과 같습니다.&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; observerCollection&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 UML을 다시 보겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 41.104294478527606%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsSAAALEgHS3X78AAABIElEQVQY02WRXYuCYBCF/f+/RhS88kokSETTKCxNJU0x0MoKU/vYZzPaaOdiOM7MOXPmVXg8436/k8MwFEVRluXpdNo0zeFwOB6P2+3WNM3JZGLbNnk2mwVBsNls9vu98PiI0+nkOI7ruufz+a1IMA3TsixaURTFcZymKdJ/5Ov1Sm7bdrfbAbquG+q32+1yuTTPYBu6TDLGgDDIYw8OYmR81nUNwAitoihWqxULsQqmVVUVKix/bYbc9/3nCXwyB0ARpud5uEVlsVgg8SL7vk+Vk2iDaZRlyRCfFKFxJ5XBCwFmE6Z+b5YkSVVVXdfH4zF5uVyirSiKpmmj0cgwDPL7/q8QeP35fJ4kSZ7nWEAYwJvz27Is4871ej285f/4AUvjt07nqF6kAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;11&quot; title=&quot;11&quot; src=&quot;/static/f299e1b96dd180cd03f7b7e7ae35dd23/a6d36/11.png&quot; srcset=&quot;/static/f299e1b96dd180cd03f7b7e7ae35dd23/222b7/11.png 163w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/ff46a/11.png 325w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/a6d36/11.png 650w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/e548f/11.png 975w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/3c492/11.png 1300w,
+/static/f299e1b96dd180cd03f7b7e7ae35dd23/29114/11.png 1920w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;Subject는 3개의 동작(메소드)을 가지고 있습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;registerObserver(observer)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;unregisterObserver(observer)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;notifyObservers()&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;3개의 메소드의 이름이 되게 직관적이기 때문에 각각의 동작을 유추해볼 수 있는데요,&lt;br&gt;
+(&lt;del&gt;이래서 함수명, 메소드 명을 잘 지어야 하나 봅니다..&lt;/del&gt;)&lt;/p&gt;
+&lt;h2 id=&quot;code-classlanguage-textregisterobserverobservercode&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#code-classlanguage-textregisterobserverobservercode&quot; aria-label=&quot;code classlanguage textregisterobserverobservercode permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code class=&quot;language-text&quot;&gt;registerObserver(observer)&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Subject의 &lt;strong&gt;observerCollection&lt;/strong&gt;에 여러 Observer 들을 &lt;strong&gt;소유&lt;/strong&gt;할 수 있게 Observer를 &lt;strong&gt;등록&lt;/strong&gt;해주는 메소드입니다.&lt;/p&gt;
+&lt;h2 id=&quot;code-classlanguage-textunregisterobserverobservercode&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#code-classlanguage-textunregisterobserverobservercode&quot; aria-label=&quot;code classlanguage textunregisterobserverobservercode permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code class=&quot;language-text&quot;&gt;unregisterObserver(observer)&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;observerCollection에 있는 여러 Observer들 중 특정 Observer와 Subject간의 &lt;strong&gt;관계를 해제&lt;/strong&gt;해주는 메소드입니다. &lt;del&gt;어떻게 보면 구독 취소와도 비슷한 것 같습니다.&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&quot;code-classlanguage-textnotifyobserverscode&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#code-classlanguage-textnotifyobserverscode&quot; aria-label=&quot;code classlanguage textnotifyobserverscode permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code class=&quot;language-text&quot;&gt;notifyObservers()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Observer Pattern의 핵심입니다. 바로 Subject의 &lt;strong&gt;event를 알리는&lt;/strong&gt; 메소드인데요,&lt;br&gt;
+Subject가 소유하고 있는 Observer 들의 &lt;strong&gt;update메소드&lt;/strong&gt;를 &lt;strong&gt;호출&lt;/strong&gt;해줍니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;notifyObservers()&lt;/code&gt; 의 메소드 구현 부를 보면&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 312px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 45.39877300613497%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABVElEQVQoz41Sa2uDQBC8//9vWgr5nLRCQhJEjOal5mEStSoaEZJI4tTZcqWUQnsw3N7c3T5mV7VtCy7LsjAcDjGdTjGZTNDr9TAYDIQfjUYYj8dYLpcoyxJVVeF8PgvqusbpdBK8pxmUdpgkCXzfx3a7FWw2GwRBgN1uh/V6DcdxxP6J/X4vb5vbDVGUQOGfq2maP99EcefwcrngeDxKynrXtj6HYYj5fI7D4fAreB/HMTw/gGJ5JPM8R5qmUjpBWyPLMtFO60Z81/HTLvH0/AJF757nwXVdiWSapjSCumg9yT8eDymLmhP3+104Qssxc1woisoobACzoWOWxwax5KIoOrEj4QkG570ORo5/GdSybCh+ZOtJ2LYtpXNEmOVisRAHzLbf78MwDBkrSsKsNK7Xm2Rozxwo6rNarb7AEaEjzhxtcrTJ6TODMBEN8mFX6eubgQ8Gu5gTSwRKogAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;12&quot; title=&quot;12&quot; src=&quot;/static/5d82d147c5fb92342bd923d06348e755/17474/12.png&quot; srcset=&quot;/static/5d82d147c5fb92342bd923d06348e755/222b7/12.png 163w,
+/static/5d82d147c5fb92342bd923d06348e755/17474/12.png 312w&quot; sizes=&quot;(max-width: 312px) 100vw, 312px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;상태변화, event 알림을 감지했을 때 각 Observer에서 해야 할 일을 수행할 수 있도록&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;observerCollection&lt;/code&gt;을 순회하면서&lt;/p&gt;
+&lt;p&gt;각각의 &lt;code class=&quot;language-text&quot;&gt;observer&lt;/code&gt; 들의 &lt;code class=&quot;language-text&quot;&gt;update()&lt;/code&gt; 메소드를 호출해주는 것을 알 수 있습니다.&lt;/p&gt;
+&lt;p&gt;여기까지 살펴본 Subject를 Swift Code로 작성해보면 다음과 같습니다.&lt;/p&gt;
+&lt;h3 id=&quot;subject-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#subject-1&quot; aria-label=&quot;subject 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Subject&lt;/h3&gt;
+&lt;hr&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; observerCollection &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;mutating&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;registerObserver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: Observer가 등록되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		observerCollection&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;mutating&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;unregisterObserver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: Observer가 해제되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		observerCollection &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; observerCollection&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; $&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; observer &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;notifyObservers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: Notifying observers...&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; observer &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; observerCollection &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			observer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;implement&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#implement&quot; aria-label=&quot;implement permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Implement&lt;/h2&gt;
+&lt;p&gt;이제 작성한 코드를 구현해 실제로 사용해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;자, 사용하기에 앞서 우리의 client는 몇 가지 기능을 원한다고 &lt;strong&gt;가정&lt;/strong&gt;을 하고 코드를 사용해보도록 하겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Subject는 &lt;strong&gt;state&lt;/strong&gt;를 가지고 있다.&lt;/li&gt;
+&lt;li&gt;어떠한 &lt;strong&gt;Business Logic&lt;/strong&gt;이 실행되면 &lt;strong&gt;state&lt;/strong&gt;를 변화시키고, 이 변화에 대한 알림을 Observer 들에게 &lt;strong&gt;알린다.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;각각의 Observer 들은 &lt;strong&gt;Subject의 알림에 반응&lt;/strong&gt;한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;위의 기능을 구현한 코드는 아래와 같습니다.&lt;/p&gt;
+&lt;h2 id=&quot;implement-observer-pattern&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#implement-observer-pattern&quot; aria-label=&quot;implement observer pattern permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Implement Observer Pattern&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;AnyObject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ConcreteObserverA&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;ConcreteObserverA: Subject의 state가 변경되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ConcreteObserverB&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;ConcreteObserverB: Subject의 state가 변경되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; state&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; observerCollection &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;mutating&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;registerObserver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: Observer가 등록되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		observerCollection&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;mutating&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;unregisterObserver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: Observer가 해제되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		observerCollection &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; observerCollection&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; $&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; observer &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;notifyObservers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: Notifying observers...&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; observer &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; observerCollection &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			observer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;mutating&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;someBusinessLogic&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: I&apos;m doing something important.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		state &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Subject: state가 변경되었습니다. : &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;\(&lt;/span&gt;state&lt;span class=&quot;token delimiter variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token function&quot;&gt;notifyObservers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 작성된 코드를 이용해 &lt;code class=&quot;language-text&quot;&gt;class&lt;/code&gt;를 생성하고, observer를 등록하고,&lt;br&gt;
+해제하고 Business Logic을 실행토록 해보겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; subject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Subject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; observer1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ConcreteObserverA&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; observer2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ConcreteObserverB&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;/// Observer 등록&lt;/span&gt;
+subject&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;registerObserver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; observer1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+subject&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;registerObserver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; observer2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;/// Business Logic 실행&lt;/span&gt;
+subject&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;someBusinessLogic&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;/// Observer 등록 해제&lt;/span&gt;
+subject&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;unregisterObserver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; observer2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;/// Business Logic 실행&lt;/span&gt;
+subject&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;someBusinessLogic&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;출력의 결과는 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Subject: Observer가 등록되었습니다.
+Subject: Observer가 등록되었습니다.
+
+Subject: I&amp;#39;m doing something important.
+Subject: state가 변경되었습니다. : 10
+Subject: Notifying observers...
+
+ConcreteObserverA: Subject의 state가 변경되었습니다.
+ConcreteObserverB: Subject의 state가 변경되었습니다.
+
+Subject: Observer가 해제되었습니다.
+
+Subject: I&amp;#39;m doing something important.
+Subject: state가 변경되었습니다. : 8
+Subject: Notifying observers...
+
+ConcreteObserverA: Subject의 state가 변경되었습니다.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;등록, 해제에 따라 &lt;code class=&quot;language-text&quot;&gt;someBusinessLogic()&lt;/code&gt; 메소드가 실행되었을 때&lt;/p&gt;
+&lt;p&gt;호출되는 Observer의 &lt;code class=&quot;language-text&quot;&gt;update()&lt;/code&gt; 메소드가 다른 것을 보니, 잘 적용된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;h2 id=&quot;ios-communication-pattern&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ios-communication-pattern&quot; aria-label=&quot;ios communication pattern permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;iOS Communication Pattern&lt;/h2&gt;
+&lt;p&gt;여기서부터는 &lt;strong&gt;iOS 내용&lt;/strong&gt;입니다!! 🍎&lt;/p&gt;
+&lt;p&gt;iOS에서 정보전달을 위한 &lt;strong&gt;Communication Pattern&lt;/strong&gt;에는 크게 두 가지 Option이 있는데요,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Delegates &amp;#x26; Protocol&lt;/li&gt;
+&lt;li&gt;Notification Center &amp;#x26; Observers&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;가 있습니다.&lt;/p&gt;
+&lt;p&gt;각각의 특성에 맞게 두 가지 옵션을 사용하는데요,&lt;/p&gt;
+&lt;p&gt;어떠한 상황에서 사용하는지만 간략하게 살펴보면&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Delegates &amp;#x26; Protocol&lt;/strong&gt;은 &lt;strong&gt;one to one&lt;/strong&gt; 1 대 1의 의존관계를 갖는 곳에서 사용하며,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Notification Center &amp;#x26; Observers&lt;/strong&gt;는 &lt;strong&gt;one to many&lt;/strong&gt; 1 대 다의 의존관계를 갖는 곳에서 사용합니다.&lt;/p&gt;
+&lt;p&gt;자 여기까지 살펴보았으니,&lt;/p&gt;
+&lt;p&gt;잠깐 &lt;strong&gt;Foundation framework&lt;/strong&gt;의 &lt;strong&gt;NotificationCenter&lt;/strong&gt;를 잠시 살펴볼까요?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/documentation/foundation/notificationcenter&quot;&gt;Notification Center Apple 공식문서&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 30.67484662576687%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAApklEQVQY062QwQqEMAxEo2IVQUGtrYXag4s3T2LR//+xWRNY3KvgYcgLDMkkREQoigJZloH5BRHG0cF7D2MMuq6D1lq473u0bft0GWFZFhzHiW3bsO9ReF1XxBhFZVk+G1hVFYaBE2lJx8nqupZ0TdNI75yDtfbyDcLsYzbGyjV/S0mM8/zBNAWEEK4XjFBKiYn/m+e59Kwfc71ZIU3Te+AbSpJE6hc3f4T1XGtqQwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;13&quot; title=&quot;13&quot; src=&quot;/static/135c02f2671c0ec9b44e09b60052bc5a/a6d36/13.png&quot; srcset=&quot;/static/135c02f2671c0ec9b44e09b60052bc5a/222b7/13.png 163w,
+/static/135c02f2671c0ec9b44e09b60052bc5a/ff46a/13.png 325w,
+/static/135c02f2671c0ec9b44e09b60052bc5a/a6d36/13.png 650w,
+/static/135c02f2671c0ec9b44e09b60052bc5a/e548f/13.png 975w,
+/static/135c02f2671c0ec9b44e09b60052bc5a/3c492/13.png 1300w,
+/static/135c02f2671c0ec9b44e09b60052bc5a/6a5c3/13.png 1646w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;설명을 보니, 등록된 observer들에게 정보를 broadcast 할 수 있는 notification dispatch 메커니즘이라고 합니다.&lt;/p&gt;
+&lt;p&gt;마치 우리가 여태 봐왔던 Observer Pattern의 설명을 보는 듯하네요!&lt;/p&gt;
+&lt;p&gt;자 어떠한 메소드들이 있는지 볼까요?&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 42.94478527607362%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABWElEQVQoz22SUW7DIBBEfYfEYBuDAYOdRomaqldIVKX3v890B4cqVfMxZlnw8ga2cW6CMSOsdRhHi74foJRG2xm0uocSlVF1Ja/1NrYyp1Sryh4l+Vbi5n7/xu32hev1BsaXywes85jWd7j5AJPOcPmMlLJoQQhziacocT4izQkuHtANVgq2aLquRxXpeMosmz4vF5yOb/A+yHxGDEGKxaJtLmOcy14zmPIfyRsGVft9W5JGrGv/BmWzHDRgp0fsOid2+2J5pw2UXAkhmKv/l4L8PIsL5fTDGXE5YVnWzWpMD7qEOG/2N8IZOS8YHpTN32IclTyOg40rRrkb6xMmH2FD/rVM8dBR1nob4eRBSfuvYCXki/uYi0jGe2TRKEQsxjlj5vYCwat6abkmSTiGFSaQUF508mJpKLYottlzTOnaNq8I2Y9BCLy0CEkoUnm/0VXbNeZ6tfwDDojxYhGAHUwAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;14&quot; title=&quot;14&quot; src=&quot;/static/b965877683605d01fa52217eaede9635/a6d36/14.png&quot; srcset=&quot;/static/b965877683605d01fa52217eaede9635/222b7/14.png 163w,
+/static/b965877683605d01fa52217eaede9635/ff46a/14.png 325w,
+/static/b965877683605d01fa52217eaede9635/a6d36/14.png 650w,
+/static/b965877683605d01fa52217eaede9635/e548f/14.png 975w,
+/static/b965877683605d01fa52217eaede9635/3c492/14.png 1300w,
+/static/b965877683605d01fa52217eaede9635/b5c8e/14.png 2194w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;addObserver&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;removeObserver&lt;/code&gt; 메소드의 설명을 보니&lt;/p&gt;
+&lt;p&gt;아까 우리가 위에서 봤던 Subject의 &lt;code class=&quot;language-text&quot;&gt;registerObserver&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;unregisterObserver&lt;/code&gt; 역할을 하고 있는 것으로 보이네요!!&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 33.12883435582822%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA+0lEQVQoz21RW47EIAzrGWahQHm328fsatq9/+W8JJSqGs2HFXCQE5suhIgYE4POWhv0SkOqUntdoBhC9JCygvrMc9VQ5zvqdft+4Dj+GK/XjsEMiGnCvP1iXRZs2xPjOF2IZaiUsgqf9RpURLvH4wt3EOl8hPEjjMvwPsBaz9U5D1W4Xlt2IkxAb3x11TZslu6Y5xXz+sSy/fBWKeUSSeYayvYpT8h5RMzffKZB14ZNpBFCSM6TrC7FMj221jGGwcISzru1ljlFmb8L3kWdTxjiDBfLBjFfn0ZgPowcgSl5t0Fk+6NlCpwe51w/gaw11HvlyD6h9UiUBP8BsSe48Htp/00AAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;15&quot; title=&quot;15&quot; src=&quot;/static/31880b23399917f80464e5bf6ac22676/a6d36/15.png&quot; srcset=&quot;/static/31880b23399917f80464e5bf6ac22676/222b7/15.png 163w,
+/static/31880b23399917f80464e5bf6ac22676/ff46a/15.png 325w,
+/static/31880b23399917f80464e5bf6ac22676/a6d36/15.png 650w,
+/static/31880b23399917f80464e5bf6ac22676/e548f/15.png 975w,
+/static/31880b23399917f80464e5bf6ac22676/3c492/15.png 1300w,
+/static/31880b23399917f80464e5bf6ac22676/0ddab/15.png 2220w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;post&lt;/code&gt; 메소드의 설명을 보니&lt;/p&gt;
+&lt;p&gt;Subject의 &lt;code class=&quot;language-text&quot;&gt;notifyObservers&lt;/code&gt; 와 같은 역할을 하는 것으로 보입니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 255px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 42.94478527607362%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABgElEQVQoz31Sy4rCQBDM/3+D94gYY1ZxQTHZRPMSNFF8v/GJihcvHhRqU81Gdg/uQDMz1d3V1T2juK6H5m9rugiCEPm8hrxWQKGgQ0v2SuUTxkcJpmnB8wOJdX+Md8v6gu00oODNGg6HyGZVqKqKTCaTkGoolUq43W7vUjCZTKDEcYx2u40oisFzFEXodDqChWEoZ8/zxMfzYDDAaDT6YyTqdruSq5imiXK5jGq1mrQaoFarJW03kxYstFot1Ot1wR3HkZjD4YDr9YrL5fKy0+mE9XqNXq8Hxfd92LaNRqMhSdxJwiL0kdx13ZefBamYGHf6qZBK2YVyPp+lFbJvNhtMp1MsFguRzzZSbLvdYrlcCkaCFN/tdng8Hng+n0Kq0JnOgHPjY/A+n89FOYsxkcHj8Rir1UqUcb7Emdfv96UgcxWqmc1mUp0ACRhAbL/fC8nxeJQZ3e93/LeE0DAMFItF+RK0XC4nX0TX9eTvVcTHeTKOD8XZpXNNdyrm43Js3+g9bS0lJQiZAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;16&quot; title=&quot;16&quot; src=&quot;/static/f828ac3a9a4f4a0bd522d9498ac855e2/b8c8f/16.png&quot; srcset=&quot;/static/f828ac3a9a4f4a0bd522d9498ac855e2/222b7/16.png 163w,
+/static/f828ac3a9a4f4a0bd522d9498ac855e2/b8c8f/16.png 255w&quot; sizes=&quot;(max-width: 255px) 100vw, 255px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;Subject를 다시 보니 한눈에 더 잘 들어오지 않나요?&lt;/p&gt;
+&lt;p&gt;자 다음은 Apple의 Document Archive에 있는 NSNotificationCenter 문서의 그림입니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 69.93865030674846%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB70lEQVQoz41SS3PSUBTOn3Pp0r/gTveuXLnUaWcE3XVBsb5nSmiwD7Q8U+lYqbUGSNIqDKVtCOEmIeTmvjyEyshQp565c3Lyne/kO+fkSmLeOOfg7yVrtx7s3H+2f3d5786j4u2Hn87sYJadmSQWjHFea/arP6wD3f6i9yEuf790fBwXixuKI8oIZX8jhPIgpIvM65QZdzyMAoqG9hAhFBA0isb4/4rj0SfKvFuil/WTds+yrMWBry/2fb8FphtGSzONpm6Y8OJ63g0Lm+aGrpf9sLWeVWRleytfVDZ34PQHzr+LI0/gocCuIF7k257d9YY2Oq2iTt1zLNfuYt+GlMBoctjV/BJ8illHRHvBOrv4ZHPU2giNHDZzrFsmh0mmpWinONYVAMGTX3lqysTMxl2wWPlMFdY3eOIwbLd7Tf304jzeUK8mBhoEve5Fy/zZ6ZwTNumRm5kr5aXq2tPqakJNJz6/eVxJrXyVQ4pXDjLL6stEdTWppp9U0s/332EapQ4VICf2XiUqqSV1DQhSup7baJblZinTKLw9zme0ghO44DONIoByo/T++OPro20fB7JWXNd2YyYEBRCQKJv7+4TRURSSeRAuLOVsBk53PgiQ5OERF5Mc48Dh0B4g4CFmf8D4gkVBNAYmIFO9/sj5Da+1AhJZIMqAAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;17&quot; title=&quot;17&quot; src=&quot;/static/d5b8fe6a89700b064fcd9a5b13937b71/a6d36/17.png&quot; srcset=&quot;/static/d5b8fe6a89700b064fcd9a5b13937b71/222b7/17.png 163w,
+/static/d5b8fe6a89700b064fcd9a5b13937b71/ff46a/17.png 325w,
+/static/d5b8fe6a89700b064fcd9a5b13937b71/a6d36/17.png 650w,
+/static/d5b8fe6a89700b064fcd9a5b13937b71/1d69c/17.png 750w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 그림은 Notification Center가 Event Channel의 역할을 하고 있기 때문에 Publish/Subscribe 패턴과&lt;br&gt;
+유사하지만 설명 편의상 Observer Pattern과 같이 설명하도록 하겠습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이 그림을 우리가 봤던 Observer Pattern과 같이 생각해보면 다음과 같아질 것입니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 594px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 69.32515337423312%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsSAAALEgHS3X78AAACL0lEQVQ4y4VTXW8SQRTd32fib/An+GxifPDVB41pix8JqQ1FoURQqw1Fa40tQk2pUARa+ZI1FFy7y7Kw7O7s7HFmthiErd7kZObeM/fsvXdmJUop5uG6FNxuR4q4cvMdrocOcCNcwLU7e7h6awfFxrngiesu5Er4h5VaGj6f/EK5raEmD1BsqshVFSi6JXjP8xZyJB6cBzdKPTiEBn7IsgmXQ1CuNBWYX7lphg3ddKEPNOi6iqHDYibBxPX5+foCBf8WpyKJ9A/h1LdBhxaorsMbDEBVVawe9w3jT44v6AWXj+lHPJclqqCdDmi/D9rrgcoyaLfL/J6IeZTOCM6XHtDO/21mhgLOGJ49ZDBYjyMfDmuFmKzNNqhWF2fAzvC44Ph5i7Xs2n4RQpBt3PMKnPIqSHsbTmMTo1pSYMxA2hk4pcewj5ZBvmdgnqR8vpqE3XgN0ngJpxr1580FRbVneUAp+YWzUchyH9+aHZx1Fb8btQawi+Gm/NRQb8potX6wh33RbT3J3pn/NqWlXByhbAQPsusI5TdwPxtFuJAC8Qhix2nmP8XDT1Gs7K9hKRfDcj7Gns0Eb04/4u5+BI8OEljeW8VKPo57LFcKH6bwvLIrkCi/RbS4heiXLQwmBpKV94iV0khVPyDxdQfP2P5J4RWUkYb0aRbr7NyL6i42GBc/zmDtaDP4lrmZzuTS+xzZ5qWcZNhj/1djw6MXg7WIjTET5Cv3ZznHJTCs8QI3xW94VR+h6tsQwwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;18&quot; title=&quot;18&quot; src=&quot;/static/26a75878919a16ebacb8d8e751ce5eea/5fd3e/18.png&quot; srcset=&quot;/static/26a75878919a16ebacb8d8e751ce5eea/222b7/18.png 163w,
+/static/26a75878919a16ebacb8d8e751ce5eea/ff46a/18.png 325w,
+/static/26a75878919a16ebacb8d8e751ce5eea/5fd3e/18.png 594w&quot; sizes=&quot;(max-width: 594px) 100vw, 594px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;또한, Observer Pattern은 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EB%AA%A8%EB%8D%B8-%EB%B7%B0-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC&quot;&gt;모델-뷰-컨트롤러&lt;/a&gt;(Model-View-controller, MVC) 패러다임과 자주 결합되는데요,&lt;/p&gt;
+&lt;p&gt;Observer Pattern은 MVC에서 모델과 뷰 사이를 느슨히 연결하기 위해 사용됩니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/ff01dd7519f4284777ab03d76e03fbdf/19.gif&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;대표적으로 위와 같이 모델에서 일어나는 이벤트를 통보받는 Observer가 뷰의 내용을 바꾸도록 하게 말이죠!!&lt;/p&gt;
+&lt;p&gt;이렇게 Observe Pattern은 이미 정말 다양한 곳에서 쓰이고 있음을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이외에도 다양한 상황에 맞게, 1 대 다 Communication을 해야 할 때 Observer Pattern을 사용하면 좋을 것 같네요!!&lt;/p&gt;
+&lt;h2 id=&quot;summary&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#summary&quot; aria-label=&quot;summary permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summary&lt;/h2&gt;
+&lt;p&gt;오늘은 Observer Pattern을 정리해보며 이 개념이 어디에서 쓰이는지 보았습니다.&lt;/p&gt;
+&lt;p&gt;이번 design pattern 공부를 하며 깨닫게 된 것이 있습니다.&lt;/p&gt;
+&lt;p&gt;소프트웨어 기술의 기본 구현 철학이 되는 소프트웨어 디자인 패턴과 같은 이론의 기본기를 잘 다져놓으면,&lt;/p&gt;
+&lt;p&gt;새로운 언어, 프레임워크를 학습할 때 있어 학습의 러닝 커브를 줄일 수 있다는 것을 몸소 깨닫게 되었습니다.&lt;/p&gt;
+&lt;p&gt;흐름에 압도되기보다 급할수록 더 기술의 기본이 되는 기본기에 집중해야겠습니다.&lt;/p&gt;
+&lt;p&gt;오늘도 포스팅 봐주셔서 감사합니다!!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;아직 모르는 것이 많고 알아가는 과정입니다. 잘못된 것이 있다면 댓글로 남겨주신다면 감사하겠습니다!&lt;/em&gt;😊&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이미지 출처&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Observer_pattern#/media/File:Observer_w_update.svg&quot;&gt;Observer Pattern UML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.apple.com/documentation/&quot;&gt;Apple Developer Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Notification.html&quot;&gt;Notification Center Image&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;이외 다른 이미지는 직접 제작하였습니다 :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;참고&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/@icodespree/communication-patterns-in-swift-89442ff6af29&quot;&gt;Communication Patterns in Swift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Observer_pattern&quot;&gt;Observer Pattern&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Swift 성능 이해하기 struct-class]]></title><description><![CDATA[안녕하세요 Noah…]]></description><link>https://noah0316.github.io/Swift/2021-12-21-swift-성능-이해하기-struct-class/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2021-12-21-swift-성능-이해하기-struct-class/</guid><pubDate>Tue, 21 Dec 2021 16:13:38 GMT</pubDate><content:encoded>&lt;p&gt;안녕하세요 Noah입니다 :)&lt;/p&gt;
 &lt;p&gt;좋은 개발자는 좋은 코드를 짜야 할 것입니다.&lt;/p&gt;
 &lt;p&gt;제가 생각하는 좋은 코드란, 팀원들이 보기에 좋은 코드를 작성하고, 안정적이고 속도가 빠른 코드를 작성해&lt;/p&gt;
 &lt;p&gt;결과적으로 앱을 사용하는 사용자에게 좋은 경험을 안겨주는 것이 좋은 코드라고 생각합니다.&lt;/p&gt;
