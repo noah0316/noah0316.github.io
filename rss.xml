@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 29 Jun 2022 10:45:03 GMT</lastBuildDate><item><title><![CDATA[Value Type은 무조건 Stack에 할당될까?]]></title><description><![CDATA[WWDC 2016 UnderStanding Swift Performance…]]></description><link>https://noah0316.github.io/Swift/2022-06-29-value-type은-무조건-stack에만-할당될까/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2022-06-29-value-type은-무조건-stack에만-할당될까/</guid><pubDate>Wed, 29 Jun 2022 18:06:13 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 29 Jun 2022 16:32:59 GMT</lastBuildDate><item><title><![CDATA[Value Type은 무조건 Stack에만 할당될까?]]></title><description><![CDATA[WWDC 2016 UnderStanding Swift Performance…]]></description><link>https://noah0316.github.io/Swift/2022-06-29-value-type은-무조건-stack에만-할당될까/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2022-06-29-value-type은-무조건-stack에만-할당될까/</guid><pubDate>Wed, 29 Jun 2022 18:06:13 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;WWDC 2016 UnderStanding Swift Performance 세션을 보고 잘못 이해하고 있던 부분을 바로 잡기위해 실험을 통해 다시 풀어보았습니다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
@@ -6,7 +6,7 @@
 관심있는 분들은 아래의 링크를 참조해주세요!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://noah0316.github.io/Swift/2021-12-21-swift-%EC%84%B1%EB%8A%A5-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-struct-class/&quot;&gt;Swift 성능 이해하기 struct-class&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;또한 Value Type이 정말 Stack에 할당되는지, Heap에 할당되는지 확인해보고 싶어 여러도구를 활용해 Swift코해당 인스턴스가 어디에 할당되는지 분석해보며 확인해보려 합니다.&lt;/p&gt;
+&lt;p&gt;또한 Value Type이 정말 Stack에만 할당되는지, Heap에 할당되는지 확인해보고 싶어 여러도구를 활용해 Swift코해당 인스턴스가 어디에 할당되는지 분석해보며 확인해보려 합니다.&lt;/p&gt;
 &lt;p&gt;먼저 Value Type의 객체를 만들 때 사용하는 struct를 하나 생성해보도록 하겠습니다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
@@ -32,7 +32,8 @@
 /static/f752fb6dbb724bd433d869ebf2eea53e/fdaf8/1.png 674w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
 &lt;/p&gt;
-&lt;p&gt;valueTypeObject의 현재 주소는 위와 같네요 현재 valueTypeObject의 주소 0x00007ff7bfeff2c0 의 메모리영역을 한번 확인해봅시다!&lt;/p&gt;
+&lt;p&gt;valueTypeObject의 현재 주소는 위와 같네요&lt;/p&gt;
+&lt;p&gt;현재 valueTypeObject의 주소 &lt;code class=&quot;language-text&quot;&gt;0x00007ff7bfeff2c0&lt;/code&gt; 의 메모리영역을 한번 확인해봅시다!&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 34.96932515337423%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABbUlEQVQoz2WRSU/DMBCF+x/gxJLNTu02btI4ruMsLVAIIDZx5MABcQX+//ExdYpA4vA0lj3z/I3ehIk5xEJjlhUQWQldb0hnKFZrVM0WSndYmDVy3SCVOYTMMM8UMrVAsdSwtcOy1GAsBU8FJsE0Q2gfITev4PYJZvOAhbsFW27ByivE+TmO9DMOyxccqCcU7hxNP2BVX8C6LermEobOedmRekxixnAaJV4RE9C2R2k7Tx0LhYSowmRK77HvyXUP29ySyTVW7hrG7eoN3Y0aDcOIFJIhR1U3ME0HqXIkUwku54iS35582flBUxOl24vOZi8y5OPvQYBQaui7D9iHL5j7T6jLd0TtGwKhEYQBGcZ+tZFw8ISjhj0xGUZxjBP6/SQIwYiovxhQuR58liOloPi8oJU5jk8D36OK1q9o/lD9mO3qhCtD6aQ0xLCjrdsWlbWUqERC91MhKdUMcjZDKoQPoaPgKnv1j9C1A74BXV3b3i07rJ0AAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -57,7 +58,8 @@
 &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; valueTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ValueType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;test()&lt;/code&gt; 안에서 ValueType 인스턴스를 생성할 때 멤버변수의 값으로 10, 11을 주었으니,&lt;/p&gt;
-&lt;p&gt;0x00007ff7bfeff2c0영역에 16진수 0A, 0B가 있는걸로 미루어보아 성공적으로 Value Type Object가 생성된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;0x00007ff7bfeff2c0&lt;/code&gt;영역에 16진수 &lt;code class=&quot;language-text&quot;&gt;0A&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;0B&lt;/code&gt;가 있는걸로 미루어보아&lt;/p&gt;
+&lt;p&gt;성공적으로 Value Type Object가 생성된 것을 확인할 수 있습니다.&lt;/p&gt;
 &lt;p&gt;다음으로는 ReferenceType인스턴스를 만들어보도록 하겠습니다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
@@ -98,7 +100,7 @@
 /static/2699d7d798105ee705ee6e9941645558/5b481/4.png 846w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
 &lt;/p&gt;
-referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7bfeff2c8&amp;#xB97C; &amp;#xD655;&amp;#xC778;&amp;#xD574;&amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.
+&lt;p&gt;referenceTypeObject의 주소인 &lt;code class=&quot;language-text&quot;&gt;0x00007ff7bfeff2c8&lt;/code&gt;를 확인해보도록 하겠습니다.&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 21.47239263803681%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA+UlEQVQY0z3OXU+CYBjGcT6H8aKI8DyiiKGUCoIpMO3Ncrm1lmt1UJub3//s3yNbHfxOrvvavUsT0sfzPDquoO0IWrag15fsX2y2uyFvxx27j5LH5y7Tqas6EtmVCCEIgoBBGDKOY1z1w1OZ5kYRszQhnWdcTya1eZ5RVSnl+oZiU7Bar7h/ON9D9q9Dvn8yPr9mteNxwem05P0wZvsk0WzhcDkeMYxG9IIB/UGIKyRWy6HV7qjFNrrpUFa2WtYmmmbkxZY0vyVR5ou7WpJtmCQVmm5YNHSjdmGYNBTdtDCsP02VN/H7BmbTQPpXRHGpRiyV1b8oPiv4Bfchgby82tQ0AAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -111,7 +113,9 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
     &lt;/span&gt;
 &lt;/p&gt;
 &lt;h3 id=&quot;확인해보기-전에&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%99%95%EC%9D%B8%ED%95%B4%EB%B3%B4%EA%B8%B0-%EC%A0%84%EC%97%90&quot; aria-label=&quot;확인해보기 전에 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;확인해보기 전에&lt;/h3&gt;
-&lt;p&gt;ReferenceType은 참조타입이기 때문에, 주소(0x00007ff7bfeff2c8)에 접근하게 되면 referenceTypeObject Instance의 주소(0x000000010922e180) 를 가지고 있을 것입니다.&lt;/p&gt;
+&lt;p&gt;ReferenceType은 참조타입이기 때문에,&lt;/p&gt;
+&lt;p&gt;주소(&lt;code class=&quot;language-text&quot;&gt;0x00007ff7bfeff2c8&lt;/code&gt;)에 접근하게 되면&lt;/p&gt;
+&lt;p&gt;referenceTypeObject Instance의 주소(&lt;code class=&quot;language-text&quot;&gt;0x000000010922e180&lt;/code&gt;) 를 가지고 있을 것입니다.&lt;/p&gt;
 &lt;p&gt;한번 확인해보도록 하겠습니다.&lt;/p&gt;
 &lt;p&gt;주소를 입력한 뒤에 메모리 영역을 확인해보면&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
@@ -125,9 +129,9 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
 /static/f0c93decac25c99dd8bc68b98aa3df76/64639/6.png 1568w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
 &lt;/p&gt;
-&lt;p&gt;위에서 언급한 0x000000010922e180 주소가 메모리에 저장되어있는 것을 확인해볼 수 있습니다.&lt;/p&gt;
-&lt;p&gt;낮은 주소(80)부터 저장되어있는 것으로 미루어보아 리틀 엔디안 방식으로 주소를 저장하고 있는 것 또한 확인해볼 수 있네요!!&lt;/p&gt;
-&lt;p&gt;자 이제 그럼 해당 주소(0x10922e180)에 접근해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;위에서 언급한 &lt;code class=&quot;language-text&quot;&gt;0x000000010922e180&lt;/code&gt; 주소가 메모리에 저장되어있는 것을 확인해볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;낮은 주소(&lt;code class=&quot;language-text&quot;&gt;80&lt;/code&gt;)부터 저장되어있는 것으로 미루어보아 &lt;strong&gt;리틀 엔디안 방식&lt;/strong&gt;으로 주소를 저장하고 있는 것 또한 확인해볼 수 있네요!!&lt;/p&gt;
+&lt;p&gt;자 이제 그럼 해당 주소(&lt;code class=&quot;language-text&quot;&gt;0x10922e180&lt;/code&gt;)에 접근해보도록 하겠습니다.&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 45.39877300613497%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB8ElEQVQoz12RWW/aUBCF/TdSgpSqBUoIlSoMYYshULODjfcN22CWJCpV1apP+evWPZ3rKkjtw6c5d+b6zPiOUK7cpfmb92mpVEir1UpaqNZTceSljUlwob2I0s99I72he4ViKX13nSeuM65y+ex8leM6lwrzxRKTyRRDeYrxVMFipaPZ7qPdfUTnYYhGU0JXGkLqjygnofc4IMZodfqQejL6dG51JKqTHowh2LbFXNdllh2xTfjE/M2RGWbMoviF7Q/fKb9jp6cf7HD6zQ5Hi72+enTnzDTDZ35wZj9/rVgY6czzn1lyODNBXa+h6zpUzYVpxXC9BEvFhe1s4fp7zBYWDDOE5STQdAPHk0lxi8lMw3IVYJcomC8VKOsAhhVCME0Ttm1DNwIy28Mjk+nchEPGnPnSJsMoa6RqPvwgQRCeoKheVt+EBzLzYLs7OISgqio0jXez6IMAlh1nJhZN+Ga4pjyffjozszt8Yt50rQdk7GM2t6AZmwzBcRx4HnVwYkTbF+p4ygpR/Izd/lumeS4hrZMRz3O4GZ/KpAH4E/Hn4X8nDAYDyLKM7sOYtjuijY1os1+z2JWmEBt8i+N/9H1LzvhS66FcuSeaFwRRFFGv13F718DHokjUUCiJ+FCo/af/1t5yPBY/1TNK5cYl/gE5Ik3zJFJ36AAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -140,7 +144,8 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
     &lt;/span&gt;
 &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; referenceTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ReferenceType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;valueTypeObject와는 달리 앞에 어떠한 값들이 더 저장되어있지만, 우리가 할당한 멤버 변수 9 , 3이 잘 저장되어있는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;valueTypeObject와는 달리 앞에 어떠한 값들이 더 저장되어있지만,&lt;/p&gt;
+&lt;p&gt;우리가 할당한 멤버 변수 9 , 3이 잘 저장되어있는 것을 확인할 수 있습니다.&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 123.92638036809815%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAABYlAAAWJQFJUiTwAAADrElEQVQ4y62VaWxUVRiGz7kzrZ122mmn23QZuk3HrhprKopLYzGGuBFKYiBGsD+MhcRYjYJakBQj0ESEHw0/6mAHKpDSVia4lLK1NQYFMW1SNMSoaWIVUwKSCNpip4/fvTM/3GiL8uPN+e5773nynnNmvqOUUtxgKew2xb23KB6oUtTeplhYpUVGdNSWZ76rkW+SnLFkZWVTXOyjsrLy34HuRMX4ewoGFFNHFeEjoj7R4UhtevQrLr2vKC10smz5ClavXkV9fT0ejwfDMP4JHOvSXD1qcKVXMXHqfiaHl8tYy8Snd1re5BGDCwc1OWl/TWS326+RsFtSHJM0h2T8pIDp0zVMn6yGE37CpicpL0tCb3pkoqFn2MPkRM1QZwZjhz2M9mYx+qGLsd4UkZvRD5Is7/s+D2dDmWSlR5anZwLqhBTSdnxFxp7zZHb8iCt4jrsO/kx16KLUP4l3Tt6Nkx74DsOdHZ2orw1UCamo1kuoDlBB0U7I6wFPV6S2vN2itqsot3cuQDe6dRwtQNuuKVQgzH29YRb2ha3a9LQAddsvcweq1vNWQh0MW6lS9kFGp6R6x0w4HU145fqBqj1MpoCS90KMQGI7/gdQv2smCnNPLzz5Maw9DTWHzH2ctrbjvyU0lxyMHISZ0Lb7BixZC8CUap+2YFq8CPDydQB3XEDtkUm7oj+RP8v0zO0I/Dp3oGPbD8TvnCK+7Tfi354gPjAZkVmbXuB3HK0X0Sm5swOd9niC1a8Tuns7PQu20jP/TbqqWui+vcWqTe/Agm3sm7+F1Njk2fuhy4hjsPBZzvhfYajwRb68o5mvH36Ls7UtjNy6nuGilxjxv8zJohfItCdG/sszAZNsDvpufp7PK9ZLc1nL0KKtfLsxxDdN3Qw/ut3yTlWsY6B0DRn2pNmBLsPBYMEazvg2MuzbwHDBawzlvMpQbpNVm96Ir5nPCpsk4RyAsQ4bj6wrYemWCureKGfJpjLqNlewZHM5dZvKLW+pPC9uLsPhipl9D7U0WHenIk1afupHimxp/5lRZUhzTZWOnSZ1akgaa7Rja2OGUzacitx2TX7IwLNfsWygllUnHmfDF8/xxOCD0iQU+QdsePdq7GlzuPUMSZjbo8iTi2iepCw6FkNJfwJl/U78x+Pwipd3XL6RK8CRE8NjDy1m5VMraWhooLGxEb/f/7cl3yQHs0KugmdET0stShIlRkfTS5F3rvrIavLnFVBaWoLP55PrtBiv10tcXJwF/ANirlfTSkMPyAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -153,12 +158,15 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
 &lt;p&gt;프로세스의 메모리 구조는 위와 같습니다.&lt;/p&gt;
 &lt;p&gt;높은 메모리 주소에 Stack이 위치하며 Stack보다 상대적으로 낮은 메모리주소에 Heap이 위치하는 것을 확인할 수 있습니다.&lt;/p&gt;
 &lt;p&gt;조심스럽긴 하지만&lt;/p&gt;
-&lt;p&gt;valueTypeObject 인스턴스의 주소 : 0x7ff7bfeff2b0&lt;/p&gt;
-&lt;p&gt;referenceTypeObejct 인스턴스의 주소 : 0x10922e180&lt;/p&gt;
+&lt;h3 id=&quot;valuetypeobject-인스턴스의-주소--code-classlanguage-text0x7ff7bfeff2b0code&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#valuetypeobject-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%9D%98-%EC%A3%BC%EC%86%8C--code-classlanguage-text0x7ff7bfeff2b0code&quot; aria-label=&quot;valuetypeobject 인스턴스의 주소  code classlanguage text0x7ff7bfeff2b0code permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;valueTypeObject 인스턴스의 주소 : &lt;code class=&quot;language-text&quot;&gt;0x7ff7bfeff2b0&lt;/code&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;referencetypeobejct-인스턴스의-주소--code-classlanguage-text0x10922e180code&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#referencetypeobejct-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%9D%98-%EC%A3%BC%EC%86%8C--code-classlanguage-text0x10922e180code&quot; aria-label=&quot;referencetypeobejct 인스턴스의 주소  code classlanguage text0x10922e180code permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;referenceTypeObejct 인스턴스의 주소 : &lt;code class=&quot;language-text&quot;&gt;0x10922e180&lt;/code&gt;&lt;/h3&gt;
+&lt;hr&gt;
 &lt;p&gt;위의 메모리 구조로 미루어보아 현재 valueTypeObject는 Stack에&lt;/p&gt;
 &lt;p&gt;referenceTypeObject는 Heap에 저장되었다고 예상해볼 수 있겠습니다.&lt;/p&gt;
 &lt;p&gt;저는 WWDC 2016 UnderStanding Swift Performance을 보고 난 후에 위의 결과처럼 모든 Value Type은 stack에 모든 Reference Type은 heap에 저장되는 것으로 착각하고 있었습니다.&lt;/p&gt;
-&lt;p&gt;다음 사례를 살펴보도록 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;다음-사례를-살펴보도록-하겠습니다&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8B%A4%EC%9D%8C-%EC%82%AC%EB%A1%80%EB%A5%BC-%EC%82%B4%ED%8E%B4%EB%B3%B4%EB%8F%84%EB%A1%9D-%ED%95%98%EA%B2%A0%EC%8A%B5%EB%8B%88%EB%8B%A4&quot; aria-label=&quot;다음 사례를 살펴보도록 하겠습니다 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;다음 사례를 살펴보도록 하겠습니다.&lt;/h3&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Foundation&lt;/span&gt;
 
 &lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -202,7 +210,7 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
 /static/9f4ddfac6e8c788c63c7bf7058bd4f1c/90712/9.png 882w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
 &lt;/p&gt;
-&lt;p&gt;ReferenceTypeObject 변수는 0x7ff7bfeff2c8에&lt;/p&gt;
+&lt;p&gt;ReferenceTypeObject 변수는 &lt;code class=&quot;language-text&quot;&gt;0x7ff7bfeff2c8&lt;/code&gt;에&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 14.723926380368097%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAw0lEQVQI12WNy26CUBgGeQtjagEDlHN+DiCNFkVLTTF4WblobFxZa3qxD+DrT08XXbmYfMlkks+JTIHWCi2CSEJ0pxmOCk7HjMP3gq/LnrefBbNZThgplNIoLeQDY7sB9VNFWd4Tq4AgjHB8FSNpSpJmxDb8QycGMYa8ELI8QJsUsS6MFXW7Yd5s2b0+83565OOz4XxueNnNyYoax/V8bq/w6N749sRlPOnR6Xr0XBevHzCqWsbTNQ+Tpd2WsvpnZd2KX3h0X+PYJVoSAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -227,7 +235,7 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
     &lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;에 저장되어있을 것입니다.&lt;/p&gt;
-&lt;p&gt;인스턴스가 있는 메모리영역 0x10101f740에 접근해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;인스턴스가 있는 메모리영역 &lt;code class=&quot;language-text&quot;&gt;0x10101f740&lt;/code&gt;에 접근해보도록 하겠습니다.&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 39.263803680981596%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABlUlEQVQoz1VQ227aQBT0j0RRQri0NFEFNsbQVgIlthdjbK/X92tCiOhL/v9tenaL0uZhNOfsucyc1Qxzia/TKQx9jtliifk2hsUqmG4J0ylg7VqMHkxMxhPc3A1xfXOrcHU9+Ij/h8YYg8s87PYx/EMCxgK47oGYsAtg23vsvBBR7MLzOb1FYJ4AFy6CMIa3F9jTnOcLOCyEFkUR4jhBlr8gzZ9R1W8oCU33G3V7VnFRnfD+7lOtQxjVOIQdzmcHTdsizY7Uc1IQSfdvoUhaGjxSQ4+EIPOQV+SiRCx65EVB9Wdy2iCgpWme0VtPtRZJ2lH8gphm1ELOBTVVqihVivKIjBqiWLopEcnFtETWQ15TXpPTBiLtwUlACst+aUbjnCuH8lypUlSvdNoJdfP28Q0ZIc17FUtBKeIHOf1jc7mmUywNaNvNBpvtI1Y/HCxXT8QurLWD9U9X5dbahrWyYVpPlNsK32e/ML238O1hTby6wFKsGYaOub7AcKxjMJzjbvQXg+GMWL/kn3k0MT5h/GVxiRf4AxBRJznk6WZUAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -253,7 +261,7 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
 &lt;p&gt;이제 referenceObject가 소유하고 있는 Value Type 객체의 주소에 접근해보도록 하겠습니다.&lt;/p&gt;
 &lt;h2 id=&quot;엇&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%97%87&quot; aria-label=&quot;엇 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;엇&lt;/h2&gt;
 &lt;p&gt;그런데 주소를 보니,&lt;/p&gt;
-&lt;p&gt;인스턴스가 있는 메모리영역의 시작점 0x10101f740과 불과 32번지(16진수) 밖에 차이나지 않는 곳에&lt;/p&gt;
+&lt;p&gt;인스턴스가 있는 메모리영역의 시작점 &lt;code class=&quot;language-text&quot;&gt;0x10101f740&lt;/code&gt;과 불과 32번지(16진수) 밖에 차이나지 않는 곳에&lt;/p&gt;
 &lt;p&gt;ValueType 인스턴스가 저장되어있네요.&lt;/p&gt;
 &lt;p&gt;한번 확인해봅시다.&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
@@ -285,9 +293,18 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
 &lt;p&gt;이를 통해 Value Type이 무조건 Stack에만 할당되는 것이 아님을 확인할 수 있습니다.&lt;/p&gt;
 &lt;p&gt;상황에 따라 Stack, Heap에 할당되는 것을 알 수 있었습니다.&lt;/p&gt;
 &lt;p&gt;결국 제가 잘못 알고있었던 것을 다시 한번 확인해볼 수 있었습니다.&lt;/p&gt;
-&lt;p&gt;사실 WWDC 2016 UnderStanding Swift Performance세션에서도 모든 ValueType이 무조건 Stack에 할당된다고 하지는 않았는데, struct와 class의 성능의 차이를 보여주는 그래프를 보며 모든 ValueType이 stack에 저장되는 줄로만 알고있었는데 이번기회를 통해 잘못된 지식을 바로 잡을 수 있었던 것 같습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;사실 WWDC 2016 UnderStanding Swift Performance세션에서도 모든 ValueType이 무조건 Stack에 할당된다고 하지는 않았는데,&lt;/p&gt;
+&lt;p&gt;struct와 class의 성능의 차이를 보여주는 그래프를 보며 모든 ValueType이 stack에 저장되는 것으로 오해하고
+있었습니다.&lt;/p&gt;
+&lt;p&gt;이번기회를 통해 잘못된 지식을 바로 잡을 수 있었던 것 같습니다.&lt;/p&gt;
 &lt;p&gt;이외에도 Stack과 Heap메모리에 객체가 할당되는 것을 추정이 아닌, 직접적으로 확인해보고 싶어&lt;/p&gt;
 &lt;p&gt;현재 SIL과 Memory Instrument를 통해 확인해보고 있습니다만 생각보다 이 과정이 길어지네요..!!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SIL이란 Swift Intermediate Language의 약자로, Swift의 소스 코드를 실행 가능한 바이너리 코드로 바꿀 때,&lt;br&gt;
+다른 컴파일러(LLVM)가 취급하기 쉬운 중간표현(Intermediate Representation)으로 변환한 코드를 말합니다. (LLVM IR과는 다릅니다.)&lt;br&gt;
+출처 : &lt;a href=&quot;https://techblog.woowahan.com/2563/&quot;&gt;우아한형제들 기술블로그&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;지금 실험해보고 있는 과정을 살짝 보여드리자면 다음과 같습니다ㅎㅎ&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
@@ -300,6 +317,7 @@ referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7b
 /static/25543701432125d93b1c0f731e508b0f/4f2ef/15.png 2714w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
 &lt;/p&gt;
+&lt;p&gt;SIL 코드를 보며, 할당 동작 한 단계 한 단계 살펴보고 있는데 지식이 없어 시간이 좀 걸리네요 ㅎㅎ ^___^&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.963190184049076%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACQElEQVQoz22Ru47TUBCG3UCJuCWx4/v9Et+S9SV2QhSkdCAahBAFa2WlLC1vsS6gwwUIXgeJhtdhcWIPc5zsEkSKT/+M5/ifOXOoVRr483n0IZ5mV3mWlFk+K6PprJxEcRklaZlnablYPi3z+ZMyTqfl+CzCWtTViZIcucpm849xmvqUP7I3aZZDmMwgjHNI0hTisQteEAIehOnyGUyiBIJwfIvr+TBCXD8AH3PH9QAHAc8PLqmHz7+d33v7A+6+/n59583P+v6LrzW7KGrNdGpNN2vVClCtLiboplXrxhH7/BcCsqIWFDt5VfDL99BLL5v+dNMy8wtg05egmzbohnnAOor/o0V2tj0CTTfWlMg8KExpACrfaxyZbh2ZAUXkwDAMRO9+uolPY7S6ru9sywJN09aUouqFaTlkikYzrNawbLBHHh48GJnW3/g0LYIT2ntDXhDQ0AJJlhuO51sEhiwHiqqCqmkgywqpdTFRWVGwpoGC+UFb1B1eFzhBWFMMwxRRFMFqtWoWiwXpBqIggOd5EIYhKGiAneFsMgHHcUDFRrh84EQJ+D0tshMkGejhcG8oiiIIgtAgLY8TogLRU5CahFPzaEBMRFlpUXeowAxZYkifk4Mcx/1GtqfgCTzfISB49S1OtUWjraSoJL7eT8gWZIcbskPTNI/A/OYbqoGKL3mLiqDRPyiaDgzLvqNESYpMy/7sum6FO+pwPa8auQS3i7Fe4WNU+FCoaoVXq/oDuurTBwb0pz7NfHn0uJf8AbfhPx7yEwzfAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
