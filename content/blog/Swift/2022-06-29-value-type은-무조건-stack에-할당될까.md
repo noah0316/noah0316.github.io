@@ -1,7 +1,7 @@
 ---
 title: Value Type은 무조건 Stack에 할당될까?
 date: 2022-06-29 18:06:13
-category: swift
+category: Swift
 thumbnail: { thumbnailSrc }
 draft: false
 ---
