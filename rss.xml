@@ -1,4 +1,328 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 25 Jun 2022 17:30:01 GMT</lastBuildDate><item><title><![CDATA[[weak self] 무조건 사용하는게 맞는걸까? 🤔]]></title><description><![CDATA[클로져에서 self를 캡쳐할 때  를 사용하는 경우는 순환 참조를 방지하기 위해 약한 참조로 클로져 내부에서 해당 클래스의 인스턴스를 사용할때 입니다. 클로져에서 약한 참조를 이용해 특정 인스턴스를 캡쳐하지 않으면 (여기서는 self…]]></description><link>https://noah0316.github.io/Swift/2022-04-08-[weak-self]-무조건-사용하는게-맞는걸까/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2022-04-08-[weak-self]-무조건-사용하는게-맞는걸까/</guid><pubDate>Fri, 08 Apr 2022 20:04:57 GMT</pubDate><content:encoded>&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 29 Jun 2022 09:36:22 GMT</lastBuildDate><item><title><![CDATA[Value Type은 무조건 Stack에 할당될까?]]></title><description><![CDATA[WWDC 2016 UnderStanding Swift Performance…]]></description><link>https://noah0316.github.io/Swift/2022-06-29-value-type은-무조건-stack에-할당될까/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2022-06-29-value-type은-무조건-stack에-할당될까/</guid><pubDate>Wed, 29 Jun 2022 18:06:13 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;WWDC 2016 UnderStanding Swift Performance 세션을 보고 잘못 이해하고 있던 부분을 바로 잡기위해 실험을 통해 다시 풀어보았습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;위 세션을 아래의 포스트를 통해 정리해보았습니다.
+관심있는 분들은 아래의 링크를 참조해주세요!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://noah0316.github.io/Swift/2021-12-21-swift-%EC%84%B1%EB%8A%A5-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-struct-class/&quot;&gt;Swift 성능 이해하기 struct-class&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;또한 Value Type이 정말 Stack에 할당되는지, Heap에 할당되는지 확인해보고 싶어 여러도구를 활용해 Swift코해당 인스턴스가 어디에 할당되는지 분석해보며 확인해보려 합니다.&lt;/p&gt;
+&lt;p&gt;먼저 Value Type의 객체를 만들 때 사용하는 struct를 하나 생성해보도록 하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; valueTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ValueType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;withUnsafePointer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;to&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;valueTypeObject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;valueTypeObject address: &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;\(&lt;/span&gt;$&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;test()&lt;/code&gt; 메소드를 실행하면 valueTypeObject의 주소가 print됩니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 21.47239263803681%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAvklEQVQY053OOQ+CQBQEYP6K8QCRVQQWjxgLOVS8EAVJUFELNfH/1yP7Aom1xZfsvJlipUazDVlmpN3pQdV0KGoXTVmjLLQUrcDAembBoF7sql7kWl0h0tRfIXm+sE2viE8PxOkD2/AMfxEjOuaI4hvmQUL5ev8gu7yxXKc4JDdswgz7Q47NLoNpu7AGHiQ2mGAUheBeAMNyYHCHStP26G1wt8wudHNGxL1fbqsNH/pEYt0xuOXD+jn+Q/xO+AIQ3YhWAznO1gAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;1&quot; title=&quot;1&quot; src=&quot;/static/f752fb6dbb724bd433d869ebf2eea53e/a6d36/1.png&quot; srcset=&quot;/static/f752fb6dbb724bd433d869ebf2eea53e/222b7/1.png 163w,
+/static/f752fb6dbb724bd433d869ebf2eea53e/ff46a/1.png 325w,
+/static/f752fb6dbb724bd433d869ebf2eea53e/a6d36/1.png 650w,
+/static/f752fb6dbb724bd433d869ebf2eea53e/fdaf8/1.png 674w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;valueTypeObject의 현재 주소는 위와 같네요 현재 valueTypeObject의 주소 0x00007ff7bfeff2c0 의 메모리영역을 한번 확인해봅시다!&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 34.96932515337423%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABbUlEQVQoz2WRSU/DMBCF+x/gxJLNTu02btI4ruMsLVAIIDZx5MABcQX+//ExdYpA4vA0lj3z/I3ehIk5xEJjlhUQWQldb0hnKFZrVM0WSndYmDVy3SCVOYTMMM8UMrVAsdSwtcOy1GAsBU8FJsE0Q2gfITev4PYJZvOAhbsFW27ByivE+TmO9DMOyxccqCcU7hxNP2BVX8C6LermEobOedmRekxixnAaJV4RE9C2R2k7Tx0LhYSowmRK77HvyXUP29ySyTVW7hrG7eoN3Y0aDcOIFJIhR1U3ME0HqXIkUwku54iS35582flBUxOl24vOZi8y5OPvQYBQaui7D9iHL5j7T6jLd0TtGwKhEYQBGcZ+tZFw8ISjhj0xGUZxjBP6/SQIwYiovxhQuR58liOloPi8oJU5jk8D36OK1q9o/lD9mO3qhCtD6aQ0xLCjrdsWlbWUqERC91MhKdUMcjZDKoQPoaPgKnv1j9C1A74BXV3b3i07rJ0AAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;2&quot; title=&quot;2&quot; src=&quot;/static/b13449e0e3b7f070e67ea2353632ba80/a6d36/2.png&quot; srcset=&quot;/static/b13449e0e3b7f070e67ea2353632ba80/222b7/2.png 163w,
+/static/b13449e0e3b7f070e67ea2353632ba80/ff46a/2.png 325w,
+/static/b13449e0e3b7f070e67ea2353632ba80/a6d36/2.png 650w,
+/static/b13449e0e3b7f070e67ea2353632ba80/e548f/2.png 975w,
+/static/b13449e0e3b7f070e67ea2353632ba80/3c492/2.png 1300w,
+/static/b13449e0e3b7f070e67ea2353632ba80/d5f92/2.png 2150w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 32.515337423312886%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABcklEQVQoz11Q2VLCQBDMpyCnMUCVWIkJoiIiIAIh5NpcJAhe//+6te1sgCrLh67p6Z6dY5VOt8uvezrvDabcfPF5b+hwcxLwrvnMVVXl1XqT0ChxUaNYO/Jao0l5nVeq9VKXqFRrXAlDH5+fCdYOg+elSBIHcZzAXjMErCA9hutl8MMcG/IlX9lHzzCfcWuN0R9M8TCcY/Awg8KYJ/aHWDhuJqLkS2yLiHAQtpMJFu2F62+FF+QiYDvhh4WIk0NZKzXDHIv7x7mghsLsT0pOG4ZIsz1NfEe++6FNChQyBgW2xTeS9AMs3pegptjm3wij99K7tV5AjWDdTWi7V9zoT1CiKELIciztCDQViyUDbYXFitGJGWxHnh9jvUmxoig1WbtxM4zGK0xnLibTDeZvAYZPCyij0Yj+YIyrtoV2tw9VM6F1+mh3jlxCcu2UyxqtY53qrJNnHd+QpxiGTomBRktH81JHSzXKeMY5/6+ftb+Q2i/v+flik7NkkAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;3&quot; title=&quot;3&quot; src=&quot;/static/063195959af7721a8087451d64758592/a6d36/3.png&quot; srcset=&quot;/static/063195959af7721a8087451d64758592/222b7/3.png 163w,
+/static/063195959af7721a8087451d64758592/ff46a/3.png 325w,
+/static/063195959af7721a8087451d64758592/a6d36/3.png 650w,
+/static/063195959af7721a8087451d64758592/e548f/3.png 975w,
+/static/063195959af7721a8087451d64758592/3c492/3.png 1300w,
+/static/063195959af7721a8087451d64758592/8f1fd/3.png 2528w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; valueTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ValueType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;test()&lt;/code&gt; 안에서 ValueType 인스턴스를 생성할 때 멤버변수의 값으로 10, 11을 주었으니,&lt;/p&gt;
+&lt;p&gt;0x00007ff7bfeff2c0영역에 16진수 0A, 0B가 있는걸로 미루어보아 성공적으로 Value Type Object가 생성된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;다음으로는 ReferenceType인스턴스를 만들어보도록 하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ReferenceType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member1
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member2
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; referenceTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ReferenceType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; valueTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ValueType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;withUnsafePointer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;to&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;referenceTypeObject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;referenceTypeObject address: &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;\(&lt;/span&gt;$&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;withUnsafePointer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;to&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;valueTypeObject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;valueTypeObject address: &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;\(&lt;/span&gt;$&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;한번 실행해보도록 하겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 29.447852760736193%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABB0lEQVQY042OXU/CMBiF+0eUMpjdlk2d29wAGYOMIX5gjIl8iRN1YQG9MPH/H9vCEBIvvHhyTk9P37eEKgZKZe0XquGQsu1ZeKro0h+U2F63uNuFUKUKZlhgusCUapgnUJmBI82UvqLq0pvH9qZnbXqn8o4qDOXKGmI7ASZPOaazBdLXD8zfPrnPMRy/Sx1NMoymGbL8C/nyG+l8heeXFWbpElc3Y9Qu+nDOu/D8BK7fBdH41vbwEdH9A8JogLA9QNDoS21Gt/Drl9K3Onfc91BvXqMRrrHdjhziBckWUmUm3FoCx49x5sV8WyxLQgsvcsFuLiiGiLyAqMziYY9/eX/Tf3D/ePMD1lbH0ak55KkAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;4&quot; title=&quot;4&quot; src=&quot;/static/2699d7d798105ee705ee6e9941645558/a6d36/4.png&quot; srcset=&quot;/static/2699d7d798105ee705ee6e9941645558/222b7/4.png 163w,
+/static/2699d7d798105ee705ee6e9941645558/ff46a/4.png 325w,
+/static/2699d7d798105ee705ee6e9941645558/a6d36/4.png 650w,
+/static/2699d7d798105ee705ee6e9941645558/5b481/4.png 846w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+referenceTypeObject&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xC778; 0x00007ff7bfeff2c8&amp;#xB97C; &amp;#xD655;&amp;#xC778;&amp;#xD574;&amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 21.47239263803681%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA+UlEQVQY0z3OXU+CYBjGcT6H8aKI8DyiiKGUCoIpMO3Ncrm1lmt1UJub3//s3yNbHfxOrvvavUsT0sfzPDquoO0IWrag15fsX2y2uyFvxx27j5LH5y7Tqas6EtmVCCEIgoBBGDKOY1z1w1OZ5kYRszQhnWdcTya1eZ5RVSnl+oZiU7Bar7h/ON9D9q9Dvn8yPr9mteNxwem05P0wZvsk0WzhcDkeMYxG9IIB/UGIKyRWy6HV7qjFNrrpUFa2WtYmmmbkxZY0vyVR5ou7WpJtmCQVmm5YNHSjdmGYNBTdtDCsP02VN/H7BmbTQPpXRHGpRiyV1b8oPiv4Bfchgby82tQ0AAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;5&quot; title=&quot;5&quot; src=&quot;/static/30d99f2b3d3286812fb521792e74fc9a/a6d36/5.png&quot; srcset=&quot;/static/30d99f2b3d3286812fb521792e74fc9a/222b7/5.png 163w,
+/static/30d99f2b3d3286812fb521792e74fc9a/ff46a/5.png 325w,
+/static/30d99f2b3d3286812fb521792e74fc9a/a6d36/5.png 650w,
+/static/30d99f2b3d3286812fb521792e74fc9a/e548f/5.png 975w,
+/static/30d99f2b3d3286812fb521792e74fc9a/3c492/5.png 1300w,
+/static/30d99f2b3d3286812fb521792e74fc9a/79166/5.png 2012w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;h3 id=&quot;확인해보기-전에&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%99%95%EC%9D%B8%ED%95%B4%EB%B3%B4%EA%B8%B0-%EC%A0%84%EC%97%90&quot; aria-label=&quot;확인해보기 전에 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;확인해보기 전에&lt;/h3&gt;
+&lt;p&gt;ReferenceType은 참조타입이기 때문에, 주소(0x00007ff7bfeff2c8)에 접근하게 되면 referenceTypeObject Instance의 주소(0x000000010922e180) 를 가지고 있을 것입니다.&lt;/p&gt;
+&lt;p&gt;한번 확인해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;주소를 입력한 뒤에 메모리 영역을 확인해보면&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 40.49079754601227%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABpUlEQVQoz11SXW+bQBDk17RJ7NhOGseNQiPZbRwwYO4wBwfmw+BPmqYPfsuvn+5tpKrqw2lXs7uzs6Oz7G9PeLSf8PD4gCT9Ap1NoPQYrn+D65sJ+qMxxXv0hhRHd+hdj3DZG6A/+IhX/SEGo1uKA6oNYS0WC6SpRhxLnM8Sb78jdN0C7+8NVqqCSmpa0sIPEtRNh0Q3EFGBanNCEGaI4hJFdcRS5CjrIyzXdYkwgZSShltEqx2eXzTS7IhQrhGrmvIWrqeQr3eIaYFcFag3Hbwg5aWG1OSmz/J9H3mek8IYm2ZPKk5QaY394Q2pbpmk3f3iwaZ9RUlqjMru9cwETfuTcUPKCh3HgVIKQggiqKi5RWjk06AwCklRXuz5vIzIDXEQaq6HMiffN4wvqW6wvwqVignYkl9b8itFVZ/o/BJrIjPn+UsNnW95wVJkjBlCo7KoDowX5QGW53nQWrPKWK3Zix9zQSdU5KXE3Fl9YM+CjTfLvlNuyOZOxDWjfjoLOLds28ZsNqM3JdDB7d0Uny/vcXE14ffpYkzf4yvnBjfvX+z/vj92DDM3VSJKxgAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;6&quot; title=&quot;6&quot; src=&quot;/static/f0c93decac25c99dd8bc68b98aa3df76/a6d36/6.png&quot; srcset=&quot;/static/f0c93decac25c99dd8bc68b98aa3df76/222b7/6.png 163w,
+/static/f0c93decac25c99dd8bc68b98aa3df76/ff46a/6.png 325w,
+/static/f0c93decac25c99dd8bc68b98aa3df76/a6d36/6.png 650w,
+/static/f0c93decac25c99dd8bc68b98aa3df76/e548f/6.png 975w,
+/static/f0c93decac25c99dd8bc68b98aa3df76/3c492/6.png 1300w,
+/static/f0c93decac25c99dd8bc68b98aa3df76/64639/6.png 1568w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;위에서 언급한 0x000000010922e180 주소가 메모리에 저장되어있는 것을 확인해볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;낮은 주소(80)부터 저장되어있는 것으로 미루어보아 리틀 엔디안 방식으로 주소를 저장하고 있는 것 또한 확인해볼 수 있네요!!&lt;/p&gt;
+&lt;p&gt;자 이제 그럼 해당 주소(0x10922e180)에 접근해보도록 하겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 45.39877300613497%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB8ElEQVQoz12RWW/aUBCF/TdSgpSqBUoIlSoMYYshULODjfcN22CWJCpV1apP+evWPZ3rKkjtw6c5d+b6zPiOUK7cpfmb92mpVEir1UpaqNZTceSljUlwob2I0s99I72he4ViKX13nSeuM65y+ex8leM6lwrzxRKTyRRDeYrxVMFipaPZ7qPdfUTnYYhGU0JXGkLqjygnofc4IMZodfqQejL6dG51JKqTHowh2LbFXNdllh2xTfjE/M2RGWbMoviF7Q/fKb9jp6cf7HD6zQ5Hi72+enTnzDTDZ35wZj9/rVgY6czzn1lyODNBXa+h6zpUzYVpxXC9BEvFhe1s4fp7zBYWDDOE5STQdAPHk0lxi8lMw3IVYJcomC8VKOsAhhVCME0Ttm1DNwIy28Mjk+nchEPGnPnSJsMoa6RqPvwgQRCeoKheVt+EBzLzYLs7OISgqio0jXez6IMAlh1nJhZN+Ga4pjyffjozszt8Yt50rQdk7GM2t6AZmwzBcRx4HnVwYkTbF+p4ygpR/Izd/lumeS4hrZMRz3O4GZ/KpAH4E/Hn4X8nDAYDyLKM7sOYtjuijY1os1+z2JWmEBt8i+N/9H1LzvhS66FcuSeaFwRRFFGv13F718DHokjUUCiJ+FCo/af/1t5yPBY/1TNK5cYl/gE5Ik3zJFJ36AAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;7&quot; title=&quot;7&quot; src=&quot;/static/7b8028e633d5df9e1610124e894c19c7/a6d36/7.png&quot; srcset=&quot;/static/7b8028e633d5df9e1610124e894c19c7/222b7/7.png 163w,
+/static/7b8028e633d5df9e1610124e894c19c7/ff46a/7.png 325w,
+/static/7b8028e633d5df9e1610124e894c19c7/a6d36/7.png 650w,
+/static/7b8028e633d5df9e1610124e894c19c7/e548f/7.png 975w,
+/static/7b8028e633d5df9e1610124e894c19c7/3c492/7.png 1300w,
+/static/7b8028e633d5df9e1610124e894c19c7/8bb81/7.png 1602w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; referenceTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ReferenceType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;valueTypeObject와는 달리 앞에 어떠한 값들이 더 저장되어있지만, 우리가 할당한 멤버 변수 9 , 3이 잘 저장되어있는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 123.92638036809815%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAABYlAAAWJQFJUiTwAAADrElEQVQ4y62VaWxUVRiGz7kzrZ122mmn23QZuk3HrhprKopLYzGGuBFKYiBGsD+MhcRYjYJakBQj0ESEHw0/6mAHKpDSVia4lLK1NQYFMW1SNMSoaWIVUwKSCNpip4/fvTM/3GiL8uPN+e5773nynnNmvqOUUtxgKew2xb23KB6oUtTeplhYpUVGdNSWZ76rkW+SnLFkZWVTXOyjsrLy34HuRMX4ewoGFFNHFeEjoj7R4UhtevQrLr2vKC10smz5ClavXkV9fT0ejwfDMP4JHOvSXD1qcKVXMXHqfiaHl8tYy8Snd1re5BGDCwc1OWl/TWS326+RsFtSHJM0h2T8pIDp0zVMn6yGE37CpicpL0tCb3pkoqFn2MPkRM1QZwZjhz2M9mYx+qGLsd4UkZvRD5Is7/s+D2dDmWSlR5anZwLqhBTSdnxFxp7zZHb8iCt4jrsO/kx16KLUP4l3Tt6Nkx74DsOdHZ2orw1UCamo1kuoDlBB0U7I6wFPV6S2vN2itqsot3cuQDe6dRwtQNuuKVQgzH29YRb2ha3a9LQAddsvcweq1vNWQh0MW6lS9kFGp6R6x0w4HU145fqBqj1MpoCS90KMQGI7/gdQv2smCnNPLzz5Maw9DTWHzH2ctrbjvyU0lxyMHISZ0Lb7BixZC8CUap+2YFq8CPDydQB3XEDtkUm7oj+RP8v0zO0I/Dp3oGPbD8TvnCK+7Tfi354gPjAZkVmbXuB3HK0X0Sm5swOd9niC1a8Tuns7PQu20jP/TbqqWui+vcWqTe/Agm3sm7+F1Njk2fuhy4hjsPBZzvhfYajwRb68o5mvH36Ls7UtjNy6nuGilxjxv8zJohfItCdG/sszAZNsDvpufp7PK9ZLc1nL0KKtfLsxxDdN3Qw/ut3yTlWsY6B0DRn2pNmBLsPBYMEazvg2MuzbwHDBawzlvMpQbpNVm96Ir5nPCpsk4RyAsQ4bj6wrYemWCureKGfJpjLqNlewZHM5dZvKLW+pPC9uLsPhipl9D7U0WHenIk1afupHimxp/5lRZUhzTZWOnSZ1akgaa7Rja2OGUzacitx2TX7IwLNfsWygllUnHmfDF8/xxOCD0iQU+QdsePdq7GlzuPUMSZjbo8iTi2iepCw6FkNJfwJl/U78x+Pwipd3XL6RK8CRE8NjDy1m5VMraWhooLGxEb/f/7cl3yQHs0KugmdET0stShIlRkfTS5F3rvrIavLnFVBaWoLP55PrtBiv10tcXJwF/ANirlfTSkMPyAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;8&quot; title=&quot;8&quot; src=&quot;/static/eaa4b22b30fdec1491d0f343ab0c3c6b/a6d36/8.png&quot; srcset=&quot;/static/eaa4b22b30fdec1491d0f343ab0c3c6b/222b7/8.png 163w,
+/static/eaa4b22b30fdec1491d0f343ab0c3c6b/ff46a/8.png 325w,
+/static/eaa4b22b30fdec1491d0f343ab0c3c6b/a6d36/8.png 650w,
+/static/eaa4b22b30fdec1491d0f343ab0c3c6b/136a2/8.png 884w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;프로세스의 메모리 구조는 위와 같습니다.&lt;/p&gt;
+&lt;p&gt;높은 메모리 주소에 Stack이 위치하며 Stack보다 상대적으로 낮은 메모리주소에 Heap이 위치하는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;조심스럽긴 하지만&lt;/p&gt;
+&lt;p&gt;valueTypeObject 인스턴스의 주소 : 0x7ff7bfeff2b0&lt;/p&gt;
+&lt;p&gt;referenceTypeObejct 인스턴스의 주소 : 0x10922e180&lt;/p&gt;
+&lt;p&gt;위의 메모리 구조로 미루어보아 현재 valueTypeObject는 Stack에&lt;/p&gt;
+&lt;p&gt;referenceTypeObject는 Heap에 저장되었다고 예상해볼 수 있겠습니다.&lt;/p&gt;
+&lt;p&gt;저는 WWDC 2016 UnderStanding Swift Performance을 보고 난 후에 위의 결과처럼 모든 Value Type은 stack에 모든 Reference Type은 heap에 저장되는 것으로 착각하고 있었습니다.&lt;/p&gt;
+&lt;p&gt;다음 사례를 살펴보도록 하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Foundation&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ReferenceType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member1
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member2
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ValueType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; member1 &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; member2 &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; referenceTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ReferenceType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;withUnsafePointer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;to&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;referenceTypeObject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;referenceTypeObject address: &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;\(&lt;/span&gt;$&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;withUnsafePointer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;to&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;referenceTypeObject&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;ref1.value address: &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;\(&lt;/span&gt;$&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token delimiter variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위 코드는 ReferenceType이 멤버변수로 ValueType 인스턴스를 소유하고 있는 경우입니다.&lt;/p&gt;
+&lt;p&gt;마찬가지로 한번 실행을 해보도록하겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 34.96932515337423%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABDElEQVQoz52O207CQBRF5zeEll4sKZSAoHRaWstNWxqDFElAQKBphJgY//91OzOkSpQXfVjZl5Mzc4hZpahYzg/cM52Dau18fwpRNBOyYqAgayjKuqAgHb1UuhSeK88XRVXkHN7x3ZLKKQuIphu4alEE3RAdfwA/uENvEMH1+7CdQPg2U+92iHA0RtAPEfSO8M6qt1GpXcO0WgKiG2UM4wTr13fMFhkWqwM2KfPzDOPkheU9Jk9bPK8PmM5SzJd7pNkHdozV5g2T6RbxwxK0M2LEIFJJQdPrwntMYPsRuyqE7TJ1c/3mht6za3/PqRuJnkNkRUW94cG2WUnDr8F/EQ82mj6oF5/8/nfy3U888+bdcSvETAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;9&quot; title=&quot;9&quot; src=&quot;/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/a6d36/9.png&quot; srcset=&quot;/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/222b7/9.png 163w,
+/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/ff46a/9.png 325w,
+/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/a6d36/9.png 650w,
+/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/90712/9.png 882w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;ReferenceTypeObject 변수는 0x7ff7bfeff2c8에&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 14.723926380368097%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAw0lEQVQI12WNy26CUBgGeQtjagEDlHN+DiCNFkVLTTF4WblobFxZa3qxD+DrT08XXbmYfMlkks+JTIHWCi2CSEJ0pxmOCk7HjMP3gq/LnrefBbNZThgplNIoLeQDY7sB9VNFWd4Tq4AgjHB8FSNpSpJmxDb8QycGMYa8ELI8QJsUsS6MFXW7Yd5s2b0+83565OOz4XxueNnNyYoax/V8bq/w6N749sRlPOnR6Xr0XBevHzCqWsbTNQ+Tpd2WsvpnZd2KX3h0X+PYJVoSAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;10&quot; title=&quot;10&quot; src=&quot;/static/651e2f8360c1291ea869f0392ea63032/a6d36/10.png&quot; srcset=&quot;/static/651e2f8360c1291ea869f0392ea63032/222b7/10.png 163w,
+/static/651e2f8360c1291ea869f0392ea63032/ff46a/10.png 325w,
+/static/651e2f8360c1291ea869f0392ea63032/a6d36/10.png 650w,
+/static/651e2f8360c1291ea869f0392ea63032/e548f/10.png 975w,
+/static/651e2f8360c1291ea869f0392ea63032/3c492/10.png 1300w,
+/static/651e2f8360c1291ea869f0392ea63032/50517/10.png 2060w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;인스턴스는&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 40.49079754601227%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABqUlEQVQoz02S6U7rQAyF8z4IcWlIN3qrcgtJIfs22dNma0tbkID318HjKyF+jCx77M9zjkaxbAfrRx26sUY/LNC0S/T9CkF4RfUJbtUZxtN7ihOKC6jaDNP5X/wZjXE3nnNUtSm0yT3Vl1Acx0YUCQjh4+vTxvHVxOdXhMvFxOHYwnIKFNWAF0ugKAcEUY28GOD5BcrqAMfLkeYdXMq3zQmK7/sEEwjDEFHcEGCLMOqhb3JkxR4uDeRFD9NOaLBlEIPDiheZtEgCN88h9ykSlGUZQWNsdx2SrEXXnwlekfwTwWvsKIq0oftXqm/R9heIZEcWvXH/sH/nvGnPv4ECdd0hzToMh3fEckA2EkjGlAYZRHnbnRHGNS2+cF3eS/Dx9AHFdV3yMCbJAZK0Iskp+VThyfB5SHqXl/+lSbm6EbANBkmUr9q8RNwn87LaQwkCAiUJv1ACjecIXlAwSL7StBKWKUFykU0LM/JK3vthyUCRNOxxRl4qlmXB8zw6Lh2Bh7WD+cKgb7Cmb/KIm9slRnern1zVHqCN/+H6ZoHJ7Ilr07mOkbqCSn3fk7k55WRO5FkAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;11&quot; title=&quot;11&quot; src=&quot;/static/e8b4217f0f76ac7caebc1d2994a82420/a6d36/11.png&quot; srcset=&quot;/static/e8b4217f0f76ac7caebc1d2994a82420/222b7/11.png 163w,
+/static/e8b4217f0f76ac7caebc1d2994a82420/ff46a/11.png 325w,
+/static/e8b4217f0f76ac7caebc1d2994a82420/a6d36/11.png 650w,
+/static/e8b4217f0f76ac7caebc1d2994a82420/e548f/11.png 975w,
+/static/e8b4217f0f76ac7caebc1d2994a82420/3c492/11.png 1300w,
+/static/e8b4217f0f76ac7caebc1d2994a82420/3ceac/11.png 1456w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;에 저장되어있을 것입니다.&lt;/p&gt;
+&lt;p&gt;인스턴스가 있는 메모리영역 0x10101f740에 접근해보도록 하겠습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 39.263803680981596%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABlUlEQVQoz1VQ227aQBT0j0RRQri0NFEFNsbQVgIlthdjbK/X92tCiOhL/v9tenaL0uZhNOfsucyc1Qxzia/TKQx9jtliifk2hsUqmG4J0ylg7VqMHkxMxhPc3A1xfXOrcHU9+Ij/h8YYg8s87PYx/EMCxgK47oGYsAtg23vsvBBR7MLzOb1FYJ4AFy6CMIa3F9jTnOcLOCyEFkUR4jhBlr8gzZ9R1W8oCU33G3V7VnFRnfD+7lOtQxjVOIQdzmcHTdsizY7Uc1IQSfdvoUhaGjxSQ4+EIPOQV+SiRCx65EVB9Wdy2iCgpWme0VtPtRZJ2lH8gphm1ELOBTVVqihVivKIjBqiWLopEcnFtETWQ15TXpPTBiLtwUlACst+aUbjnCuH8lypUlSvdNoJdfP28Q0ZIc17FUtBKeIHOf1jc7mmUywNaNvNBpvtI1Y/HCxXT8QurLWD9U9X5dbahrWyYVpPlNsK32e/ML238O1hTby6wFKsGYaOub7AcKxjMJzjbvQXg+GMWL/kn3k0MT5h/GVxiRf4AxBRJznk6WZUAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;12&quot; title=&quot;12&quot; src=&quot;/static/6c95a9f10e3ddf6ce069388ee37d3676/a6d36/12.png&quot; srcset=&quot;/static/6c95a9f10e3ddf6ce069388ee37d3676/222b7/12.png 163w,
+/static/6c95a9f10e3ddf6ce069388ee37d3676/ff46a/12.png 325w,
+/static/6c95a9f10e3ddf6ce069388ee37d3676/a6d36/12.png 650w,
+/static/6c95a9f10e3ddf6ce069388ee37d3676/e548f/12.png 975w,
+/static/6c95a9f10e3ddf6ce069388ee37d3676/3c492/12.png 1300w,
+/static/6c95a9f10e3ddf6ce069388ee37d3676/7ca1f/12.png 1890w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; referenceTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ReferenceType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;우리가 멤버변수로 주입시켜준 9, 3이 들어가있는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 34.96932515337423%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABDElEQVQoz52O207CQBRF5zeEll4sKZSAoHRaWstNWxqDFElAQKBphJgY//91OzOkSpQXfVjZl5Mzc4hZpahYzg/cM52Dau18fwpRNBOyYqAgayjKuqAgHb1UuhSeK88XRVXkHN7x3ZLKKQuIphu4alEE3RAdfwA/uENvEMH1+7CdQPg2U+92iHA0RtAPEfSO8M6qt1GpXcO0WgKiG2UM4wTr13fMFhkWqwM2KfPzDOPkheU9Jk9bPK8PmM5SzJd7pNkHdozV5g2T6RbxwxK0M2LEIFJJQdPrwntMYPsRuyqE7TJ1c/3mht6za3/PqRuJnkNkRUW94cG2WUnDr8F/EQ82mj6oF5/8/nfy3U888+bdcSvETAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;13&quot; title=&quot;13&quot; src=&quot;/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/a6d36/13.png&quot; srcset=&quot;/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/222b7/13.png 163w,
+/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/ff46a/13.png 325w,
+/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/a6d36/13.png 650w,
+/static/9f4ddfac6e8c788c63c7bf7058bd4f1c/90712/13.png 882w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;이제 referenceObject가 소유하고 있는 Value Type 객체의 주소에 접근해보도록 하겠습니다.&lt;/p&gt;
+&lt;h2 id=&quot;엇&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%97%87&quot; aria-label=&quot;엇 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;엇&lt;/h2&gt;
+&lt;p&gt;그런데 주소를 보니,&lt;/p&gt;
+&lt;p&gt;인스턴스가 있는 메모리영역의 시작점 0x10101f740과 불과 32번지(16진수) 밖에 차이나지 않는 곳에&lt;/p&gt;
+&lt;p&gt;ValueType 인스턴스가 저장되어있네요.&lt;/p&gt;
+&lt;p&gt;한번 확인해봅시다.&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 39.263803680981596%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABqklEQVQoz1VQ2W7bMBDUjwRB4rN1GxS2bFl2W8Bpo8OyLYmkKOpyJOeokYcgL/3+yVIxEuRhMLtD7uyQxtSa4+toBNOcYDKbY/xHwPZLWF4Oy81gr/foX1kYDoa46PZwfnHZ4uy88163/WW3ZcP3fXh+gPWGY7NLELpUe1vSQvjrEI6zwTqIEHMPwZaRFsMPBJjwEEYcwUYgCCUkzQXeDkYcx+A8gVINWHaP/zHHIWtQ1E+o9kfk5SOy4gHPz1sU5S2iuMQuusXx6NL5HjK9Q1r9w0vIUPD8w1Ake6Q02HAFRTVPaJgVlCIHFzVUlpFxQ0krhGQqVUpaTWd0N63RJDkSUb4ZMiboUgFGRlJUyHLamh1oWKfJEWtjMtHDESupLylpBSFrMFqgF+v7kowNxlibUNKTFYlZcU9Pe0BZPSJVh1ZPCVLVbS0ouV6yDRX9Y4WETLSmWQcwrlcrrK7/YvHTxXxxQ+zBXrpY/vLa3l46sBcOLPuGeqfFj/FvjL7b+Ha1JF6cYLdsTKcmJuYMvYGJTm+Cbv8Nnd6Y2Dz1n7k/nH7C4MvsVM/wCvUrJyZz/gXUAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;14&quot; title=&quot;14&quot; src=&quot;/static/113f62feb1457f2f44cc0e9165b7cbca/a6d36/14.png&quot; srcset=&quot;/static/113f62feb1457f2f44cc0e9165b7cbca/222b7/14.png 163w,
+/static/113f62feb1457f2f44cc0e9165b7cbca/ff46a/14.png 325w,
+/static/113f62feb1457f2f44cc0e9165b7cbca/a6d36/14.png 650w,
+/static/113f62feb1457f2f44cc0e9165b7cbca/e548f/14.png 975w,
+/static/113f62feb1457f2f44cc0e9165b7cbca/3c492/14.png 1300w,
+/static/113f62feb1457f2f44cc0e9165b7cbca/7ca1f/14.png 1890w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ReferenceType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ValueType&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member1
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;member2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; member2
+        &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ValueType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; member1 &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; member2 &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; referenceTypeObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ReferenceType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;member1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; member2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ValueType을 생성해줄 때 ReferenceType의 멤버변수보다 1씩 증가하도록 멤버변수를 생성해주었으니,&lt;/p&gt;
+&lt;p&gt;현재 Value Type인 Object가 heap에 할당되어있는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이를 통해 Value Type이 무조건 Stack에만 할당되는 것이 아님을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;상황에 따라 Stack, Heap에 할당되는 것을 알 수 있었습니다.&lt;/p&gt;
+&lt;p&gt;결국 제가 잘못 알고있었던 것을 다시 한번 확인해볼 수 있었습니다.&lt;/p&gt;
+&lt;p&gt;사실 WWDC 2016 UnderStanding Swift Performance세션에서도 모든 ValueType이 무조건 Stack에 할당된다고 하지는 않았는데, struct와 class의 성능의 차이를 보여주는 그래프를 보며 모든 ValueType이 stack에 저장되는 줄로만 알고있었는데 이번기회를 통해 잘못된 지식을 바로 잡을 수 있었던 것 같습니다.&lt;/p&gt;
+&lt;p&gt;이외에도 Stack과 Heap메모리에 객체가 할당되는 것을 추정이 아닌, 직접적으로 확인해보고 싶어&lt;/p&gt;
+&lt;p&gt;현재 SIL과 Memory Instrument를 통해 확인해보고 있습니다만 생각보다 이 과정이 길어지네요..!!&lt;/p&gt;
+&lt;p&gt;지금 실험해보고 있는 과정을 살짝 보여드리자면 다음과 같습니다ㅎㅎ&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 71.16564417177914%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAAC0klEQVQ4y11S2XLaQBDkGxLHB4cBCSHQLSHQzS0WsIE4Kb/lyRXzCar8eky0k5nFsV156Jrdlba3p3sqblup6VqvqLb7xWXVLC5rWiF1raLT84pGWy9uJUNUWbWLnjEouppXaNaoSCZ5YXtRoeJe1b1C6bu/qjWlXmlI2saNZ2CGOczvIshWE3BiBv6YgRUtQPVS6PtjMIMZWOFcVBOrny5gGKbg+CEMggSsYQpN1d5WblWTxfmep+zx5I0nL242O9lJfjLCmYCbrU794fikuImA7MSnDkJxEbS2wxesv7tuAq2+yyrXbYcl+RK+/ZhzN91wL2PciufcjOa4XnE7XnDZjnjbDEQlSFYo8G+PKBVBaLNKrWMyf4Lt3t/zdHXgyWoPw+kahrMNjGZb8CcMkBjsZAFIDlZ8rmaIrUdzAu96SakHUzD8cI2EGqML/mTDw/kdDxd3MBivwECvDPyJfCQPe34GHTs6w4kFsG3AdkltqQ4S6DnOulJXDDZCNaiM40Xew8sUhI4q4odHCFY7EZCdLPEMFWEYRE6evT7E8f9SG41B1q11pdE10cMdRMt7jqo4qaKWiIg9PcH48B3ceAnqIAXZT0AZZoCKoG0E0DJGiIAjyo4TgWLaqLCjM/IszneckLEDZOuvpBgStgdS72Y56KMpKjorw4AE6SswsLCk9iXdJg91RsaPNw8Yyp4Ppxv0kAn/HGwTHwEPPSWF6Nc70TspTYAgFAprssYoBGo5mG05KsJxyTnOnrAAH+AWJokX3sbnIyQrOBPiY7JOY4OE1Ba2Wabs8CeYb0s3zUsc6tLBmuT7EpWWaD7NWkmJ/g9s+dT1YlBtSxCuURHEyx3QyBBojMgnStufrAHVigD+8+4NdE4tY8qbyqer6s31rfyzqWjHlqI91yX1eN3sHD9XW8erhnyk/VVDwn3zeFFrifOPuKi2nunbl3r7+bJWv/kLCt6T6yf9/aAAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;15&quot; title=&quot;15&quot; src=&quot;/static/25543701432125d93b1c0f731e508b0f/a6d36/15.png&quot; srcset=&quot;/static/25543701432125d93b1c0f731e508b0f/222b7/15.png 163w,
+/static/25543701432125d93b1c0f731e508b0f/ff46a/15.png 325w,
+/static/25543701432125d93b1c0f731e508b0f/a6d36/15.png 650w,
+/static/25543701432125d93b1c0f731e508b0f/e548f/15.png 975w,
+/static/25543701432125d93b1c0f731e508b0f/3c492/15.png 1300w,
+/static/25543701432125d93b1c0f731e508b0f/4f2ef/15.png 2714w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.963190184049076%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACQElEQVQoz22Ru47TUBCG3UCJuCWx4/v9Et+S9SV2QhSkdCAahBAFa2WlLC1vsS6gwwUIXgeJhtdhcWIPc5zsEkSKT/+M5/ifOXOoVRr483n0IZ5mV3mWlFk+K6PprJxEcRklaZlnablYPi3z+ZMyTqfl+CzCWtTViZIcucpm849xmvqUP7I3aZZDmMwgjHNI0hTisQteEAIehOnyGUyiBIJwfIvr+TBCXD8AH3PH9QAHAc8PLqmHz7+d33v7A+6+/n59583P+v6LrzW7KGrNdGpNN2vVClCtLiboplXrxhH7/BcCsqIWFDt5VfDL99BLL5v+dNMy8wtg05egmzbohnnAOor/o0V2tj0CTTfWlMg8KExpACrfaxyZbh2ZAUXkwDAMRO9+uolPY7S6ru9sywJN09aUouqFaTlkikYzrNawbLBHHh48GJnW3/g0LYIT2ntDXhDQ0AJJlhuO51sEhiwHiqqCqmkgywqpdTFRWVGwpoGC+UFb1B1eFzhBWFMMwxRRFMFqtWoWiwXpBqIggOd5EIYhKGiAneFsMgHHcUDFRrh84EQJ+D0tshMkGejhcG8oiiIIgtAgLY8TogLRU5CahFPzaEBMRFlpUXeowAxZYkifk4Mcx/1GtqfgCTzfISB49S1OtUWjraSoJL7eT8gWZIcbskPTNI/A/OYbqoGKL3mLiqDRPyiaDgzLvqNESYpMy/7sum6FO+pwPa8auQS3i7Fe4WNU+FCoaoVXq/oDuurTBwb0pz7NfHn0uJf8AbfhPx7yEwzfAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;16&quot; title=&quot;16&quot; src=&quot;/static/956b1b52f4cb994694a69c2cb81e1804/a6d36/16.png&quot; srcset=&quot;/static/956b1b52f4cb994694a69c2cb81e1804/222b7/16.png 163w,
+/static/956b1b52f4cb994694a69c2cb81e1804/ff46a/16.png 325w,
+/static/956b1b52f4cb994694a69c2cb81e1804/a6d36/16.png 650w,
+/static/956b1b52f4cb994694a69c2cb81e1804/e548f/16.png 975w,
+/static/956b1b52f4cb994694a69c2cb81e1804/3c492/16.png 1300w,
+/static/956b1b52f4cb994694a69c2cb81e1804/e5503/16.png 3140w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;열심히 연구해보고 결과가 나오는대로 포스트를 업데이트 하도록 하겠습니다!!&lt;/p&gt;
+&lt;p&gt;감사합니다!!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;아직 모르는 것이 많고 알아가는 과정입니다. 잘못된 것이 있다면 댓글로 남겨주신다면 감사하겠습니다!&lt;/em&gt;
+😊&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;참고&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=LM1BSf25kX0&quot;&gt;Value Type은 항상 스택에 저장된다고?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://techblog.woowahan.com/2563/&quot;&gt;SIL(Swift Intermediate Language)을 통한 Swift debugging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/apple/swift/blob/main/docs/SIL.rst#destroy-addr&quot;&gt;apple/swift-sil&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[[weak self] 무조건 사용하는게 맞는걸까? 🤔]]></title><description><![CDATA[클로져에서 self를 캡쳐할 때  를 사용하는 경우는 순환 참조를 방지하기 위해 약한 참조로 클로져 내부에서 해당 클래스의 인스턴스를 사용할때 입니다. 클로져에서 약한 참조를 이용해 특정 인스턴스를 캡쳐하지 않으면 (여기서는 self…]]></description><link>https://noah0316.github.io/Swift/2022-04-08-[weak-self]-무조건-사용하는게-맞는걸까/</link><guid isPermaLink="false">https://noah0316.github.io/Swift/2022-04-08-[weak-self]-무조건-사용하는게-맞는걸까/</guid><pubDate>Fri, 08 Apr 2022 20:04:57 GMT</pubDate><content:encoded>&lt;p align=&quot;center&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 33.74233128834356%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABaklEQVQoz12R60/CMBTF978bFRD9ZkJClPhMnBgfiU8Qjc8IBCWoH4gBjYCBrWPtGLix7bheAiacpO1y++tZ76mCUM6vA8YYOOcwDIOG67hyC0EQ0JDyPA+6rkMIQUy324U39CaclCIny7bAdEaQNJbfXHBMa+AMoHU0mF1zwvXs3mRfmiqXlQts3KbwUL2DsAQsYeGlVoJa2MbxyyHEQMAPfOQqGeIeq/fUCTcFyvVnqPmQKx+B90cXUOJ7EUQ357B0sICvn09qJ3G6jMXdGObVGVS+y+iINqLpWcS25rG4H0VTa6A/6CN5kUBcjSCWnkOxlh8ZZl7PkLpO4uo9C53pdMPCxxPWb1ax96TCtMOcfA/nlRPicm9Z2H0bvuejVC9i7WYl5HZg9NjIUIbcbDfIaCyZUavTCn+g0UHHcTDimtSuzF/mxU2OVlhjBps8jjIcDukQrb5PebmuSzUJUc3/r405aTjNSf0BjkoBhW4a9aoAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;1&quot; title=&quot;1&quot; src=&quot;/static/219f9ed045afd3755a65c5f70333e6f0/a6d36/1.png&quot; srcset=&quot;/static/219f9ed045afd3755a65c5f70333e6f0/222b7/1.png 163w,
