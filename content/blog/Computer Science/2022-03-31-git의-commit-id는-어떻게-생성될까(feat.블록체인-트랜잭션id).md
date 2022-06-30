@@ -1,7 +1,7 @@
 ---
 title: Git의 commit id는 어떻게 생성될까?
 date: 2022-03-31 17:03:78
-category: computer science
+category: Computer Science
 thumbnail: { thumbnailSrc }
 draft: false
 ---
