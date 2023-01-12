@@ -132,7 +132,7 @@ A5 world에는 다음과 같은 항목들을 저장합니다.
 > 통상적인 process memory model에서 데이터 섹션은 `GVAR`, `BSS`로 나뉘는데 `GVAR`에는 초기화된 전역변수, `BSS`영역에는 초기화되지 않은 전역변수가 저장된다.
 
 > 왜 나눠놓았을까? 
-> `BSS`영역에는 초기화되지 않은 전역변수들이 저장되어 프로그램이 실행될 때 영역을 차지해 `BSS`영역 변수들이 많아져도 프로그램의 실행 코드 사이즈를 늘리지 않는다는 특징이 있다.
+> `BSS`영역에는 초기화되지 않은 전역변수들이 저장되어 프로그램이 실행될 때 영역을 차지해 `BSS`영역 변수들이 많아져도 프로그램의 실행 코드 사이즈를 늘리지 않는다는 특징이 있다.  
 > 참고 : https://ko.wikipedia.org/wiki/.bss
 
 ### 자! 다시 돌아와서
@@ -232,7 +232,7 @@ Macintosh에서 운영체제는 32비트 주소지정, 즉 32비트를 사용하
 
 ### Summary
 ---
-Apple의 과거 Process memory model과 현대의 일반적인 Process memory model을 비교해보며, 구조는 약간 다르지만(global variable이 stack의 상단의 A5 World라는 곳에 있는 등) 전체적인 큰 부분에서의 기본적인 컨셉은 같이하고 있었다는 사실을 알 수 있었습니다 😀
+Apple의 과거 Process memory model과 현대의 일반적인 Process memory model을 비교해보며, 구조는 약간 다르지만(global variable이 stack의 상단의 A5 World라는 곳에 있는 등) 전체적인 큰 부분에서의 기본적인 컨셉은 같이하고 있었다는 사실을 알 수 있었으며, Unix계열의 Process memory model과 비교해보며 각 Section의 (stack, heap, text, 글로벌 변수 GVAR, BSS)의 역할에 대해 학습할 수 있었다.
 
 _아직 모르는 것이 많고 알아가는 과정입니다. 잘못된 것이 있다면 댓글로 남겨주신다면 감사하겠습니다!_
 😊
