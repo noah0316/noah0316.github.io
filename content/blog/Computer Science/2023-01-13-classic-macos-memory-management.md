@@ -188,7 +188,7 @@ Heap fragmentation이 발생하면 사용가능한 여유공간이 충분하더�
 ---
 application의 global variable은 application partition의 상단에 위치한 A5 World에 저장된다.
 
-A5 World의 구조는 아래와 같다.
+A5 World의 구조는 아래와 같다. 
 
 <img src="https://user-images.githubusercontent.com/63908856/212102832-38fd4990-ce12-44bf-870e-666e614ff1e2.png" alt="Oraganization of an application's A5 world">
 
