@@ -17,11 +17,11 @@ draft: false
 
 > 이미지 출처 : https://github.com/EG-tech/digipres-posters
 
-Apple은 1980년대에 자체 운영체제인 Macintosh System을 만들었기 때문에 Unix 계열과는 다른 부분이 있다. 이 때문에 밑에서 볼 Process memory model은 현재 우리가 일반적으로 알고 있는 Unix계열의 process memory model과 다르다.
+Apple은 1980년대에 자체 운영체제인 Macintosh System을 만들었기 때문에 UNIX 계열과는 다른 부분이 있다. 이 때문에 밑에서 볼 Process memory model은 현재 우리가 일반적으로 알고 있는 Unix계열의 process memory model과 다르다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_W4CntluoBQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-현재 우리가 사용하고 있는 Mac OS는 2000년대 초반 Unix기반의 운영체제이며, Classic Mac OS는 OS X가 출시 된 이후 WWDC 2002에서 MacOS 9의 모의 장례식을 통해 사라지게 되었다..
+현재 우리가 사용하고 있는 Mac OS는 2000년대 초반 Classic Mac OS와는 다른     UNIX에 뿌리를 두고있는 운영체제이며, Classic Mac OS는 OS X가 출시 된 이후 WWDC 2002에서 MacOS 9의 모의 장례식을 통해 사라지게 되었다..
 
 Apple developer 사이트에 archive된 도서를 통해 Macitonsh system의 Process memory model을 살펴보도록 해보자  
 링크: [Inside Macintosh: Memory](https://developer.apple.com/library/archive/documentation/mac/pdf/Memory/Intro_to_Mem_Mgmt.pdf)
@@ -42,9 +42,11 @@ Macintosh Operating System이 시작되면 사용 가능한 RAM을 두개의 섹
     <img src ="./assets/2023-01-13/Macintosh_System_7.5.3_screenshot.png">
 </p>
 
+> 이미지 출처 : [Apple Wiki](https://apple.fandom.com/wiki/System_7)
+
 Macintosh System 7(1991년 출시) 이상부터 사용자가 한번에 여러 application을 열 수 있게되었는데, 과거 Apple에서 application 별로 메모리를 어떻게 관리했었는지 살펴보자.
 
-> Apple은 Macintosh System 7부터 가상메모리를 제공하기 시작했으며, 이때부터 협력형 멀티태스킹을 지원하기 시작했다.
+> Apple은 Macintosh System 7부터 가상메모리를 제공하기 시작했으며, 이때부터 협력형 멀티태스킹을 지원하기 시작했다.   
 > 참조: https://en.wikipedia.org/wiki/System_7
 
 <img width="500" src="https://user-images.githubusercontent.com/63908856/212100358-527a461d-4169-4ae0-b62e-fc3091045b07.png" alt="Memory organization with several applications open">
@@ -54,8 +56,7 @@ application partition은 먼저 메모리의 상단 부분부터 로드 된다.
 
 위 그림에서는 세개의 application이 있는데, application마다 고유한 partition을 가지고 있다.
 Application1로 표시된 application이 active application이다.
-> 현재 활성화된 애플리케이션을 가리키는 것으로 생각되어지네요  
-> 혹시 다른의견이 있으시다면 알려주세요 :)
+> 현재 활성화된 애플리케이션을 가리키는 것으로 생각되네요
 
 오른쪽에 있는 라벨들은 system global variables에서 사용하는 system global variable이다.
 
@@ -84,7 +85,7 @@ low memory에 위치한 다른 global variable 현재 application에 대한 정�
 
 이러한 global variable에는 활성화된 application에 대한 정보가 포함되어있기 때문에 운영체제는 context switching이 발생할 때마다 이러한 global variable의 값을 변경한다.
 
-> 제가 공부했었던 다른 현대 Operating System에서는 `ApplZone`, `ApplLimit`, `CurrentA5`와 같은 메모리 주소공간과 같은 정보들은 프로세스 별로 [Process Control Block](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EC%A0%9C%EC%96%B4_%EB%B8%94%EB%A1%9D)이라는 자료구조에 담아 kernel에 저장하고 있다가 CPU의 레지스터에(메모리 정보와 같은 경우 현재 page table을 가리키는 레지스터)해당 정보들을 복사하는 방식인데, 위의 global variable들이 이와 비슷한 역할을 하는 것으로 보입니다.
+> 제가 공부했었던 다른 현대 Operating System에서는 `ApplZone`, `ApplLimit`, `CurrentA5`와 같은 메모리 주소공간과 같은 정보들은 프로세스 별로 [Process Control Block](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EC%A0%9C%EC%96%B4_%EB%B8%94%EB%A1%9D)이라는 자료구조에 담아 kernel에 저장하고 있다가 CPU의 레지스터에(메모리 정보와 같은 경우 현재 page table을 가리키는 레지스터 등)해당 정보들을 복사하는 방식인데, 위의 global variable들이 이와 비슷한 역할을 하는 것으로 보입니다.
 
 일반적으로 low memory에 위치한 global variable들은 read/write하지 않는 것이 좋다.
 대부분의 global variable들은 문서화되어있지 않고, 변경할 경우 예측하기 어렵기 때문에 사용하지 않는 것이 좋다. 일반적으로 low memory에 위치한 global variable을 application에서 사용할 가능성이 있는 경우 함수를 호출하여 global variable의 현재 값을 가져올 수 있다.
@@ -106,7 +107,7 @@ application partition은 세가지의 major part로 나뉜다.
 - applicaiton heap
 - application global variable and A5 world
 
-heap은 application의 low memory끝(`ApplZone`)에 위치하며 항상 높은 메모리 쪽으로 확장된다.
+heap은 application의 low memory끝(`ApplZone`)에 위치하며 항상 높은 메모리 쪽으로 확장된다.  
 A5 World는 application partition의 high memory끝에 위치하며 크기가 고정되어있다.
 
 stack은 A5 World의 low memory부터 시작하며 heap의 상단을 향해 아래쪽으로 확장한다.
@@ -129,10 +130,10 @@ A5 world에는 다음과 같은 항목들을 저장합니다.
 
 이에 대해서는 뒤에서 조금 더 살펴봅시다!
 
-> 통상적인 process memory model에서 데이터 섹션은 `GVAR`, `BSS`로 나뉘는데 `GVAR`에는 초기화된 전역변수, `BSS`영역에는 초기화되지 않은 전역변수가 저장된다.
+> 통상적인 process memory model에서 데이터 섹션은 `GVAR`, `BSS`로 나뉘는데 `GVAR`에는 초기화된 전역변수, `BSS`영역에는 초기화되지 않은 전역변수가 저장됩니다.
 
 > 왜 나눠놓았을까? 
-> `BSS`영역에는 초기화되지 않은 전역변수들이 저장되어 프로그램이 실행될 때 영역을 차지해 `BSS`영역 변수들이 많아져도 프로그램의 실행 코드 사이즈를 늘리지 않는다는 특징이 있다.  
+> `BSS`영역에는 초기화되지 않은 전역변수들이 저장되어 프로그램이 실행될 때 영역을 차지해 `BSS`영역 변수들이 많아져도 프로그램의 실행 코드 사이즈를 늘리지 않는다는 특징이 있습니다.   
 > 참고 : https://ko.wikipedia.org/wiki/.bss
 
 ### 자! 다시 돌아와서
@@ -160,7 +161,7 @@ application heap은 동적으로 할당되고, 요청시 해제되는 applicatio
 
 예를 들어 application heap에는 현재 memory에 로드된 application의 code segment와 resource가 포함되어있다. heap에는 window records, dialog records, document data와 같이 동적으로 할당된 다른 항목도 포함된다.
 
-> 여기서 말하는 code segment란 application의 실행 코드를 의미합니다.
+> 여기서 말하는 code segment란 application의 실행 코드를 의미합니다.   
 > 참조 : [Apple Document Segment Manager](https://developer.apple.com/library/archive/documentation/mac/pdf/Processes/Segment_Manager.pdf)
 
 > 일반적으로 알고있는 process memory model에서는 heap, text섹션을 분리해 놓았는데, 과거 Apple의 Macitosh System은 이를 heap에 포함되어있다고 설명하고 있는게 흥미롭네요
@@ -232,7 +233,7 @@ Macintosh에서 운영체제는 32비트 주소지정, 즉 32비트를 사용하
 
 ### Summary
 ---
-Apple의 과거 Process memory model과 현대의 일반적인 Process memory model을 비교해보며, 구조는 약간 다르지만(global variable이 stack의 상단의 A5 World라는 곳에 있는 등) 전체적인 큰 부분에서의 기본적인 컨셉은 같이하고 있었다는 사실을 알 수 있었으며, Unix계열의 Process memory model과 비교해보며 각 Section의 (stack, heap, text, 글로벌 변수 GVAR, BSS)의 역할에 대해 학습할 수 있었다.
+여기까지 Apple의 과거 Process memory model과 현대의 일반적인 Process memory model을 비교해보며, 구조는 약간 다르지만(global variable이 stack의 상단의 A5 World라는 곳에 있는 등) 전체적인 큰 부분에서의 기본적인 컨셉은 같이하고 있었다는 사실을 알 수 있었으며, Unix계열의 Process memory model과 비교해보며 각 Section의 (stack, heap, text, 글로벌 변수 GVAR, BSS)의 역할에 대해 학습할 수 있었다.
 
 _아직 모르는 것이 많고 알아가는 과정입니다. 잘못된 것이 있다면 댓글로 남겨주신다면 감사하겠습니다!_
 😊
