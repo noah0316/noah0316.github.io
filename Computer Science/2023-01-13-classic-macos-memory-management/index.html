@@ -80,9 +80,9 @@
 <blockquote>
 <p>이미지 출처 : <a href="https://github.com/EG-tech/digipres-posters">https://github.com/EG-tech/digipres-posters</a></p>
 </blockquote>
-<p>Apple은 1980년대에 자체 운영체제인 Macintosh System을 만들었기 때문에 Unix 계열과는 다른 부분이 있다. 이 때문에 밑에서 볼 Process memory model은 현재 우리가 일반적으로 알고 있는 Unix계열의 process memory model과 다르다.</p>
+<p>Apple은 1980년대에 자체 운영체제인 Macintosh System을 만들었기 때문에 UNIX 계열과는 다른 부분이 있다. 이 때문에 밑에서 볼 Process memory model은 현재 우리가 일반적으로 알고 있는 Unix계열의 process memory model과 다르다.</p>
 <div class="gatsby-resp-iframe-wrapper" style="padding-bottom: 56.25%; position: relative; height: 0; overflow: hidden; margin-bottom: 1.0725rem" > <iframe src="https://www.youtube.com/embed/_W4CntluoBQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style=" position: absolute; top: 0; left: 0; width: 100%; height: 100%; "></iframe> </div>
-<p>현재 우리가 사용하고 있는 Mac OS는 2000년대 초반 Unix기반의 운영체제이며, Classic Mac OS는 OS X가 출시 된 이후 WWDC 2002에서 MacOS 9의 모의 장례식을 통해 사라지게 되었다..</p>
+<p>현재 우리가 사용하고 있는 Mac OS는 2000년대 초반 Classic Mac OS와는 다른     UNIX에 뿌리를 두고있는 운영체제이며, Classic Mac OS는 OS X가 출시 된 이후 WWDC 2002에서 MacOS 9의 모의 장례식을 통해 사라지게 되었다..</p>
 <p>Apple developer 사이트에 archive된 도서를 통해 Macitonsh system의 Process memory model을 살펴보도록 해보자<br>
 링크: <a href="https://developer.apple.com/library/archive/documentation/mac/pdf/Memory/Intro_to_Mem_Mgmt.pdf">Inside Macintosh: Memory</a></p>
 <img width="400" src="https://m.media-amazon.com/images/I/91spbOVoHHL.jpg">
@@ -104,9 +104,12 @@
 /static/02adb96b69161c8b8cf748904d39f5dd/6af66/Macintosh_System_7.5.3_screenshot.png 640w" sizes="(max-width: 640px) 100vw, 640px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
 </p>
+<blockquote>
+<p>이미지 출처 : <a href="https://apple.fandom.com/wiki/System_7">Apple Wiki</a></p>
+</blockquote>
 <p>Macintosh System 7(1991년 출시) 이상부터 사용자가 한번에 여러 application을 열 수 있게되었는데, 과거 Apple에서 application 별로 메모리를 어떻게 관리했었는지 살펴보자.</p>
 <blockquote>
-<p>Apple은 Macintosh System 7부터 가상메모리를 제공하기 시작했으며, 이때부터 협력형 멀티태스킹을 지원하기 시작했다.
+<p>Apple은 Macintosh System 7부터 가상메모리를 제공하기 시작했으며, 이때부터 협력형 멀티태스킹을 지원하기 시작했다.<br>
 참조: <a href="https://en.wikipedia.org/wiki/System_7">https://en.wikipedia.org/wiki/System_7</a></p>
 </blockquote>
 <img width="500" src="https://user-images.githubusercontent.com/63908856/212100358-527a461d-4169-4ae0-b62e-fc3091045b07.png" alt="Memory organization with several applications open">
@@ -115,8 +118,7 @@ application partition은 먼저 메모리의 상단 부분부터 로드 된다.<
 <p>위 그림에서는 세개의 application이 있는데, application마다 고유한 partition을 가지고 있다.
 Application1로 표시된 application이 active application이다.</p>
 <blockquote>
-<p>현재 활성화된 애플리케이션을 가리키는 것으로 생각되어지네요<br>
-혹시 다른의견이 있으시다면 알려주세요 :)</p>
+<p>현재 활성화된 애플리케이션을 가리키는 것으로 생각되네요</p>
 </blockquote>
 <p>오른쪽에 있는 라벨들은 system global variables에서 사용하는 system global variable이다.</p>
 <h3 id="the-system-heap" style="position:relative;"><a href="#the-system-heap" aria-label="the system heap permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The System Heap</h3>
@@ -138,7 +140,7 @@ Application1로 표시된 application이 active application이다.</p>
 </ul>
 <p>이러한 global variable에는 활성화된 application에 대한 정보가 포함되어있기 때문에 운영체제는 context switching이 발생할 때마다 이러한 global variable의 값을 변경한다.</p>
 <blockquote>
-<p>제가 공부했었던 다른 현대 Operating System에서는 <code class="language-text">ApplZone</code>, <code class="language-text">ApplLimit</code>, <code class="language-text">CurrentA5</code>와 같은 메모리 주소공간과 같은 정보들은 프로세스 별로 <a href="https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EC%A0%9C%EC%96%B4_%EB%B8%94%EB%A1%9D">Process Control Block</a>이라는 자료구조에 담아 kernel에 저장하고 있다가 CPU의 레지스터에(메모리 정보와 같은 경우 현재 page table을 가리키는 레지스터)해당 정보들을 복사하는 방식인데, 위의 global variable들이 이와 비슷한 역할을 하는 것으로 보입니다.</p>
+<p>제가 공부했었던 다른 현대 Operating System에서는 <code class="language-text">ApplZone</code>, <code class="language-text">ApplLimit</code>, <code class="language-text">CurrentA5</code>와 같은 메모리 주소공간과 같은 정보들은 프로세스 별로 <a href="https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EC%A0%9C%EC%96%B4_%EB%B8%94%EB%A1%9D">Process Control Block</a>이라는 자료구조에 담아 kernel에 저장하고 있다가 CPU의 레지스터에(메모리 정보와 같은 경우 현재 page table을 가리키는 레지스터 등)해당 정보들을 복사하는 방식인데, 위의 global variable들이 이와 비슷한 역할을 하는 것으로 보입니다.</p>
 </blockquote>
 <p>일반적으로 low memory에 위치한 global variable들은 read/write하지 않는 것이 좋다.
 대부분의 global variable들은 문서화되어있지 않고, 변경할 경우 예측하기 어렵기 때문에 사용하지 않는 것이 좋다. 일반적으로 low memory에 위치한 global variable을 application에서 사용할 가능성이 있는 경우 함수를 호출하여 global variable의 현재 값을 가져올 수 있다.</p>
@@ -157,7 +159,7 @@ Application1로 표시된 application이 active application이다.</p>
 <li>applicaiton heap</li>
 <li>application global variable and A5 world</li>
 </ul>
-<p>heap은 application의 low memory끝(<code class="language-text">ApplZone</code>)에 위치하며 항상 높은 메모리 쪽으로 확장된다.
+<p>heap은 application의 low memory끝(<code class="language-text">ApplZone</code>)에 위치하며 항상 높은 메모리 쪽으로 확장된다.<br>
 A5 World는 application partition의 high memory끝에 위치하며 크기가 고정되어있다.</p>
 <p>stack은 A5 World의 low memory부터 시작하며 heap의 상단을 향해 아래쪽으로 확장한다.</p>
 <h3 id="잠깐-a5-world-그게-뭘까" style="position:relative;"><a href="#%EC%9E%A0%EA%B9%90-a5-world-%EA%B7%B8%EA%B2%8C-%EB%AD%98%EA%B9%8C" aria-label="잠깐 a5 world 그게 뭘까 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>잠깐 A5 world? 그게 뭘까?</h3>
@@ -175,11 +177,11 @@ A5 World는 application partition의 high memory끝에 위치하며 크기가 �
 <p>위 그림에서 볼 수 있듯, 왼쪽에 보이는 것이 Maciontosh System의 프로세스 별 메모리 구조, 오른쪽이 일반적으로 우리가 알고 있는 프로세스의 메모리 구조입니다. Data, Code(Text)영역이 Heap의 밑부분에 위치한 반면 과거 Macintosh System에서는 Stack의 윗부분의 A5 world라는 일반으로 우리가 알고있는 data 영역에 통상적으로 알고있는 process model의 data(GVAR, BSS)에 해당하는 데이터를 저장하고 있습니다.</p>
 <p>이에 대해서는 뒤에서 조금 더 살펴봅시다!</p>
 <blockquote>
-<p>통상적인 process memory model에서 데이터 섹션은 <code class="language-text">GVAR</code>, <code class="language-text">BSS</code>로 나뉘는데 <code class="language-text">GVAR</code>에는 초기화된 전역변수, <code class="language-text">BSS</code>영역에는 초기화되지 않은 전역변수가 저장된다.</p>
+<p>통상적인 process memory model에서 데이터 섹션은 <code class="language-text">GVAR</code>, <code class="language-text">BSS</code>로 나뉘는데 <code class="language-text">GVAR</code>에는 초기화된 전역변수, <code class="language-text">BSS</code>영역에는 초기화되지 않은 전역변수가 저장됩니다.</p>
 </blockquote>
 <blockquote>
 <p>왜 나눠놓았을까?
-<code class="language-text">BSS</code>영역에는 초기화되지 않은 전역변수들이 저장되어 프로그램이 실행될 때 영역을 차지해 <code class="language-text">BSS</code>영역 변수들이 많아져도 프로그램의 실행 코드 사이즈를 늘리지 않는다는 특징이 있다.<br>
+<code class="language-text">BSS</code>영역에는 초기화되지 않은 전역변수들이 저장되어 프로그램이 실행될 때 영역을 차지해 <code class="language-text">BSS</code>영역 변수들이 많아져도 프로그램의 실행 코드 사이즈를 늘리지 않는다는 특징이 있습니다.<br>
 참고 : <a href="https://ko.wikipedia.org/wiki/.bss">https://ko.wikipedia.org/wiki/.bss</a></p>
 </blockquote>
 <h3 id="자-다시-돌아와서" style="position:relative;"><a href="#%EC%9E%90-%EB%8B%A4%EC%8B%9C-%EB%8F%8C%EC%95%84%EC%99%80%EC%84%9C" aria-label="자 다시 돌아와서 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>자! 다시 돌아와서</h3>
@@ -199,7 +201,7 @@ A5 World는 application partition의 high memory끝에 위치하며 크기가 �
 <p>application heap은 동적으로 할당되고, 요청시 해제되는 application partition의 memory영역이다. heap은 application의 low memory끝에서 시작하여 memory 위쪽으로 확장된다. heap에는 stack에 할당되지 않은 거의 모든 항목이 포함된다.</p>
 <p>예를 들어 application heap에는 현재 memory에 로드된 application의 code segment와 resource가 포함되어있다. heap에는 window records, dialog records, document data와 같이 동적으로 할당된 다른 항목도 포함된다.</p>
 <blockquote>
-<p>여기서 말하는 code segment란 application의 실행 코드를 의미합니다.
+<p>여기서 말하는 code segment란 application의 실행 코드를 의미합니다.<br>
 참조 : <a href="https://developer.apple.com/library/archive/documentation/mac/pdf/Processes/Segment_Manager.pdf">Apple Document Segment Manager</a></p>
 </blockquote>
 <blockquote>
@@ -251,7 +253,7 @@ A5 World는 application partition의 high memory끝에 위치하며 크기가 �
 <img src="https://user-images.githubusercontent.com/63908856/212103123-c50236db-dc7a-4187-99fc-7c89771a95a6.png">
 <h3 id="summary" style="position:relative;"><a href="#summary" aria-label="summary permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Summary</h3>
 <hr>
-<p>Apple의 과거 Process memory model과 현대의 일반적인 Process memory model을 비교해보며, 구조는 약간 다르지만(global variable이 stack의 상단의 A5 World라는 곳에 있는 등) 전체적인 큰 부분에서의 기본적인 컨셉은 같이하고 있었다는 사실을 알 수 있었으며, Unix계열의 Process memory model과 비교해보며 각 Section의 (stack, heap, text, 글로벌 변수 GVAR, BSS)의 역할에 대해 학습할 수 있었다.</p>
+<p>여기까지 Apple의 과거 Process memory model과 현대의 일반적인 Process memory model을 비교해보며, 구조는 약간 다르지만(global variable이 stack의 상단의 A5 World라는 곳에 있는 등) 전체적인 큰 부분에서의 기본적인 컨셉은 같이하고 있었다는 사실을 알 수 있었으며, Unix계열의 Process memory model과 비교해보며 각 Section의 (stack, heap, text, 글로벌 변수 GVAR, BSS)의 역할에 대해 학습할 수 있었다.</p>
 <p><em>아직 모르는 것이 많고 알아가는 과정입니다. 잘못된 것이 있다면 댓글로 남겨주신다면 감사하겠습니다!</em>
 😊</p></div><div class="sponsor-button"><a class="bmc-button" target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/noah0316"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"/><span>Buy me a coffee</span></a></div><hr class="custom-hr"/><div class="bio"><div class="author"><div class="author-description"><a href="/"><div class="author-image gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:72px;height:72px;border-radius:100%"><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAACE4AAAhOAFFljFgAAADvElEQVQ4y2P4jw38/fcPTP97+e3XhQ+/H/+ECkKFYYABm04Q+ezL964rb0P3PjToW2s0Zcusm29BhqHqRtcMkvz3d/GNN5EHnwYdfhl76oPj4sOiUbliBT0dJx9AzP2HVTPEtSefvItYtz/t6IOkM58STrzx3/Mwes3x+TsPJs5e/eTTF2T7GVDsBOr/8zvv8JNl6xqmHdgYefZv8un3UcdeGc7as/b0xTfv/jcve4Xd2RBrZ525Y7vucvjB53En3kRd+1uz9d6R9Klu666svHr/+7f/+859wqIZrPHfp19/Q7de8d18LWLjhbBF+0LmbInuWlSQ1WTXviB78Zb/v38BVf3+8//Xn78Ql0M1/wYFxb+pi5brRGdbJebZZVU4lLbZVfVa1E3Sa5ymW9olF1fYs3zDX5A1r////wO1GWjGz9+/gaxlm7byB6VqdS83WXbKePVFsw3XTVZfMlp0VG/mLo2Jm1W6Vsk2LolZvPbcbc8Ljy/8+gtyKQPEAdfefHaavUVp0maNxjkayaXWEbF2Xm5uzpZ+TibxHiYRDjouunKK1g6cgSnS4dEMrhHlC9eBbP7y42f9ml0ymfW8EXn8uqZivOz5LqqTYkwmRJtMjjGZnmg5PclmarLtojRrjwB3BrdY0dCM8JaJV+4/Amk+duMuh28Cg1OYsGdYspOWr45YT5zlxETrlhi7LD+LEn/j/gTrnnibHEeF3Pz0RQdO3X789O/fv4jQfvD8xcIDp3pnzZiaYDE5xWF1fdzVNRNfHF//4fyOG1vnPtm/7NLq/m09Odd2LQfHy1+UqIJ4+8f3rwfntW7vyrq1eeb3Szv/3z/27+7Rvzf2fb+25/G+xR9Prnt0YPmXLx/fvf66bun582eeQkIblECW7H93+cE3oAnnNi/c1Jr64uDyX9f3/7195NXRVU/2rTgwpf7W5nl3ty76+vbxvbMvVk89Omnisb8//0I0/1978P29J98hqeXIqunbu7Mf71304vDqy2u617f2ZbtMLw5ZnhKwcvnkc+umX5yZs/3cphsYuQqoFeSHfxf2rF3VkLimPv7QjKpLK/oX5cctrC49tPvi0wePX9x9+Pb1V1BCA2kGW/37+bvfNx5D9EOC4OXD2ztmteydXnN4TsOy/pZ3L0Fx8+/u/P+vDoCV/QVrBof7l82H3/YuAeeqR79+zvj39zfEnC/vX79+9iR74qOn70DK/v78/u/PL7DjkNL2P2Dc/QW55M+fJ58+9gPpv8DE/xeahj9//f37z1/MMgcAn/mjAXhrhVYAAAAASUVORK5CYII=" alt="[SeungHyun]" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/34ee38e2b1ba7c3410281367a601aa18/e5b88/profile.png 1x,
 /static/34ee38e2b1ba7c3410281367a601aa18/e7bd6/profile.png 1.5x,
