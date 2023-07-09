@@ -22,7 +22,11 @@ lang: 'en'
 | **Contact** | <dev.noah0316@gmail.com>                              |
 
 # Expereiences
-## URL 아카이빙 서비스 Havit
+## URL 아카이빙 서비스 Havit  
+<br/>
+<a href="https://apps.apple.com/kr/app/havit-%EC%BD%98%ED%85%90%EC%B8%A0-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B9%99-%EC%95%B1-%ED%95%B4%EB%B9%97/id1607518014" target="_blank">
+<img src="https://user-images.githubusercontent.com/69136340/165884844-de14d6f9-5e3a-4796-b880-f79d88186b27.png" width="100px"  alt="download link"/>
+</a>
 
 |              |                                                                      |
 |-------------:|----------------------------------------------------------------------|
@@ -67,8 +71,6 @@ lang: 'en'
 - **해결**: 
   1) 개발 작업을 GitHub에 Issue로 등록하면 협업 시 자주사용하는 도구인 Notion에 동기화 되도록 구현
   2) Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 Github Actions에서 개발자가 쉽게 구성할 수 있도록 구현
-
-URL 아카이빙 서비스 Havit App Store [Download Link](https://apps.apple.com/kr/app/havit-%EC%BD%98%ED%85%90%EC%B8%A0-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B9%99-%EC%95%B1-%ED%95%B4%EB%B9%97/id1607518014)
 
 ## Issue Tracker W/ CodeSquad 
 - 작성중
