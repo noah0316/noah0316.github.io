@@ -22,8 +22,11 @@ lang: 'en'
 | **Contact** | <dev.noah0316@gmail.com>                              |
 
 # Expereiences
-## URL 아카이빙 서비스 Havit  
+## URL 아카이빙 서비스 Havit
 <br/>
+
+[서비스 소개](https://www.havit.app/)
+
 <a href="https://apps.apple.com/kr/app/havit-%EC%BD%98%ED%85%90%EC%B8%A0-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B9%99-%EC%95%B1-%ED%95%B4%EB%B9%97/id1607518014" target="_blank">
 <img src="https://user-images.githubusercontent.com/69136340/165884844-de14d6f9-5e3a-4796-b880-f79d88186b27.png" width="100px"  alt="download link"/>
 </a>
