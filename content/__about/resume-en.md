@@ -6,7 +6,7 @@ lang: 'en'
 
 # 홍승현(Noah)
 
-<div align="right"><sub><i>Last updated: 2023.07.10</i></sub></div>
+<div align="right"><sub><i>Last updated: 2023.07.14</i></sub></div>
 
 
 **저는 `______` 하는 엔지니어입니다.**
@@ -66,6 +66,8 @@ lang: 'en'
   - 아티클에 소개된 파일 내부경로 설정과 환경문제로 실행이 안되는 문제 발생 
   - 쉘 스크립트를 사용해 본 경험이 없어 코드 분석과 작성에 어려움 존재
 - **해결**: 쉘 스크립트를 빠르게 처음부터 학습하여 GitHooks 코드 새로 작성
+- **평가**: 코드 리뷰 과정에서 코드 스타일에 대한 리뷰를 줄여 코드 리뷰 병목현상 방지에 기여
+
 - 개인 기술 블로그 정리 [링크](https://noah0316.github.io/Tools/2021-10-15-swiftlint-%ED%9E%99%ED%95%98%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0(with-git-hook)/)
 
 **[Notion GitHub Issue 동기화]**
@@ -74,9 +76,7 @@ lang: 'en'
 - **해결**: 
   1) 개발 작업을 GitHub에 Issue로 등록하면 협업 시 자주사용하는 도구인 Notion에 동기화 되도록 구현
   2) Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 Github Actions에서 개발자가 쉽게 구성할 수 있도록 구현
-
-## Issue Tracker W/ CodeSquad 
-- 작성중
+- **평가**: 효율적인 이슈 및 태스크 공유로 팀원들과 진행 상황 공유 및 커뮤니케이션에 기여
 
 # Communities
 #### Swift Community
@@ -99,6 +99,13 @@ lang: 'en'
 ### [CodeSquad](https://www.codesquad.kr/)
 **(23.01 ~ 23.06) 코드스쿼드 마스터즈 모바일 iOS 코스 수료**
 
-<div align="center">
-  귀한 시간 내주셔서 감사합니다.
-</div>
+# Recommendations
+
+\- ***[From. 장진호-Pete (위대한 상상 - 요기요)](https://www.linkedin.com/in/jinho-jang-620085117/)***
+
+개발자 홍승현 님을 추천합니다.  
+승현 님은 제가 알고 있는 신입 개발자 중 가장 탄탄한 기본기를 보유하고 계신 분 입니다.  
+코드 한 줄 한 줄에 명확한 의도와 근거를 담으려 노력하고, 객체 간의 인터페이스를 적절하게 설정합니다.   
+모든 프로그래밍의 기본인 컴퓨팅 리소스 관리도 놓치지 않으며, 본인이 짠 코드를 동료가 바라볼 때의 시각도 함께 고려합니다.   
+승현 님은 제가 생각하는 신입 개발자의 이상적인 모습을 많이 갖고 있습니다.  
+저에게 채용 결정권이 있다면 승현 님의 채용을 고민하지 않을 것입니다.
