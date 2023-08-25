@@ -27,6 +27,16 @@
         margin-top: 5em !important;
     }
 
+    div.profile {
+        .gatsby-resp-image-wrapper {
+            margin-left: 0 !important;
+            margin-right: 10 !important;
+            width: 240px;
+            height: 240px;
+        }
+
+    }
+
     code.language-text {
         color: #0f6ae5;
         border: 1.4px solid #0f6ae5;

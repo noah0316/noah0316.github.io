@@ -6,14 +6,22 @@ lang: 'en'
 
 # 홍승현(Noah)
 
-<div align="right"><sub><i>Last updated: 2023.07.14</i></sub></div>
+<div align="right"><sub><i>Last updated: 2023.08.25</i></sub></div>
 
+
+<div class="profile">
+      <img src="assets/circle_profile.png" />
+</div>
+
+<br/>
 
 **저는 `______` 하는 엔지니어입니다.**
 
 1. 끊임없이 학습하고 개선하는
-2. 사용자 경험을 고민하는
-3. 지식의 선순환과 경험공유를 좋아하는
+2. 테스트 가능한 구조를 만드는 것에 관심이 많은
+3. 객체지향적인 코드를 작성하는
+4. 지식의 선순환과 경험 공유를 좋아하는
+5. 토이 프로젝트를 통해 다른 사람들과 꾸준히 협업하는
 
 |             |                                                       |
 |:-----------:|-------------------------------------------------------|
@@ -47,7 +55,6 @@ lang: 'en'
   3) actor type을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현
 - **평가**: 네트워크 작업 동시 요청에 대한 테스트 통과 및 서버 모니터링 결과 컨텐츠 중복 저장 현상 해결  
  
-
 #### 저장할 컨텐츠 미리보기 지연 현상 개선
 - **문제**: Web의 metadata를 가져오기 위해 서버에 크롤링을 요청한 정보에 대해 응답시간 지연 문제 발생
 - **원인**: 서버 부하 시 서버의 크롤링 라이브러리 성능 문제
@@ -78,9 +85,41 @@ lang: 'en'
   2) Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 Github Actions에서 개발자가 쉽게 구성할 수 있도록 구현
 - **평가**: 효율적인 이슈 및 태스크 공유로 팀원들과 진행 상황 공유 및 커뮤니케이션에 기여
 
+## Issue Tracker W/ CodeSquad
+|              |                                                                      |
+|-------------:|----------------------------------------------------------------------|
+|   **period** | 23.05 ~ 23.06                                                        |
+| **position** | 관심사의 분리, 단방향 의존성 구성 / Issue 조회 하면 개발 / 의존성 그래프 구성            |
+|     **tech** | Combine, MVVM, XCTest        |
+#### 관심사의 분리, 단방향 의존성
+- **문제**: 생성과 사용이 분리되어있지 않아 유지보수가 어려우며, 코드의 복잡도 증가
+- **해결**: 
+  - 각각의 레이어를 프로토콜로 나누고, 생성과 사용을 분리하여 각각의 레이어에 대한 모듈을 독립적으로 테스트할 수 있도록 구성
+  - 구현이 아닌 추상화에 의존하도록 의존성을 역전하여 의존성을 주입 받아 사용할 수 있도록 구성
+  - 모듈 간의 결합도를 낮추어 테스트가 가능한 구조로 설계하기 위해 모듈의 의존성이 단방향으로 이어질 수 있도록 구성
+
+#### 의존성 그래프 구성
+- **문제**: 테스트가 쉬운 구조를 만들기 위해 상위타입과 하위타입의 의존관계를 역전시켜 객체 관계를 설계하였지만, 의존관계 역전이 쓰인 코드에서 객체를 생성해서 주입해 주는 지점에 대한 고민 존재
+
+<img src="assets/composition-root.png" width="50px"  alt="download link"/>
+
+- **해결**: 컴파일 타임에 앱에 필요한 의존성을 구성할 수 있도록 앱의 시작 점이라고 할 수 있는 AppDelegate에서 앱의 의존성 트리인 Composition Root를 구성
+- **[코드 링크](https://github.com/codesquad-2023-group04/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTracker/Application/AppDelegate.swift)** 
+
+#### AppDelegateTestDouble 구성
+- **문제**: AppDelegate에서 실행하는 로직이 사이드 이펙트가 되어 단위 테스트에 영향을 끼칠 수 있는 위험 존재
+- **해결**: 프로젝트의 엔트리 포인트인 main.swift를 구성하여 테스트 타겟 실행 시에 기존의 AppDelegate 대신 불릴 AppDelegateTestDouble을 구성 및 프레임워크가 호출하는 생성자를 private 접근 제어자를 적용하여 휴먼에러를 방지
+- **[코드 링크](https://github.com/codesquad-2023-group04/issue-tracker/tree/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerAppDelegateTests)**
+
+#### ViewModel 테스트 코드 작성
+- **문제**: 눈에 보이는 View(UI)를 직접 실행해서 테스트해야 하는 생산성 저하 요인 존재
+- **해결**: View를 추상화한 모델인 ViewModel을 작성한 후 View Model을 테스트하기 위해 View Model에 대한 입력 출력 포트를 만든 후에 이에 대한 테스트 코드 작성하여 테스트를 통해 View의 동작 검증
+- **[코드 링크](https://github.com/codesquad-2023-group04/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerViewModelTests/Issue/IssueListViewModelTest.swift)**
+
 # Communities
 #### Swift Community
 - [Let'Swift 2022](https://letswift.kr/2022/) 공식 앱 개발
+  - MultipeerConnectivity를 이용한 사용자 찾기 및 거리 계산: [PR 링크](https://github.com/letswiftconf/LetSwift/pull/159)
 - [KWDC](https://kwdc.dev/) 행사 기획
 - Let'Swift 2023 행사 기획
 
@@ -109,3 +148,13 @@ lang: 'en'
 모든 프로그래밍의 기본인 컴퓨팅 리소스 관리도 놓치지 않으며, 본인이 짠 코드를 동료가 바라볼 때의 시각도 함께 고려합니다.   
 승현 님은 제가 생각하는 신입 개발자의 이상적인 모습을 많이 갖고 있습니다.  
 저에게 채용 결정권이 있다면 승현 님의 채용을 고민하지 않을 것입니다.
+
+<div align="center" class="final">
+
+_귀한시간 내주셔서 감사합니다._
+
+<br/>
+
+<sub><sup>iOS Engineer, <a href="https://github.com/noah0316">@Noah</a></sup></sub>
+
+</div>
