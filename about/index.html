@@ -205,7 +205,7 @@ ready 상태라면 결과 값에 바로 접근하도록 하여 중복된 네트�
 <li><strong>문제</strong>: SwiftLint BuildPhase에 적용 후 실수로 Build를 돌리지 않고, commit을 하는 경우 컨벤션이 검증되지 않은 코드가 merge 될 수 있는 위험 발생</li>
 <li><strong>해결</strong>: 쉘 스크립트를 빠르게 처음부터 학습하여 GitHooks 코드 새로 작성</li>
 <li><strong>결과</strong>: 코드 리뷰 과정에서 코드 스타일에 대한 리뷰를 줄여 코드 리뷰 병목현상 방지에 기여</li>
-<li><strong>개인 기술 블로그 정리</strong>: <a href="https://noah-ios.dev/swiftlint-githooks/" target="_blank">링크</a></li>
+<li><strong>기술 블로그 정리</strong>: <a href="https://noah-ios.dev/swiftlint-githooks/" target="_blank">링크</a></li>
 </ul>
 <h4 id="notion-github-issue-동기화" style="position:relative;"><a href="#notion-github-issue-%EB%8F%99%EA%B8%B0%ED%99%94" aria-label="notion github issue 동기화 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Notion GitHub Issue 동기화</h4>
 <span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;">
@@ -287,11 +287,11 @@ ready 상태라면 결과 값에 바로 접근하도록 하여 중복된 네트�
 </ul>
 <h4 id="관심사의-분리-단방향-의존성" style="position:relative;"><a href="#%EA%B4%80%EC%8B%AC%EC%82%AC%EC%9D%98-%EB%B6%84%EB%A6%AC-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EC%9D%98%EC%A1%B4%EC%84%B1" aria-label="관심사의 분리 단방향 의존성 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>관심사의 분리, 단방향 의존성</h4>
 <ul>
-<li><strong>문제</strong>: 생성과 사용이 분리되어있지 않아 유지보수가 어려우며, 코드의 복잡도 증가</li>
+<li><strong>문제</strong>: 객체의 생성과 사용이 분리되어있지 않아 유지보수가 어려우며, 코드의 복잡도 증가</li>
 <li>
 <p><strong>해결</strong>: </p>
 <ul>
-<li>각각의 레이어를 프로토콜로 나누고, 생성과 사용을 분리하여 각각의 레이어에 대한 모듈을 독립적으로 테스트할 수 있도록 구성</li>
+<li>객체의 생성과 사용을 분리하여 모듈을 독립적으로 테스트할 수 있도록 구성</li>
 <li>구현이 아닌 추상화에 의존하도록 의존성을 역전하여 의존성을 주입 받아 사용할 수 있도록 구성</li>
 <li>모듈 간의 결합도를 낮추어 테스트가 가능한 구조로 설계하기 위해 모듈의 의존성이 단방향으로 이어질 수 있도록 구성</li>
 </ul>
