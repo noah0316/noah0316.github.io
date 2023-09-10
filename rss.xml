@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Aug 2023 02:41:34 GMT</lastBuildDate><item><title><![CDATA[블로그 이전 공지]]></title><description><![CDATA[https://noah-ios.dev 로 블로그를 이전하였습니다. Swift, 개발, 경험과 관련된 이야기를 할 예정입니다. 많은 관심 부탁드립니다 감사합니다 🙇‍♂️🙇]]></description><link>https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</link><guid isPermaLink="false">https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</guid><pubDate>Sat, 26 Aug 2023 16:08:57 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://noah-ios.dev&quot;&gt;https://noah-ios.dev&lt;/a&gt; 로 블로그를 이전하였습니다.&lt;br&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 10 Sep 2023 13:05:12 GMT</lastBuildDate><item><title><![CDATA[블로그 이전 공지]]></title><description><![CDATA[https://noah-ios.dev 로 블로그를 이전하였습니다. Swift, 개발, 경험과 관련된 이야기를 할 예정입니다. 많은 관심 부탁드립니다 감사합니다 🙇‍♂️🙇]]></description><link>https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</link><guid isPermaLink="false">https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</guid><pubDate>Sat, 26 Aug 2023 16:08:57 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://noah-ios.dev&quot;&gt;https://noah-ios.dev&lt;/a&gt; 로 블로그를 이전하였습니다.&lt;br&gt;
 Swift, 개발, 경험과 관련된 이야기를 할 예정입니다. 많은 관심 부탁드립니다 감사합니다 🙇‍♂️🙇&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Apple의 과거 Process memory 관리 모델을 알아보자]]></title><description><![CDATA[운영체제가 프로세스별로 메모리를 관리하는 방식을 이해하기 위한 학습의 일환으로 Apple의 과거 Macintosh Operating System의 메모리 관리 모델을 현대 프로세스 메모리 관리 모델과 비교해가며, stack, heap, text…]]></description><link>https://noah0316.github.io/Computer Science/2023-01-13-classic-macos-memory-management/</link><guid isPermaLink="false">https://noah0316.github.io/Computer Science/2023-01-13-classic-macos-memory-management/</guid><pubDate>Fri, 13 Jan 2023 00:01:14 GMT</pubDate><content:encoded>&lt;p&gt;운영체제가 프로세스별로 메모리를 관리하는 방식을 이해하기 위한 학습의 일환으로 Apple의 과거 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EB%A7%A5_OS&quot;&gt;Macintosh Operating System&lt;/a&gt;의 메모리 관리 모델을 현대 프로세스 메모리 관리 모델과 비교해가며, stack, heap, text, 글로벌 변수 GVAR, BSS의 역할에 대해 정리해보자.&lt;/p&gt;
 &lt;h1 id=&quot;inside-macintosh-memory&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#inside-macintosh-memory&quot; aria-label=&quot;inside macintosh memory permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Inside Macintosh: Memory&lt;/h1&gt;
 &lt;h2 id=&quot;classic-mac-os-memory-management&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#classic-mac-os-memory-management&quot; aria-label=&quot;classic mac os memory management permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Classic Mac OS memory management&lt;/h2&gt;
@@ -7669,7 +7669,7 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;li&gt;&lt;a href=&quot;https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted&quot;&gt;https://dmitripavlutin.com/variables-lifecycle-and-why-let-is-not-hoisted&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[about]]></title><description><![CDATA[홍승현(Noah) 저는  하는 엔지니어입니다. 끊임없이 학습하고 개선하는 테스트 가능한 구조를 만드는 것에 관심이 많은 객체지향적인 코드를 작성하는 함께 자라는 것에 관심이 많은 토이 프로젝트를 통해 다른 사람들과 꾸준히 협업하는   GitHub…]]></description><link>https://noah0316.github.io/resume-en/</link><guid isPermaLink="false">https://noah0316.github.io/resume-en/</guid><pubDate>Sun, 27 Jan 2019 16:21:13 GMT</pubDate><content:encoded>&lt;h1 id=&quot;홍승현noah&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%99%8D%EC%8A%B9%ED%98%84noah&quot; aria-label=&quot;홍승현noah permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;홍승현(Noah)&lt;/h1&gt;
-&lt;div align=&quot;right&quot;&gt;&lt;sub&gt;&lt;i&gt;Last updated: 2023.08.29&lt;/i&gt;&lt;/sub&gt;&lt;/div&gt;
+&lt;div align=&quot;right&quot;&gt;&lt;sub&gt;&lt;i&gt;Last updated: 2023.09.10&lt;/i&gt;&lt;/sub&gt;&lt;/div&gt;
 &lt;div class=&quot;profile&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 600px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAACE4AAAhOAFFljFgAAAFkklEQVQ4yz2Ue0zTVxTHf2zqHC0PS9+0lBb6+lneDIuAgogKQqFSHhYKRQQEIypvn0WrKBBfbGYbouJ8IJqwOOOibpnGGJ3vmekyl8hMHW5hUZNl//2a810p05PcnJOTez/33HPv/TK8UCkzZbwwJRMq0QZMxbEVF3kKc71Tbq4fCzfXeXyeE+lSOZEh3SNKrh2zNPQ4u3qO86bmuu/fDJidPt/P0K5y+D3DF8gCmP8tRKq1C43Z49LkCsjibBDPzYU0JheCCC3E+hTIUpvg2HYS5tJt461Nm+zv1hlLy6YZvFDxuxzDD1MN8KU6ZNgqYW/r5oJViZy5qJ5isgtpjkxJYoWG5Jp4LjZlKVdQsw5dHS5EWpYPvFsfXeXjBwkUfnJgyJwBvkAOvljJqRNSvKaFOSQxplJmyVpik80kFopJIxWTUhRCamEwpRvV3uL8Ik5f6YBmpd0PVdms01UGiyT2IKEY/DARx5fIiCeW4SOBiFRsHMWZs6CQiJGkkmN+pBwliUZaYNAQKxUix2wmfbmDU5dXQLHcOn38IGEYjy8Sj/tA8A0vTyRBkFROgb4NfJUhQsdCECpAnZnFofwUfL++AI/21uFMrYUGO5uhdTZ70zZ0wVTpHJ/qICNURzmFajUEKhUniFBRmCqSQmTh4PmqMs5LhyxaD1YdgcGybEy4V+LFrnK8HNyC14MutFfZSZ5nJ7ayjjPZSrC6YbWTkbPsmCLGBEWciVMmxJIqOYFkrBGBEhGMn6QjkY1BcaoZJysKccWRiydtRXi+vwWvDrmwpaqc+Jn5FG4p5OKLC3F0d/cYI9VFe6Q6HYQRkSTR6UlpMiHcaPQdW4ZIjQ5R8nDULi3FFmsZvipaiD/7avC8rxkPujfgcX8TevtdpC8tJUPuEoz2uj2MPJrlpJFaCCRKEinUpDTEQB5lgMbIQu9rxWKjHuXp2b6RiZ3LF+BqYwGOVRXgRtsKTOyz49+JG3T91ik6PbQZT64c5ph5pY1cfI4FihgjSWP1FJ4ci6hE32Uoo6BTTgHnwqyORlqUDmmsCTVlldiTn4GHzdn4a7gDr94+oMmJCzT56Ev8cXeYY1SpiR7dEjN0uamky80kXfZiJGQVIEyiAKuMQEusAd3xLNYatUjSGtBeV4euJam4UJWBzpJFuHv5GHkeDZPnwRF4fjzlYRo3uccsteuQVlzPFW88SGWbjpN5iR2BQcGIVypwdimLZzYWZ7LmoqO4CJf6t8KSbESkgIcFKSZ6fm3IBzzBvX56Bi/vjIwxVscGZ07VViRYWrmVnYNU39JH2TkliNbGwJY0F+cr0uDZsRAPO0tx51Q/bh7fizitCr43hxaHlf6+P0ovHgxzb372Aa+fdjKJ6bU8NqNsPN9iR90Km3e5dTUObmyjVcvy0JCTgZ4yK0YyMnC7pw1v7pzBUdd6hPBmI3D2DHI1VODtvVHvq5/O4sWtwfHfR/b7FYhh82rt/S0N2Fudy1mrG+mL9Q3oXGmjBusycjdUY6lKjxObGjHx7QlUW/IpKHAWfTzzQ+zqqKV/Hp3jJu+NwnP76PTXu1Y1LV3uqryB9vJC9HV0cQNr13hda2ppc7WN1uRlUUHOIhpyddL1T/uoKCudeIEzafaMD7xbNzq9eHYRv3x92C8OT4d6AxiDIem9fB2osQ30rqrAnkYHBttruD11FZyjuIi297jp6pED9N3+3bS50s75gNysmQEosyzC5OPz7+Xr+eXPp4MYg/69wGYmsfaRnc3jv53dgXPuJnzWtxOD7i5c3ufCxd0duNK/HTpFGHiBs8YFwbz3AnvthHuakWuK8PvKVA2ToIn3J389/w3v8VCLc7Sndez2pWHP6Y5q7of+Fu7GwTbP5d7WseyEKKdfWXw22r064M5In5/x7MIh5j/1J6ao/gjukwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -7717,6 +7717,15 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;a href=&quot;https://apps.apple.com/kr/app/havit-%EC%BD%98%ED%85%90%EC%B8%A0-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B9%99-%EC%95%B1-%ED%95%B4%EB%B9%97/id1607518014&quot; target=&quot;_blank&quot;&gt;
 &lt;img src=&quot;https://user-images.githubusercontent.com/69136340/165884844-de14d6f9-5e3a-4796-b880-f79d88186b27.png&quot; width=&quot;100px&quot; alt=&quot;download link&quot;&gt;
 &lt;/a&gt;&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 69.93865030674846%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAEJwAABCcAFu8l9tAAACdUlEQVQ4y42UW08TURDH+RD4ggk8+eaH8wP4bOJrtSjgA2yr4aIC8cEQA5RAuQmJhhZIpbQo7NLuhd3t2evZs39nj7RQjejJTs7uzszvzM78swOglaYp/ra6vm7IHaFyDXQTgiBC7biOw2oDlYMGqpUGbDuQgCzmf0wCkySRN+sbuxh58BD3h4YwPDyCwcF7KCjvpU+If5R162sGusFnZxqKb2agTClQlAKKr4vY36vDY4Bjd6CqKlqtFjRNo8pttNs6Li+z55a871WYAQUVqbcdrKx8QqXyBdXDrxT0A9+bHpwroFzeQS6XQz4/iuf5PGZn5+hABWPjoxifeIFCYQq+H9wAs69Wzy0szq9je+sUa6s1gh/jqGpDbwGMBWQeOh2v1+/sIJN8Zpv8LojBb4A8Bgw9wuqKgYW3dcxPN7G4qOFbjaHjAK22j6Oag4vzGOpFiisrwnSB4+mTBI8fCbwrCkIlcoByyhncdTmd2oEX2AgTBsuwcdawEfgcVzaB1BCuk5KBKo2wv5Pg4weOmSLH583fgKCL+QlOmyp2tQ1sNvYxN5liYTqkZBumGeG0HuJSE9BUwLJCCfA9B5yzbL60J/06jMIIboeBBYwqslEuWdjbtqhfjBI5TMOjPZbt8f2QeiakcS6krDjn/cA4jqkalyYu5LPjGjQIW8ohCDkYQUVCiiB3SIenqbitQHT13AfUdR2GYVA/XXieT+94zydIW1lStmcSiSJB4BRhkJJf/FmhHA4lZMm/AEJatk5OmlhaKqFU2sLy8hrKG4eYfBnj1bMQE7kQylhI4OsK7/o59LeDXWuRSR1aZgpTFyQ3QTISvdiffLkXfNltYBAAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Havit Share Extension workflow&quot; title=&quot;Havit Share Extension workflow&quot; src=&quot;/static/344895d4ee09bcaa908762770bd9ae7a/a6d36/havit-share-workflow.png&quot; srcset=&quot;/static/344895d4ee09bcaa908762770bd9ae7a/222b7/havit-share-workflow.png 163w,
+/static/344895d4ee09bcaa908762770bd9ae7a/ff46a/havit-share-workflow.png 325w,
+/static/344895d4ee09bcaa908762770bd9ae7a/a6d36/havit-share-workflow.png 650w,
+/static/344895d4ee09bcaa908762770bd9ae7a/e548f/havit-share-workflow.png 975w,
+/static/344895d4ee09bcaa908762770bd9ae7a/3c492/havit-share-workflow.png 1300w,
+/static/344895d4ee09bcaa908762770bd9ae7a/a0f3c/havit-share-workflow.png 9444w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -7734,43 +7743,62 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;td&gt;컨텐츠 미리보기 기능 개발 / 네트워크 중복 요청 문제 해결 / 협업을 위한 자동화 시스템 구축&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;MVVM, Swift Concurrency, Link Presentation, Git Hooks, Shell script&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech stack&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;UIKit, MVVM, Swift Concurrency, XCTest, Git Hooks, Shell script&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h4 id=&quot;컨텐츠-미리보기-기능-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%BB%A8%ED%85%90%EC%B8%A0-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0-%EA%B8%B0%EB%8A%A5-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;컨텐츠 미리보기 기능 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;컨텐츠 미리보기 기능 개발&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;[관련 기술: Apple Link Presentation Framework]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[관련 기술: SwiftSoup, 프로토콜을 이용한 의존성 분리]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: Web의 metadata를 가져오기 위해 서버에 크롤링을 요청한 정보에 대해 응답시간 지연 문제 발생&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;배경&lt;/strong&gt;: 서버의 크롤링 라이브러리 성능 문제로, 자체적인 Web의 metadata 접근 필요&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Apple에서 제공하는 LinkPresentation 프레임워크를 WWDC 발표를 먼저 학습한 후에 적용해 Web의 metadata 접근하여 기능구현&lt;/li&gt;
-&lt;li&gt;서버 상태에 의존하지 않고, 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 로드하도록 구현&lt;/li&gt;
-&lt;li&gt;동일한 URL에 대해 이전에 캐시한 데이터를 활용하면 효율적으로 사용할 수 있을 것이라 판단하여 캐싱 메커니즘 구현하여 사용성 향상&lt;/li&gt;
+&lt;li&gt;사용자의 기기 자체에서 Web의 metadata 접근하여 기능구현&lt;/li&gt;
+&lt;li&gt;서버 상태에 의존하지 않고, 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 크롤링하여 구현&lt;/li&gt;
+&lt;li&gt;동일한 URL에 대해 이전에 캐시한 데이터를 활용하면 효율적으로 사용할 수 있을 것이라 판단하여&lt;br&gt;
+캐싱 메커니즘 구현하여 사용성 향상&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 로드하여 매 실행 시 평균 0.8초 절약&lt;br&gt;
-(50회 테스트 평균, 캐싱 되지 않은 컨텐츠 기준)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 로드하여 매 실행 시 평균 0.8초 절약&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;고민한 점&lt;/strong&gt;:
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 488px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.963190184049076%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAABqUlEQVQoz82RPWvCUBSG720arQnVamttWgKtYGlt/4CDa0FB4upQKHQV10B/hwhObh0UO+jgooKi4Aei4heIgyhoUgeFQgdB0nND6CClg3ToC0/enHNv3ns5QRzH6S0WiwlkdjqdOp7nDVAfkQZCSA8gjDExtFgsVO92u3g+n1O9Xo+qVCpUvV6nJEmiqtUqRdbJg9OciNFqI/pBqVQKo980m81MiqJY1+v16Wq1OiPvwMlmszFv74W+6p1O524ymQjD4dBTq9W8zWbTK8uyp1gsetF0On1ttVqfuVxOKhQK79CUG43Gx3g8bsC3NLk5wzA68P1gMHhAAkej0RuEK4PBQGm32ypEy+VSQRBki8fj9kgkchkOh6+i0ehVLBazZzIZnoyPBNA0TRyLorhHalh7KJfLL+DBfr//VCqVnmG+j4lEQkQ7SqexLQvK5/MYTsJwSwwn4GQyidPpNM5ms9/DZ1lWdUEQVPf5fPpQKGQIBAIGh8Nhc7lcRr/fz7rdbiP6A1HoP4rVZngBXAPkBxqA810DjwErcAM4gVst8H7XQJN2q8Otvv0LD0ew6PtQDiwAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;HTMLParser UML&quot; title=&quot;HTMLParser UML&quot; src=&quot;/static/aa86222bec84944a412cf78b360922a7/bd48c/HTMLParser.drawio.png&quot; srcset=&quot;/static/aa86222bec84944a412cf78b360922a7/222b7/HTMLParser.drawio.png 163w,
+/static/aa86222bec84944a412cf78b360922a7/ff46a/HTMLParser.drawio.png 325w,
+/static/aa86222bec84944a412cf78b360922a7/bd48c/HTMLParser.drawio.png 488w&quot; sizes=&quot;(max-width: 488px) 100vw, 488px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;SwiftSoup와 LinkMetadataService의 의존성 분리&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Web의 metadata에 접근하여 URL의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML을 분석하기 위해 사용한 라이브러리인 &lt;a href=&quot;https://github.com/scinfu/SwiftSoup&quot; target=&quot;_blank&quot;&gt;SwiftSoup&lt;/a&gt;를 사용하지 않고,
+프로토콜을 이용해 추상화하여 사용&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SwiftSoup가 아닌 다른 라이브러리 사용, 구현, 로직 변경 시 기존 코드에 영향이 가지 않도록 구현&lt;/li&gt;
+&lt;li&gt;단위 테스트 작성 시 SwiftSoup의 로직에 의존하지 않는 독립적인 테스트 작성 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;네트워크-중복-요청-문제-해결&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%A4%91%EB%B3%B5-%EC%9A%94%EC%B2%AD-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0&quot; aria-label=&quot;네트워크 중복 요청 문제 해결 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;네트워크 중복 요청 문제 해결&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;[관련 기술: Swift Concurrency, XCTest]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 사용자가 컨텐츠 저장 시 불특정 컨텐츠가 중복으로 저장되는 문제 발생&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청시 중복 터치 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot;&gt;throttle operator&lt;/a&gt;를 이용해 작성된 로직, throttle time interval이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청시 중복 터치 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot; target=&quot;_blank&quot;&gt;throttle operator&lt;/a&gt;를 이용해 작성된 로직, throttle time interval이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;측정&lt;/strong&gt;: XCTest Framework를 이용하여 네트워크 작업 동시 요청에 대한 테스트 코드 작성 후 테스트 케이스 실패 확인 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Swift Concurrency의 비동기 작업의 단위인 Task를 감싸고 있는 객체에 열거형을 이용해 loading, done 상태 부여&lt;/li&gt;
-&lt;li&gt;Task를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시에 객체가 있다면 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현&lt;/li&gt;
+&lt;li&gt;Swift Concurrency의 비동기 작업의 단위인 Task를 감싸고 있는 객체에 열거형을 이용해 inprogress, ready 상태 부여&lt;/li&gt;
+&lt;li&gt;Task를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시에 URL에 해당하는 객체가 있을 때 inprogress 상태라면 &lt;a href=&quot;https://developer.apple.com/documentation/swift/task/value-60t02&quot; target=&quot;_blank&quot;&gt;task.value&lt;/a&gt;에 접근하여 작업이 완료될 때까지 대기하도록 하고,
+ready 상태라면 결과 값에 바로 접근하도록 하여 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현&lt;/li&gt;
 &lt;li&gt;actor type을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 네트워크 작업 동시 요청에 대한 테스트 통과 및 서버 모니터링 결과 컨텐츠 중복 저장 현상 해결&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;개인 기술 블로그 정리&lt;/strong&gt;: &lt;a href=&quot;https://noah-ios.dev/cache-task/&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;기술 블로그 정리&lt;/strong&gt;: &lt;a href=&quot;https://noah-ios.dev/cache-task/&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;협업을-위한-자동화-시스템-구축&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%98%91%EC%97%85%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95&quot; aria-label=&quot;협업을 위한 자동화 시스템 구축 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;협업을 위한 자동화 시스템 구축&lt;/h3&gt;
 &lt;h4 id=&quot;swiftlint-githooks-적용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#swiftlint-githooks-%EC%A0%81%EC%9A%A9&quot; aria-label=&quot;swiftlint githooks 적용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;SwiftLint GitHooks 적용&lt;/h4&gt;
@@ -7782,6 +7810,15 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;li&gt;&lt;strong&gt;개인 기술 블로그 정리&lt;/strong&gt;: &lt;a href=&quot;https://noah-ios.dev/swiftlint-githooks/&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;notion-github-issue-동기화&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#notion-github-issue-%EB%8F%99%EA%B8%B0%ED%99%94&quot; aria-label=&quot;notion github issue 동기화 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Notion GitHub Issue 동기화&lt;/h4&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.44171779141104%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAACE4AAAhOAFFljFgAAACHklEQVQoz42T3WvaYBjF/Wd3t+tRxm4Gg7HBYBTGCqP0Y6V+RLt1tIy20lopg7UOS2s7rbZ1zi5RY4wxMUbje3beRFHYzS5+vCZvnsN5zvMYcYaAxPYkAu4IOK2N8bNxB8s9Q8vOBejEcH6g6+YCeoPmpE7IWjHREREp1OPLKZ4PXKklZMpf0LSiiOUv8Hz/Bgu713iyc4l6J46euw6zv0UhZyo6E3SGAkOKeHTmUFBeGL0MGsYaDDuFYmMfJ5U9pG+OcFQ+RM3Yhtr9BM1K0mXjX0GLDovmGHddH/K3vLAG3+ggCtNRYA/jMBrL6Ohr7CCBtq2w/WRwTtvuDcaCBMIRk84ep6t49LWCfLWJUrmKenOPOcXQYVF7sIV6fhHqxSJML4WuE0fHSZB44FBGxsYEmbRMwcytjoNSA3rfZ8GIrWbpcJNFCk8FhrkCzUzgwdxGy/lM1ym6TcEZ6XAZV7WuifJ9nUP0ZYbAcCQwGoUT7hPLPaFYlMicklg9S0P5rkDTN3BVWUahtETeM+cqSrcPWHj6TLxb+oDzQlFOWU4XAbY3DjKRa9FxVkmMgpvYud7FwWUUdv8jNGMdqr4Ctb3BOwu//rTx4uUr8frNW+TOC6HDcJdCwmeXoqckw5aP4fuHGI6PYbpZihAvy+9qwbeyZbVlivvfGjP3QsGp6Pw5T9DBYP4PIFdsZoSigkOWcc0E5T7Oi/4v0z2cPIu/Ax0ubctXznYAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Havit Share Extension workflow&quot; title=&quot;Havit Share Extension workflow&quot; src=&quot;/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/a6d36/notion-docker-issue-sync.png&quot; srcset=&quot;/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/222b7/notion-docker-issue-sync.png 163w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/ff46a/notion-docker-issue-sync.png 325w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/a6d36/notion-docker-issue-sync.png 650w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/e548f/notion-docker-issue-sync.png 975w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/3c492/notion-docker-issue-sync.png 1300w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/a4fa1/notion-docker-issue-sync.png 5760w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
 &lt;p&gt;&lt;strong&gt;[관련기술: GitHub Actions, Docker, JavaScript]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: GitHub에 익숙하지 않은 팀원들(디자인, 기획)이 개발 진행상황을 확인하기 어려운 문제 발생&lt;/li&gt;
@@ -7789,7 +7826,7 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;개발 작업을 GitHub에 Issue로 등록하면 협업 시 자주사용하는 도구인 Notion에 동기화 되도록 구현&lt;/li&gt;
-&lt;li&gt;Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 Github Actions에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
+&lt;li&gt;Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 GitHub Actions에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 효율적인 이슈 및 태스크 공유로 팀원들과 진행 상황 공유 및 커뮤니케이션에 기여&lt;/li&gt;
@@ -7812,14 +7849,44 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&quot;right&quot;&gt;&lt;strong&gt;position&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;관심사의 분리, 단방향 의존성 구성 / 의존성 그래프 구성 / 개발한 기능에 대한 테스트 코드 작성&lt;/td&gt;
+&lt;td&gt;Issue 조회 화면 개발 / 관심사의 분리, 단방향 의존성 구성 / 의존성 그래프 구성 / 개발한 기능에 대한 테스트 코드 작성&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;MVVM, Clean Architecture, Combine, XCTest&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech stack&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;UIKit, MVVM, Combine, Clean Architecture, XCTest&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h4 id=&quot;issue-조회-화면-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#issue-%EC%A1%B0%ED%9A%8C-%ED%99%94%EB%A9%B4-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;issue 조회 화면 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Issue 조회 화면 개발&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;UI와 관련된 프레임워크를 UI 계층에서만 import 하도록 구성하여 UI 계층과 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발&lt;/li&gt;
+&lt;li&gt;데이터가 생성되는 시점부터 뷰에 그려지는 시점까지의 과정을 하나의 큰 스트림으로 연결하여 데이터를 바인딩하여 이를 통해 데이터의 흐름을 명확히 파악할 수 있도록 설계&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;오류 형태에 따른 예외처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;정상적으로 요청이 처리된 경우&lt;/th&gt;
+&lt;th&gt;재시도 할 수 없는 에러의 경우&lt;/th&gt;
+&lt;th&gt;재시도 할 수 있는 에러의 경우&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&quot;https://github.com/codesquad-members-2023/issue-tracker/assets/63908856/5a2aef93-c2b7-4872-baf7-e81716533152&quot; height=&quot;500px&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://github.com/codesquad-members-2023/issue-tracker/assets/63908856/eceef8a5-d517-460e-b736-eff89fbd727f&quot; height=&quot;500px&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://github.com/codesquad-members-2023/issue-tracker/assets/63908856/986e2c98-15fe-4f2b-b5e7-48d4820a17d9&quot; height=&quot;500px&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;복구 가능한 오류와 복구 불가능한 오류를 구분한 후 오류에 따른 예외처리를 하여&lt;br&gt;
+사용자에게 표시하도록 구현&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4 id=&quot;관심사의-분리-단방향-의존성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B4%80%EC%8B%AC%EC%82%AC%EC%9D%98-%EB%B6%84%EB%A6%AC-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EC%9D%98%EC%A1%B4%EC%84%B1&quot; aria-label=&quot;관심사의 분리 단방향 의존성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;관심사의 분리, 단방향 의존성&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 생성과 사용이 분리되어있지 않아 유지보수가 어려우며, 코드의 복잡도 증가&lt;/li&gt;
@@ -7858,10 +7925,15 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;h4 id=&quot;viewmodel-테스트-코드-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#viewmodel-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;viewmodel 테스트 코드 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ViewModel 테스트 코드 작성&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 눈에 보이는 View(UI)를 직접 실행해서 테스트해야 하는 생산성 저하 요인 존재&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;해결&lt;/strong&gt;: View를 추상화한 모델인 ViewModel을 작성한 후 ViewModel을 테스트하기 위해 ViewModel에 대한 입력 출력 포트를 만든 후에 이에 대한 테스트 코드 작성하여 테스트를 통해 View의 동작 검증&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;View를 추상화한 모델인 ViewModel을 작성하여 UI관련 프레임워크 요소 없이 View에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/codesquad-2023-group04/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerViewModelTests/Issue/IssueListViewModelTest.swift&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;코드 링크&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&quot;communities&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#communities&quot; aria-label=&quot;communities permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Communities&lt;/h1&gt;
+&lt;h1 id=&quot;activities&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#activities&quot; aria-label=&quot;activities permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Activities&lt;/h1&gt;
 &lt;h4 id=&quot;swift-community&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#swift-community&quot; aria-label=&quot;swift community permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Swift Community&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -7870,18 +7942,35 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;li&gt;MultipeerConnectivity를 이용한 사용자 찾기 및 거리 계산: &lt;a href=&quot;https://github.com/letswiftconf/LetSwift/pull/159&quot; target=&quot;_blank&quot;&gt;PR 링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Let’Swift 2023 행사 기획&lt;/li&gt;
+&lt;li&gt;Let’Swift 2023 행사 기획 및 연사섭외&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;society&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#society&quot; aria-label=&quot;society permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Society&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;(21.09 ~ 22.01) IT 창업 동아리 SOPT iOS(Swift) 파트 수료&lt;/li&gt;
 &lt;li&gt;(22.03 ~ 22.06) IT 창업 동아리 SOPT iOS(Swift) 파트 수료&lt;/li&gt;
-&lt;li&gt;(21.01 ~ 21.09) 대학생 프로그래밍 교육 동아리 멋쟁이사자처럼 명지대 대표&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(21.01 ~ 21.09) 대학생 프로그래밍 교육 동아리 멋쟁이사자처럼 명지대 대표&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;멋쟁이 사자처럼 미디엄 인터뷰&lt;/strong&gt;: &lt;a href=&quot;https://medium.com/@mju-likelion/%EB%AA%85%EC%A7%80%EB%8C%80-%EB%A9%8B%EC%82%AC%EC%99%80-%ED%95%A8%EA%BB%98%ED%95%9C-%EC%82%AC%EB%9E%8C%EB%93%A4-2-9%EA%B8%B0-%EB%8C%80%ED%91%9C-%ED%99%8D%EC%8A%B9%ED%98%84-%EB%81%88%EA%B8%B0%EC%99%80-%EC%97%B4%EC%A0%95%EC%9C%BC%EB%A1%9C-ios%EC%9D%98-%EB%81%9D%EC%9D%84-%ED%83%90%EA%B5%AC%ED%95%98%EB%8B%A4-7351d999e74b&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;open-source&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#open-source&quot; aria-label=&quot;open source permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Open Source&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/notion-github-issue-sync&quot; target=&quot;_blank&quot;&gt;Notion GitHub Issue Sync&lt;/a&gt;:&lt;br&gt;
 GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기화하는 Docker Application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;patent&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#patent&quot; aria-label=&quot;patent permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Patent&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;특허 명&lt;/strong&gt;: 지하철 안전 시스템&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;소개&lt;/strong&gt;:&lt;br&gt;
+스크린도어 작업자의 안전을 위한 센서 기반 안전장치 개발 프로젝트
+사고를 경험한 학교 선배를 기리며, 동일한 사고의 재발 방지를 목표로 시작된 프로젝트&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;역할&lt;/strong&gt;: 기획 | 개발&lt;br&gt;
+스크린도어와 안전장치의 센서 감지 등 프로그래밍 부분 담당&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;내용&lt;/strong&gt;:&lt;br&gt;
+PLC를 활용한 지하철 스크린 도어 안전장치 센서 감지 및 스크린도어 연동 기능 구현 및 특허출원&lt;br&gt;
+&lt;a href=&quot;https://drive.google.com/file/d/1cMvXnrLpYHF4Fc3NVA5CnRg2960UZVo1/view?usp=sharing&quot; target=&quot;_blank&quot;&gt;특허공개전문&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;education&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#education&quot; aria-label=&quot;education permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Education&lt;/h1&gt;
 &lt;h3 id=&quot;명지대학교-컴퓨터공학과-졸업예정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AA%85%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90-%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EA%B3%BC-%EC%A1%B8%EC%97%85%EC%98%88%EC%A0%95&quot; aria-label=&quot;명지대학교 컴퓨터공학과 졸업예정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;명지대학교 컴퓨터공학과 졸업예정&lt;/h3&gt;
@@ -7895,16 +7984,12 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 모든 프로그래밍의 기본인 컴퓨팅 리소스 관리도 놓치지 않으며, 본인이 짠 코드를 동료가 바라볼 때의 시각도 함께 고려합니다.&lt;br&gt;
 승현 님은 제가 생각하는 신입 개발자의 이상적인 모습을 많이 갖고 있습니다.&lt;br&gt;
 저에게 채용 결정권이 있다면 승현 님의 채용을 고민하지 않을 것입니다.&lt;/p&gt;
-&lt;p&gt;- &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://sujinnaljin.medium.com/&quot;&gt;From. 수진날진&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; &lt;/p&gt;
-&lt;p&gt;개발자 짱승현님을 추천합니다.&lt;br&gt;
-짱승현님의 이력서를 받으신 그곳 부럽습니다.&lt;br&gt;
-시기하고 질투하고 어쩌구 저쩌구.. 튼 짱승현님을 뽑지 않는다면 그곳의 인사시스템은 문제가 있으며 크게 되긴 글렀다고 느낍니다. 누가 채가기 전에 잡으십셔&lt;/p&gt;
 &lt;div align=&quot;center&quot; class=&quot;final&quot;&gt;
 &lt;p&gt;&lt;em&gt;귀한시간 내주셔서 감사합니다.&lt;/em&gt;&lt;/p&gt;
 &lt;br/&gt;
 &lt;p&gt;&lt;sub&gt;&lt;sup&gt;iOS Engineer, &lt;a href=&quot;https://github.com/noah0316&quot;&gt;@Noah&lt;/a&gt;&lt;/sup&gt;&lt;/sub&gt;&lt;/p&gt;
 &lt;/div&gt;</content:encoded></item><item><title><![CDATA[about]]></title><description><![CDATA[홍승현(Noah) 저는  하는 엔지니어입니다. 끊임없이 학습하고 개선하는 테스트 가능한 구조를 만드는 것에 관심이 많은 객체지향적인 코드를 작성하는 함께 자라는 것에 관심이 많은 토이 프로젝트를 통해 다른 사람들과 꾸준히 협업하는   GitHub…]]></description><link>https://noah0316.github.io/resume-ko/</link><guid isPermaLink="false">https://noah0316.github.io/resume-ko/</guid><pubDate>Sun, 27 Jan 2019 16:21:13 GMT</pubDate><content:encoded>&lt;h1 id=&quot;홍승현noah&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%99%8D%EC%8A%B9%ED%98%84noah&quot; aria-label=&quot;홍승현noah permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;홍승현(Noah)&lt;/h1&gt;
-&lt;div align=&quot;right&quot;&gt;&lt;sub&gt;&lt;i&gt;Last updated: 2023.08.29&lt;/i&gt;&lt;/sub&gt;&lt;/div&gt;
+&lt;div align=&quot;right&quot;&gt;&lt;sub&gt;&lt;i&gt;Last updated: 2023.09.10&lt;/i&gt;&lt;/sub&gt;&lt;/div&gt;
 &lt;div class=&quot;profile&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 600px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAACE4AAAhOAFFljFgAAAFkklEQVQ4yz2Ue0zTVxTHf2zqHC0PS9+0lBb6+lneDIuAgogKQqFSHhYKRQQEIypvn0WrKBBfbGYbouJ8IJqwOOOibpnGGJ3vmekyl8hMHW5hUZNl//2a810p05PcnJOTez/33HPv/TK8UCkzZbwwJRMq0QZMxbEVF3kKc71Tbq4fCzfXeXyeE+lSOZEh3SNKrh2zNPQ4u3qO86bmuu/fDJidPt/P0K5y+D3DF8gCmP8tRKq1C43Z49LkCsjibBDPzYU0JheCCC3E+hTIUpvg2HYS5tJt461Nm+zv1hlLy6YZvFDxuxzDD1MN8KU6ZNgqYW/r5oJViZy5qJ5isgtpjkxJYoWG5Jp4LjZlKVdQsw5dHS5EWpYPvFsfXeXjBwkUfnJgyJwBvkAOvljJqRNSvKaFOSQxplJmyVpik80kFopJIxWTUhRCamEwpRvV3uL8Ik5f6YBmpd0PVdms01UGiyT2IKEY/DARx5fIiCeW4SOBiFRsHMWZs6CQiJGkkmN+pBwliUZaYNAQKxUix2wmfbmDU5dXQLHcOn38IGEYjy8Sj/tA8A0vTyRBkFROgb4NfJUhQsdCECpAnZnFofwUfL++AI/21uFMrYUGO5uhdTZ70zZ0wVTpHJ/qICNURzmFajUEKhUniFBRmCqSQmTh4PmqMs5LhyxaD1YdgcGybEy4V+LFrnK8HNyC14MutFfZSZ5nJ7ayjjPZSrC6YbWTkbPsmCLGBEWciVMmxJIqOYFkrBGBEhGMn6QjkY1BcaoZJysKccWRiydtRXi+vwWvDrmwpaqc+Jn5FG4p5OKLC3F0d/cYI9VFe6Q6HYQRkSTR6UlpMiHcaPQdW4ZIjQ5R8nDULi3FFmsZvipaiD/7avC8rxkPujfgcX8TevtdpC8tJUPuEoz2uj2MPJrlpJFaCCRKEinUpDTEQB5lgMbIQu9rxWKjHuXp2b6RiZ3LF+BqYwGOVRXgRtsKTOyz49+JG3T91ik6PbQZT64c5ph5pY1cfI4FihgjSWP1FJ4ci6hE32Uoo6BTTgHnwqyORlqUDmmsCTVlldiTn4GHzdn4a7gDr94+oMmJCzT56Ev8cXeYY1SpiR7dEjN0uamky80kXfZiJGQVIEyiAKuMQEusAd3xLNYatUjSGtBeV4euJam4UJWBzpJFuHv5GHkeDZPnwRF4fjzlYRo3uccsteuQVlzPFW88SGWbjpN5iR2BQcGIVypwdimLZzYWZ7LmoqO4CJf6t8KSbESkgIcFKSZ6fm3IBzzBvX56Bi/vjIwxVscGZ07VViRYWrmVnYNU39JH2TkliNbGwJY0F+cr0uDZsRAPO0tx51Q/bh7fizitCr43hxaHlf6+P0ovHgxzb372Aa+fdjKJ6bU8NqNsPN9iR90Km3e5dTUObmyjVcvy0JCTgZ4yK0YyMnC7pw1v7pzBUdd6hPBmI3D2DHI1VODtvVHvq5/O4sWtwfHfR/b7FYhh82rt/S0N2Fudy1mrG+mL9Q3oXGmjBusycjdUY6lKjxObGjHx7QlUW/IpKHAWfTzzQ+zqqKV/Hp3jJu+NwnP76PTXu1Y1LV3uqryB9vJC9HV0cQNr13hda2ppc7WN1uRlUUHOIhpyddL1T/uoKCudeIEzafaMD7xbNzq9eHYRv3x92C8OT4d6AxiDIem9fB2osQ30rqrAnkYHBttruD11FZyjuIi297jp6pED9N3+3bS50s75gNysmQEosyzC5OPz7+Xr+eXPp4MYg/69wGYmsfaRnc3jv53dgXPuJnzWtxOD7i5c3ufCxd0duNK/HTpFGHiBs8YFwbz3AnvthHuakWuK8PvKVA2ToIn3J389/w3v8VCLc7Sndez2pWHP6Y5q7of+Fu7GwTbP5d7WseyEKKdfWXw22r064M5In5/x7MIh5j/1J6ao/gjukwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -7952,6 +8037,15 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 &lt;a href=&quot;https://apps.apple.com/kr/app/havit-%EC%BD%98%ED%85%90%EC%B8%A0-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B9%99-%EC%95%B1-%ED%95%B4%EB%B9%97/id1607518014&quot; target=&quot;_blank&quot;&gt;
 &lt;img src=&quot;https://user-images.githubusercontent.com/69136340/165884844-de14d6f9-5e3a-4796-b880-f79d88186b27.png&quot; width=&quot;100px&quot; alt=&quot;download link&quot;&gt;
 &lt;/a&gt;&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 69.93865030674846%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAEJwAABCcAFu8l9tAAACdUlEQVQ4y42UW08TURDH+RD4ggk8+eaH8wP4bOJrtSjgA2yr4aIC8cEQA5RAuQmJhhZIpbQo7NLuhd3t2evZs39nj7RQjejJTs7uzszvzM78swOglaYp/ra6vm7IHaFyDXQTgiBC7biOw2oDlYMGqpUGbDuQgCzmf0wCkySRN+sbuxh58BD3h4YwPDyCwcF7KCjvpU+If5R162sGusFnZxqKb2agTClQlAKKr4vY36vDY4Bjd6CqKlqtFjRNo8pttNs6Li+z55a871WYAQUVqbcdrKx8QqXyBdXDrxT0A9+bHpwroFzeQS6XQz4/iuf5PGZn5+hABWPjoxifeIFCYQq+H9wAs69Wzy0szq9je+sUa6s1gh/jqGpDbwGMBWQeOh2v1+/sIJN8Zpv8LojBb4A8Bgw9wuqKgYW3dcxPN7G4qOFbjaHjAK22j6Oag4vzGOpFiisrwnSB4+mTBI8fCbwrCkIlcoByyhncdTmd2oEX2AgTBsuwcdawEfgcVzaB1BCuk5KBKo2wv5Pg4weOmSLH583fgKCL+QlOmyp2tQ1sNvYxN5liYTqkZBumGeG0HuJSE9BUwLJCCfA9B5yzbL60J/06jMIIboeBBYwqslEuWdjbtqhfjBI5TMOjPZbt8f2QeiakcS6krDjn/cA4jqkalyYu5LPjGjQIW8ohCDkYQUVCiiB3SIenqbitQHT13AfUdR2GYVA/XXieT+94zydIW1lStmcSiSJB4BRhkJJf/FmhHA4lZMm/AEJatk5OmlhaKqFU2sLy8hrKG4eYfBnj1bMQE7kQylhI4OsK7/o59LeDXWuRSR1aZgpTFyQ3QTISvdiffLkXfNltYBAAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Havit Share Extension workflow&quot; title=&quot;Havit Share Extension workflow&quot; src=&quot;/static/344895d4ee09bcaa908762770bd9ae7a/a6d36/havit-share-workflow.png&quot; srcset=&quot;/static/344895d4ee09bcaa908762770bd9ae7a/222b7/havit-share-workflow.png 163w,
+/static/344895d4ee09bcaa908762770bd9ae7a/ff46a/havit-share-workflow.png 325w,
+/static/344895d4ee09bcaa908762770bd9ae7a/a6d36/havit-share-workflow.png 650w,
+/static/344895d4ee09bcaa908762770bd9ae7a/e548f/havit-share-workflow.png 975w,
+/static/344895d4ee09bcaa908762770bd9ae7a/3c492/havit-share-workflow.png 1300w,
+/static/344895d4ee09bcaa908762770bd9ae7a/a0f3c/havit-share-workflow.png 9444w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -7969,43 +8063,62 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 &lt;td&gt;컨텐츠 미리보기 기능 개발 / 네트워크 중복 요청 문제 해결 / 협업을 위한 자동화 시스템 구축&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;MVVM, Swift Concurrency, Link Presentation, Git Hooks, Shell script&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech stack&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;UIKit, MVVM, Swift Concurrency, XCTest, Git Hooks, Shell script&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h4 id=&quot;컨텐츠-미리보기-기능-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%BB%A8%ED%85%90%EC%B8%A0-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0-%EA%B8%B0%EB%8A%A5-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;컨텐츠 미리보기 기능 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;컨텐츠 미리보기 기능 개발&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;[관련 기술: Apple Link Presentation Framework]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[관련 기술: SwiftSoup, 프로토콜을 이용한 의존성 분리]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: Web의 metadata를 가져오기 위해 서버에 크롤링을 요청한 정보에 대해 응답시간 지연 문제 발생&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;배경&lt;/strong&gt;: 서버의 크롤링 라이브러리 성능 문제로, 자체적인 Web의 metadata 접근 필요&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Apple에서 제공하는 LinkPresentation 프레임워크를 WWDC 발표를 먼저 학습한 후에 적용해 Web의 metadata 접근하여 기능구현&lt;/li&gt;
-&lt;li&gt;서버 상태에 의존하지 않고, 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 로드하도록 구현&lt;/li&gt;
-&lt;li&gt;동일한 URL에 대해 이전에 캐시한 데이터를 활용하면 효율적으로 사용할 수 있을 것이라 판단하여 캐싱 메커니즘 구현하여 사용성 향상&lt;/li&gt;
+&lt;li&gt;사용자의 기기 자체에서 Web의 metadata 접근하여 기능구현&lt;/li&gt;
+&lt;li&gt;서버 상태에 의존하지 않고, 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 크롤링하여 구현&lt;/li&gt;
+&lt;li&gt;동일한 URL에 대해 이전에 캐시한 데이터를 활용하면 효율적으로 사용할 수 있을 것이라 판단하여&lt;br&gt;
+캐싱 메커니즘 구현하여 사용성 향상&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 로드하여 매 실행 시 평균 0.8초 절약&lt;br&gt;
-(50회 테스트 평균, 캐싱 되지 않은 컨텐츠 기준)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 로드하여 매 실행 시 평균 0.8초 절약&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;고민한 점&lt;/strong&gt;:
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 488px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.963190184049076%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAABqUlEQVQoz82RPWvCUBSG720arQnVamttWgKtYGlt/4CDa0FB4upQKHQV10B/hwhObh0UO+jgooKi4Aei4heIgyhoUgeFQgdB0nND6CClg3ToC0/enHNv3ns5QRzH6S0WiwlkdjqdOp7nDVAfkQZCSA8gjDExtFgsVO92u3g+n1O9Xo+qVCpUvV6nJEmiqtUqRdbJg9OciNFqI/pBqVQKo980m81MiqJY1+v16Wq1OiPvwMlmszFv74W+6p1O524ymQjD4dBTq9W8zWbTK8uyp1gsetF0On1ttVqfuVxOKhQK79CUG43Gx3g8bsC3NLk5wzA68P1gMHhAAkej0RuEK4PBQGm32ypEy+VSQRBki8fj9kgkchkOh6+i0ehVLBazZzIZnoyPBNA0TRyLorhHalh7KJfLL+DBfr//VCqVnmG+j4lEQkQ7SqexLQvK5/MYTsJwSwwn4GQyidPpNM5ms9/DZ1lWdUEQVPf5fPpQKGQIBAIGh8Nhc7lcRr/fz7rdbiP6A1HoP4rVZngBXAPkBxqA810DjwErcAM4gVst8H7XQJN2q8Otvv0LD0ew6PtQDiwAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;HTMLParser UML&quot; title=&quot;HTMLParser UML&quot; src=&quot;/static/aa86222bec84944a412cf78b360922a7/bd48c/HTMLParser.drawio.png&quot; srcset=&quot;/static/aa86222bec84944a412cf78b360922a7/222b7/HTMLParser.drawio.png 163w,
+/static/aa86222bec84944a412cf78b360922a7/ff46a/HTMLParser.drawio.png 325w,
+/static/aa86222bec84944a412cf78b360922a7/bd48c/HTMLParser.drawio.png 488w&quot; sizes=&quot;(max-width: 488px) 100vw, 488px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;SwiftSoup와 LinkMetadataService의 의존성 분리&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Web의 metadata에 접근하여 URL의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML을 분석하기 위해 사용한 라이브러리인 &lt;a href=&quot;https://github.com/scinfu/SwiftSoup&quot; target=&quot;_blank&quot;&gt;SwiftSoup&lt;/a&gt;를 사용하지 않고,
+프로토콜을 이용해 추상화하여 사용&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SwiftSoup가 아닌 다른 라이브러리 사용, 구현, 로직 변경 시 기존 코드에 영향이 가지 않도록 구현&lt;/li&gt;
+&lt;li&gt;단위 테스트 작성 시 SwiftSoup의 로직에 의존하지 않는 독립적인 테스트 작성 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;네트워크-중복-요청-문제-해결&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%A4%91%EB%B3%B5-%EC%9A%94%EC%B2%AD-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0&quot; aria-label=&quot;네트워크 중복 요청 문제 해결 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;네트워크 중복 요청 문제 해결&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;[관련 기술: Swift Concurrency, XCTest]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 사용자가 컨텐츠 저장 시 불특정 컨텐츠가 중복으로 저장되는 문제 발생&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청시 중복 터치 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot;&gt;throttle operator&lt;/a&gt;를 이용해 작성된 로직, throttle time interval이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청시 중복 터치 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot; target=&quot;_blank&quot;&gt;throttle operator&lt;/a&gt;를 이용해 작성된 로직, throttle time interval이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;측정&lt;/strong&gt;: XCTest Framework를 이용하여 네트워크 작업 동시 요청에 대한 테스트 코드 작성 후 테스트 케이스 실패 확인 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Swift Concurrency의 비동기 작업의 단위인 Task를 감싸고 있는 객체에 열거형을 이용해 loading, done 상태 부여&lt;/li&gt;
-&lt;li&gt;Task를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시에 객체가 있다면 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현&lt;/li&gt;
+&lt;li&gt;Swift Concurrency의 비동기 작업의 단위인 Task를 감싸고 있는 객체에 열거형을 이용해 inprogress, ready 상태 부여&lt;/li&gt;
+&lt;li&gt;Task를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시에 URL에 해당하는 객체가 있을 때 inprogress 상태라면 &lt;a href=&quot;https://developer.apple.com/documentation/swift/task/value-60t02&quot; target=&quot;_blank&quot;&gt;task.value&lt;/a&gt;에 접근하여 작업이 완료될 때까지 대기하도록 하고,
+ready 상태라면 결과 값에 바로 접근하도록 하여 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현&lt;/li&gt;
 &lt;li&gt;actor type을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 네트워크 작업 동시 요청에 대한 테스트 통과 및 서버 모니터링 결과 컨텐츠 중복 저장 현상 해결&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;개인 기술 블로그 정리&lt;/strong&gt;: &lt;a href=&quot;https://noah-ios.dev/cache-task/&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;기술 블로그 정리&lt;/strong&gt;: &lt;a href=&quot;https://noah-ios.dev/cache-task/&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;협업을-위한-자동화-시스템-구축&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%98%91%EC%97%85%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%8F%99%ED%99%94-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95&quot; aria-label=&quot;협업을 위한 자동화 시스템 구축 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;협업을 위한 자동화 시스템 구축&lt;/h3&gt;
 &lt;h4 id=&quot;swiftlint-githooks-적용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#swiftlint-githooks-%EC%A0%81%EC%9A%A9&quot; aria-label=&quot;swiftlint githooks 적용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;SwiftLint GitHooks 적용&lt;/h4&gt;
@@ -8017,6 +8130,15 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 &lt;li&gt;&lt;strong&gt;개인 기술 블로그 정리&lt;/strong&gt;: &lt;a href=&quot;https://noah-ios.dev/swiftlint-githooks/&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;notion-github-issue-동기화&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#notion-github-issue-%EB%8F%99%EA%B8%B0%ED%99%94&quot; aria-label=&quot;notion github issue 동기화 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Notion GitHub Issue 동기화&lt;/h4&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.44171779141104%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAACE4AAAhOAFFljFgAAACHklEQVQoz42T3WvaYBjF/Wd3t+tRxm4Gg7HBYBTGCqP0Y6V+RLt1tIy20lopg7UOS2s7rbZ1zi5RY4wxMUbje3beRFHYzS5+vCZvnsN5zvMYcYaAxPYkAu4IOK2N8bNxB8s9Q8vOBejEcH6g6+YCeoPmpE7IWjHREREp1OPLKZ4PXKklZMpf0LSiiOUv8Hz/Bgu713iyc4l6J46euw6zv0UhZyo6E3SGAkOKeHTmUFBeGL0MGsYaDDuFYmMfJ5U9pG+OcFQ+RM3Yhtr9BM1K0mXjX0GLDovmGHddH/K3vLAG3+ggCtNRYA/jMBrL6Ohr7CCBtq2w/WRwTtvuDcaCBMIRk84ep6t49LWCfLWJUrmKenOPOcXQYVF7sIV6fhHqxSJML4WuE0fHSZB44FBGxsYEmbRMwcytjoNSA3rfZ8GIrWbpcJNFCk8FhrkCzUzgwdxGy/lM1ym6TcEZ6XAZV7WuifJ9nUP0ZYbAcCQwGoUT7hPLPaFYlMicklg9S0P5rkDTN3BVWUahtETeM+cqSrcPWHj6TLxb+oDzQlFOWU4XAbY3DjKRa9FxVkmMgpvYud7FwWUUdv8jNGMdqr4Ctb3BOwu//rTx4uUr8frNW+TOC6HDcJdCwmeXoqckw5aP4fuHGI6PYbpZihAvy+9qwbeyZbVlivvfGjP3QsGp6Pw5T9DBYP4PIFdsZoSigkOWcc0E5T7Oi/4v0z2cPIu/Ax0ubctXznYAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Havit Share Extension workflow&quot; title=&quot;Havit Share Extension workflow&quot; src=&quot;/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/a6d36/notion-docker-issue-sync.png&quot; srcset=&quot;/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/222b7/notion-docker-issue-sync.png 163w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/ff46a/notion-docker-issue-sync.png 325w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/a6d36/notion-docker-issue-sync.png 650w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/e548f/notion-docker-issue-sync.png 975w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/3c492/notion-docker-issue-sync.png 1300w,
+/static/d8bc27e2c3b5f4eeeb20d7b125f5ec46/a4fa1/notion-docker-issue-sync.png 5760w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
 &lt;p&gt;&lt;strong&gt;[관련기술: GitHub Actions, Docker, JavaScript]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: GitHub에 익숙하지 않은 팀원들(디자인, 기획)이 개발 진행상황을 확인하기 어려운 문제 발생&lt;/li&gt;
@@ -8024,7 +8146,7 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;개발 작업을 GitHub에 Issue로 등록하면 협업 시 자주사용하는 도구인 Notion에 동기화 되도록 구현&lt;/li&gt;
-&lt;li&gt;Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 Github Actions에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
+&lt;li&gt;Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 GitHub Actions에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 효율적인 이슈 및 태스크 공유로 팀원들과 진행 상황 공유 및 커뮤니케이션에 기여&lt;/li&gt;
@@ -8047,14 +8169,44 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&quot;right&quot;&gt;&lt;strong&gt;position&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;관심사의 분리, 단방향 의존성 구성 / 의존성 그래프 구성 / 개발한 기능에 대한 테스트 코드 작성&lt;/td&gt;
+&lt;td&gt;Issue 조회 화면 개발 / 관심사의 분리, 단방향 의존성 구성 / 의존성 그래프 구성 / 개발한 기능에 대한 테스트 코드 작성&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;MVVM, Clean Architecture, Combine, XCTest&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;&lt;strong&gt;tech stack&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;UIKit, MVVM, Combine, Clean Architecture, XCTest&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h4 id=&quot;issue-조회-화면-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#issue-%EC%A1%B0%ED%9A%8C-%ED%99%94%EB%A9%B4-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;issue 조회 화면 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Issue 조회 화면 개발&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;UI와 관련된 프레임워크를 UI 계층에서만 import 하도록 구성하여 UI 계층과 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발&lt;/li&gt;
+&lt;li&gt;데이터가 생성되는 시점부터 뷰에 그려지는 시점까지의 과정을 하나의 큰 스트림으로 연결하여 데이터를 바인딩하여 이를 통해 데이터의 흐름을 명확히 파악할 수 있도록 설계&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;오류 형태에 따른 예외처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;정상적으로 요청이 처리된 경우&lt;/th&gt;
+&lt;th&gt;재시도 할 수 없는 에러의 경우&lt;/th&gt;
+&lt;th&gt;재시도 할 수 있는 에러의 경우&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&quot;https://github.com/codesquad-members-2023/issue-tracker/assets/63908856/5a2aef93-c2b7-4872-baf7-e81716533152&quot; height=&quot;500px&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://github.com/codesquad-members-2023/issue-tracker/assets/63908856/eceef8a5-d517-460e-b736-eff89fbd727f&quot; height=&quot;500px&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://github.com/codesquad-members-2023/issue-tracker/assets/63908856/986e2c98-15fe-4f2b-b5e7-48d4820a17d9&quot; height=&quot;500px&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;복구 가능한 오류와 복구 불가능한 오류를 구분한 후 오류에 따른 예외처리를 하여&lt;br&gt;
+사용자에게 표시하도록 구현&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4 id=&quot;관심사의-분리-단방향-의존성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B4%80%EC%8B%AC%EC%82%AC%EC%9D%98-%EB%B6%84%EB%A6%AC-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EC%9D%98%EC%A1%B4%EC%84%B1&quot; aria-label=&quot;관심사의 분리 단방향 의존성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;관심사의 분리, 단방향 의존성&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 생성과 사용이 분리되어있지 않아 유지보수가 어려우며, 코드의 복잡도 증가&lt;/li&gt;
@@ -8093,10 +8245,15 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 &lt;h4 id=&quot;viewmodel-테스트-코드-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#viewmodel-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;viewmodel 테스트 코드 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ViewModel 테스트 코드 작성&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 눈에 보이는 View(UI)를 직접 실행해서 테스트해야 하는 생산성 저하 요인 존재&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;해결&lt;/strong&gt;: View를 추상화한 모델인 ViewModel을 작성한 후 ViewModel을 테스트하기 위해 ViewModel에 대한 입력 출력 포트를 만든 후에 이에 대한 테스트 코드 작성하여 테스트를 통해 View의 동작 검증&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;View를 추상화한 모델인 ViewModel을 작성하여 UI관련 프레임워크 요소 없이 View에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/codesquad-2023-group04/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerViewModelTests/Issue/IssueListViewModelTest.swift&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;코드 링크&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&quot;communities&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#communities&quot; aria-label=&quot;communities permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Communities&lt;/h1&gt;
+&lt;h1 id=&quot;activities&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#activities&quot; aria-label=&quot;activities permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Activities&lt;/h1&gt;
 &lt;h4 id=&quot;swift-community&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#swift-community&quot; aria-label=&quot;swift community permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Swift Community&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -8105,18 +8262,35 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 &lt;li&gt;MultipeerConnectivity를 이용한 사용자 찾기 및 거리 계산: &lt;a href=&quot;https://github.com/letswiftconf/LetSwift/pull/159&quot; target=&quot;_blank&quot;&gt;PR 링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Let’Swift 2023 행사 기획&lt;/li&gt;
+&lt;li&gt;Let’Swift 2023 행사 기획 및 연사섭외&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;society&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#society&quot; aria-label=&quot;society permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Society&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;(21.09 ~ 22.01) IT 창업 동아리 SOPT iOS(Swift) 파트 수료&lt;/li&gt;
 &lt;li&gt;(22.03 ~ 22.06) IT 창업 동아리 SOPT iOS(Swift) 파트 수료&lt;/li&gt;
-&lt;li&gt;(21.01 ~ 21.09) 대학생 프로그래밍 교육 동아리 멋쟁이사자처럼 명지대 대표&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(21.01 ~ 21.09) 대학생 프로그래밍 교육 동아리 멋쟁이사자처럼 명지대 대표&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;멋쟁이 사자처럼 미디엄 인터뷰&lt;/strong&gt;: &lt;a href=&quot;https://medium.com/@mju-likelion/%EB%AA%85%EC%A7%80%EB%8C%80-%EB%A9%8B%EC%82%AC%EC%99%80-%ED%95%A8%EA%BB%98%ED%95%9C-%EC%82%AC%EB%9E%8C%EB%93%A4-2-9%EA%B8%B0-%EB%8C%80%ED%91%9C-%ED%99%8D%EC%8A%B9%ED%98%84-%EB%81%88%EA%B8%B0%EC%99%80-%EC%97%B4%EC%A0%95%EC%9C%BC%EB%A1%9C-ios%EC%9D%98-%EB%81%9D%EC%9D%84-%ED%83%90%EA%B5%AC%ED%95%98%EB%8B%A4-7351d999e74b&quot; target=&quot;_blank&quot;&gt;링크&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;open-source&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#open-source&quot; aria-label=&quot;open source permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Open Source&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/notion-github-issue-sync&quot; target=&quot;_blank&quot;&gt;Notion GitHub Issue Sync&lt;/a&gt;:&lt;br&gt;
 GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기화하는 Docker Application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;patent&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#patent&quot; aria-label=&quot;patent permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Patent&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;특허 명&lt;/strong&gt;: 지하철 안전 시스템&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;소개&lt;/strong&gt;:&lt;br&gt;
+스크린도어 작업자의 안전을 위한 센서 기반 안전장치 개발 프로젝트
+사고를 경험한 학교 선배를 기리며, 동일한 사고의 재발 방지를 목표로 시작된 프로젝트&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;역할&lt;/strong&gt;: 기획 | 개발&lt;br&gt;
+스크린도어와 안전장치의 센서 감지 등 프로그래밍 부분 담당&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;내용&lt;/strong&gt;:&lt;br&gt;
+PLC를 활용한 지하철 스크린 도어 안전장치 센서 감지 및 스크린도어 연동 기능 구현 및 특허출원&lt;br&gt;
+&lt;a href=&quot;https://drive.google.com/file/d/1cMvXnrLpYHF4Fc3NVA5CnRg2960UZVo1/view?usp=sharing&quot; target=&quot;_blank&quot;&gt;특허공개전문&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;education&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#education&quot; aria-label=&quot;education permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Education&lt;/h1&gt;
 &lt;h3 id=&quot;명지대학교-컴퓨터공학과-졸업예정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AA%85%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90-%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EA%B3%BC-%EC%A1%B8%EC%97%85%EC%98%88%EC%A0%95&quot; aria-label=&quot;명지대학교 컴퓨터공학과 졸업예정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;명지대학교 컴퓨터공학과 졸업예정&lt;/h3&gt;
@@ -8130,10 +8304,6 @@ GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기�
 모든 프로그래밍의 기본인 컴퓨팅 리소스 관리도 놓치지 않으며, 본인이 짠 코드를 동료가 바라볼 때의 시각도 함께 고려합니다.&lt;br&gt;
 승현 님은 제가 생각하는 신입 개발자의 이상적인 모습을 많이 갖고 있습니다.&lt;br&gt;
 저에게 채용 결정권이 있다면 승현 님의 채용을 고민하지 않을 것입니다.&lt;/p&gt;
-&lt;p&gt;- &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://sujinnaljin.medium.com/&quot;&gt;From. 수진날진&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; &lt;/p&gt;
-&lt;p&gt;개발자 짱승현님을 추천합니다.&lt;br&gt;
-짱승현님의 이력서를 받으신 그곳 부럽습니다.&lt;br&gt;
-시기하고 질투하고 어쩌구 저쩌구.. 튼 짱승현님을 뽑지 않는다면 그곳의 인사시스템은 문제가 있으며 크게 되긴 글렀다고 느낍니다. 누가 채가기 전에 잡으십셔&lt;/p&gt;
 &lt;div align=&quot;center&quot; class=&quot;final&quot;&gt;
 &lt;p&gt;&lt;em&gt;귀한시간 내주셔서 감사합니다.&lt;/em&gt;&lt;/p&gt;
 &lt;br/&gt;
