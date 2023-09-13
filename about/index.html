@@ -170,8 +170,7 @@
 <p><strong>SwiftSoup와 LinkMetadataService의 의존성 분리</strong></p>
 <ul>
 <li>
-<p>Web의 metadata에 접근하여 URL의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML을 분석하기 위해 사용한 라이브러리인 <a href="https://github.com/scinfu/SwiftSoup" target="_blank">SwiftSoup</a>를 사용하지 않고,
-프로토콜을 이용해 추상화하여 사용</p>
+<p>Web의 metadata에 접근하여 URL의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML을 분석하기 위해 사용한 라이브러리인 <a href="https://github.com/scinfu/SwiftSoup" target="_blank">SwiftSoup</a>를 프로토콜을 통해 한번 더 추상화하여 사용</p>
 <ul>
 <li>SwiftSoup가 아닌 다른 라이브러리 사용, 구현, 로직 변경 시 기존 코드에 영향이 가지 않도록 구현</li>
 <li>단위 테스트 작성 시 SwiftSoup의 로직에 의존하지 않는 독립적인 테스트 작성 가능</li>
@@ -202,8 +201,8 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 <h4 id="swiftlint-githooks-적용" style="position:relative;"><a href="#swiftlint-githooks-%EC%A0%81%EC%9A%A9" aria-label="swiftlint githooks 적용 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SwiftLint GitHooks 적용</h4>
 <p><strong>[관련기술: GitHooks]</strong></p>
 <ul>
-<li><strong>문제</strong>: SwiftLint BuildPhase에 적용 후 실수로 Build를 돌리지 않고, commit을 하는 경우 컨벤션이 검증되지 않은 코드가 merge 될 수 있는 위험 존재</li>
-<li><strong>해결</strong>: 쉘 스크립트를 빠르게 처음부터 학습하여 GitHooks 코드 새로 작성</li>
+<li><strong>문제</strong>: SwiftLint 를 BuildPhase 에만 적용하면, 실수로 Build 를 돌리지 않고, commit 을 하는 경우 컨벤션이 검증되지 않은 코드가 merge 될 수 있는 위험 존재</li>
+<li><strong>해결</strong>: 쉘 스크립트를 빠르게 처음부터 학습하여 GitHooks 에서도 lint 를 적용하는 코드 새로 작성</li>
 <li><strong>결과</strong>: 코드 리뷰 과정에서 코드 스타일에 대한 리뷰를 줄여 코드 리뷰 병목현상 방지에 기여</li>
 <li><strong>기술 블로그 정리</strong>: <a href="https://noah-ios.dev/swiftlint-githooks/" target="_blank">링크</a></li>
 </ul>
@@ -257,17 +256,10 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 </table>
 <h4 id="issue-조회-화면-개발" style="position:relative;"><a href="#issue-%EC%A1%B0%ED%9A%8C-%ED%99%94%EB%A9%B4-%EA%B0%9C%EB%B0%9C" aria-label="issue 조회 화면 개발 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Issue 조회 화면 개발</h4>
 <ul>
-<li>UI를 담당하는 클래스에서 비즈니스 로직에 대한 관심사를 분리함으로<br>
-UI와 관련된 프레임워크를 UI를 담당하는 클래스에서만 import 하도록 구성하여<br>
-UI와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발</li>
-</ul>
-<br>
-<ul>
-<li>데이터가 생성되는 시점부터 뷰에 그려지는 시점까지의 과정을 하나의 큰 스트림으로 연결하여<br>
-데이터를 바인딩하여 이를 통해 데이터의 흐름을 명확히 파악할 수 있도록 설계</li>
-</ul>
-<br>
-<ul>
+<li>UI를 담당하는 클래스에서 비즈니스 로직에 대한 관심사를 분리함<br>
+이를 통해 UI와 관련된 프레임워크를 UI를 담당하는 클래스에서만 import 하도록 구성하여, UI와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발</li>
+<li>데이터가 생성되는 시점부터 뷰에 그려지는 시점까지의 과정을 하나의 큰 스트림으로 연결함<br>
+이를 통해 데이터의 흐름을 명확히 파악할 수 있도록 설계</li>
 <li>
 <p>오류 형태에 따른 예외 처리 구현</p>
 <ul>
@@ -315,12 +307,18 @@ UI와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교
 <h4 id="테스트-코드-작성" style="position:relative;"><a href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1" aria-label="테스트 코드 작성 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>테스트 코드 작성</h4>
 <ul>
 <li>함수, 객체의 관심 범위를 축소하여 변경, 수정 시 다른 요소에 미치는 영향을 최소화하도록 설계</li>
-<li>관심사의 분리를 통해 얻은 함수, 객체 간의 격리 성, 낮은 결합도를 바탕으로 테스트 코드 작성</li>
+<li>관심사의 분리를 통해 얻은 함수, 객체 간의 낮은 결합도를 바탕으로 테스트 코드 작성</li>
 </ul>
 <h4 id="appdelegatetestdouble-구성" style="position:relative;"><a href="#appdelegatetestdouble-%EA%B5%AC%EC%84%B1" aria-label="appdelegatetestdouble 구성 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AppDelegateTestDouble 구성</h4>
 <ul>
 <li><strong>문제</strong>: AppDelegate에서 실행하는 로직이 사이드 이펙트가 되어 단위 테스트에 영향을 끼칠 수 있는 위험 존재</li>
-<li><strong>해결</strong>: 프로젝트의 엔트리 포인트인 main.swift를 구성하여 테스트 타겟 실행 시에 기존의 AppDelegate 대신 불릴 AppDelegateTestDouble을 구성 및 프레임워크가 호출하는 생성자를 private 접근 제어자를 적용하여 휴먼에러를 방지</li>
+<li>
+<p><strong>해결</strong>:   </p>
+<ul>
+<li>프로젝트의 엔트리 포인트인 main.swift를 구성하여 테스트 타겟 실행 시에 기존의 AppDelegate 대신 불릴 AppDelegateTestDouble을 구성 </li>
+<li>프레임워크가 호출하는 생성자는 private 접근 제어자를 적용하여 휴먼에러를 방지</li>
+</ul>
+</li>
 <li><a href="https://github.com/noah0316/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerAppDelegateTests/AppDelegateTests.swift#L11" target="_blank"><strong>코드 링크</strong></a></li>
 </ul>
 <h4 id="viewmodel-테스트-코드-작성" style="position:relative;"><a href="#viewmodel-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1" aria-label="viewmodel 테스트 코드 작성 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ViewModel 테스트 코드 작성</h4>
@@ -329,7 +327,7 @@ UI와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교
 <li>
 <p><strong>해결</strong>: </p>
 <ul>
-<li>View를 추상화한 모델인 ViewModel을 작성하여 UI관련 프레임워크 요소 없이 View에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 </li>
+<li>View의 추상화 모델인 ViewModel을 작성하여 UI관련 프레임워크 요소 없이 View에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 </li>
 </ul>
 </li>
 <li><a href="https://github.com/noah0316/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerViewModelTests/Issue/IssueListViewModelTest.swift" target="_blank"><strong>코드 링크</strong></a></li>
