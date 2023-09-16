@@ -187,8 +187,8 @@
 <p><strong>해결</strong>:</p>
 <ol>
 <li>Swift Concurrency 의 비동기 작업의 단위인 Task 를 감싸고 있는 객체에 열거형을 이용해 inprogress, ready 상태 부여</li>
-<li>Task 를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시의 URL에 해당하는 객체가 있을 때 inprogress 상태라면 <a href="https://developer.apple.com/documentation/swift/task/value-60t02" target="_blank">task.value</a> 에 접근하여 작업이 완료될 때까지 대기하도록 하고,
-ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현</li>
+<li>Task 를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시의 URL에 해당하는 객체가 있을 때 inprogress 상태일 경우 <a href="https://developer.apple.com/documentation/swift/task/value-60t02" target="_blank">task.value</a> 에 접근하여 작업이 완료될 때까지 대기하도록 하고,
+ready 상태일 경우 결괏값에 바로 접근하도록 하여 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현</li>
 <li>actor type 을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현</li>
 </ol>
 </li>
