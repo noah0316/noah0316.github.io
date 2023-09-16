@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 16 Sep 2023 09:45:53 GMT</lastBuildDate><item><title><![CDATA[블로그 이전 공지]]></title><description><![CDATA[https://noah-ios.dev 로 블로그를 이전하였습니다. Swift, 개발, 경험과 관련된 이야기를 할 예정입니다. 많은 관심 부탁드립니다 감사합니다 🙇‍♂️🙇]]></description><link>https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</link><guid isPermaLink="false">https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</guid><pubDate>Sat, 26 Aug 2023 16:08:57 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://noah-ios.dev&quot;&gt;https://noah-ios.dev&lt;/a&gt; 로 블로그를 이전하였습니다.&lt;br&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Noah's Dev Log]]></title><description><![CDATA[Blog posted about Noah's Dev Log]]></description><link>https://noah0316.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 16 Sep 2023 10:11:06 GMT</lastBuildDate><item><title><![CDATA[블로그 이전 공지]]></title><description><![CDATA[https://noah-ios.dev 로 블로그를 이전하였습니다. Swift, 개발, 경험과 관련된 이야기를 할 예정입니다. 많은 관심 부탁드립니다 감사합니다 🙇‍♂️🙇]]></description><link>https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</link><guid isPermaLink="false">https://noah0316.github.io/Tools/2023-08-26-change-blog-platform/</guid><pubDate>Sat, 26 Aug 2023 16:08:57 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://noah-ios.dev&quot;&gt;https://noah-ios.dev&lt;/a&gt; 로 블로그를 이전하였습니다.&lt;br&gt;
 Swift, 개발, 경험과 관련된 이야기를 할 예정입니다. 많은 관심 부탁드립니다 감사합니다 🙇‍♂️🙇&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Apple의 과거 Process memory 관리 모델을 알아보자]]></title><description><![CDATA[운영체제가 프로세스별로 메모리를 관리하는 방식을 이해하기 위한 학습의 일환으로 Apple의 과거 Macintosh Operating System의 메모리 관리 모델을 현대 프로세스 메모리 관리 모델과 비교해가며, stack, heap, text…]]></description><link>https://noah0316.github.io/Computer Science/2023-01-13-classic-macos-memory-management/</link><guid isPermaLink="false">https://noah0316.github.io/Computer Science/2023-01-13-classic-macos-memory-management/</guid><pubDate>Fri, 13 Jan 2023 00:01:14 GMT</pubDate><content:encoded>&lt;p&gt;운영체제가 프로세스별로 메모리를 관리하는 방식을 이해하기 위한 학습의 일환으로 Apple의 과거 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EB%A7%A5_OS&quot;&gt;Macintosh Operating System&lt;/a&gt;의 메모리 관리 모델을 현대 프로세스 메모리 관리 모델과 비교해가며, stack, heap, text, 글로벌 변수 GVAR, BSS의 역할에 대해 정리해보자.&lt;/p&gt;
 &lt;h1 id=&quot;inside-macintosh-memory&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#inside-macintosh-memory&quot; aria-label=&quot;inside macintosh memory permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Inside Macintosh: Memory&lt;/h1&gt;
 &lt;h2 id=&quot;classic-mac-os-memory-management&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#classic-mac-os-memory-management&quot; aria-label=&quot;classic mac os memory management permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Classic Mac OS memory management&lt;/h2&gt;
@@ -7751,14 +7751,14 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;h4 id=&quot;컨텐츠-미리보기-기능-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%BB%A8%ED%85%90%EC%B8%A0-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0-%EA%B8%B0%EB%8A%A5-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;컨텐츠 미리보기 기능 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;컨텐츠 미리보기 기능 개발&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;[관련 기술: SwiftSoup, 프로토콜을 이용한 의존성 분리]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: Web의 metadata를 가져오기 위해 서버에 크롤링을 요청한 정보에 대해 응답시간 지연 문제 발생&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;배경&lt;/strong&gt;: 서버의 크롤링 라이브러리 성능 문제로, 자체적인 Web의 metadata 접근 필요&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: Web 의 metadata 를 가져오기 위해 서버에 크롤링을 요청한 정보에 대해 응답시간 지연 문제 발생&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;배경&lt;/strong&gt;: 서버의 크롤링 라이브러리 성능 문제로, 자체적인 Web 의 metadata 접근 필요&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;사용자의 기기 자체에서 Web의 metadata 접근하여 기능구현&lt;/li&gt;
+&lt;li&gt;사용자의 기기 자체에서 Web 의 metadata 에 접근하여 기능구현&lt;/li&gt;
 &lt;li&gt;서버 상태에 의존하지 않고, 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 크롤링하여 구현&lt;/li&gt;
-&lt;li&gt;동일한 URL에 대해 이전에 캐시 한 데이터를 활용하면 효율적으로 사용할 수 있을 것으로 판단하여&lt;br&gt;
+&lt;li&gt;동일한 URL 에 대해 이전에 캐시 한 데이터를 활용하면 효율적으로 사용할 수 있을 것으로 판단하여&lt;br&gt;
 캐싱 메커니즘 구현하여 사용성 향상&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
@@ -7774,10 +7774,10 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;p&gt;&lt;strong&gt;SwiftSoup와 LinkMetadataService의 의존성 분리&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Web의 metadata에 접근하여 URL의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML을 분석하기 위해 사용한 라이브러리인 &lt;a href=&quot;https://github.com/scinfu/SwiftSoup&quot; target=&quot;_blank&quot;&gt;SwiftSoup&lt;/a&gt;를 프로토콜을 통해 한번 더 추상화하여 사용&lt;/p&gt;
+&lt;p&gt;Web 의 metadata 에 접근하여 URL 의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML 을 분석하기 위해 사용한 라이브러리인 &lt;a href=&quot;https://github.com/scinfu/SwiftSoup&quot; target=&quot;_blank&quot;&gt;SwiftSoup&lt;/a&gt; 를 프로토콜을 통해 한번 더 추상화하여 사용&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;SwiftSoup가 아닌 다른 라이브러리 사용, 구현, 로직 변경 시 기존 코드에 영향이 가지 않도록 구현&lt;/li&gt;
-&lt;li&gt;단위 테스트 작성 시 SwiftSoup의 로직에 의존하지 않는 독립적인 테스트 작성 가능&lt;/li&gt;
+&lt;li&gt;SwiftSoup 가 아닌 다른 라이브러리 사용, 구현, 로직 변경 시 기존 코드에 영향이 가지 않도록 구현&lt;/li&gt;
+&lt;li&gt;단위 테스트 작성 시 SwiftSoup 의 로직에 의존하지 않는 독립적인 테스트 작성 가능&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -7785,15 +7785,15 @@ myCar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;power &lt;spa
 &lt;p&gt;&lt;strong&gt;[관련 기술: Swift Concurrency, XCTest]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 사용자가 컨텐츠 저장 시 불특정 컨텐츠가 중복으로 저장되는 문제 발생&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청 시 중복 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot; target=&quot;_blank&quot;&gt;throttle operator&lt;/a&gt;를 이용해 작성된 로직, throttle time interval이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;측정&lt;/strong&gt;: XCTest Framework를 이용하여 네트워크 작업 중복 요청에 대한 테스트 코드 작성 후 테스트 케이스 실패 확인 &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청 시 중복 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot; target=&quot;_blank&quot;&gt;throttle operator&lt;/a&gt; 를 이용해 작성된 로직, throttle time interval 이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;측정&lt;/strong&gt;: XCTest Framework 를 이용하여 네트워크 작업 중복 요청에 대한 테스트 코드 작성 후 테스트 케이스 실패 확인 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Swift Concurrency의 비동기 작업의 단위인 Task를 감싸고 있는 객체에 열거형을 이용해 inprogress, ready 상태 부여&lt;/li&gt;
-&lt;li&gt;Task를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시의 URL에 해당하는 객체가 있을 때 inprogress 상태라면 &lt;a href=&quot;https://developer.apple.com/documentation/swift/task/value-60t02&quot; target=&quot;_blank&quot;&gt;task.value&lt;/a&gt;에 접근하여 작업이 완료될 때까지 대기하도록 하고,
+&lt;li&gt;Swift Concurrency 의 비동기 작업의 단위인 Task 를 감싸고 있는 객체에 열거형을 이용해 inprogress, ready 상태 부여&lt;/li&gt;
+&lt;li&gt;Task 를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시의 URL에 해당하는 객체가 있을 때 inprogress 상태라면 &lt;a href=&quot;https://developer.apple.com/documentation/swift/task/value-60t02&quot; target=&quot;_blank&quot;&gt;task.value&lt;/a&gt; 에 접근하여 작업이 완료될 때까지 대기하도록 하고,
 ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현&lt;/li&gt;
-&lt;li&gt;actor type을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현&lt;/li&gt;
+&lt;li&gt;actor type 을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 네트워크 작업 중복 요청에 대한 테스트 통과 및 서버 모니터링 결과 컨텐츠 중복 저장 현상 해결
@@ -7822,12 +7822,12 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
     &lt;/span&gt;
 &lt;p&gt;&lt;strong&gt;[관련기술: GitHub Actions, Docker, JavaScript]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: GitHub에 익숙하지 않은 팀원들(디자인, 기획팀원)이 개발 진행 상황을 확인하기 어려운 문제 발생&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: GitHub 에 익숙하지 않은 팀원들(디자인, 기획팀원)이 개발 진행 상황을 확인하기 어려운 문제 발생&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;개발 작업을 GitHub에 Issue로 등록하면 협업 시 자주 사용하는 도구인 Notion에 동기화되도록 구현&lt;/li&gt;
-&lt;li&gt;Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 GitHub Actions에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
+&lt;li&gt;개발 작업을 GitHub 에 Issue 로 등록하면 협업 시 자주 사용하는 도구인 Notion 에 동기화되도록 구현&lt;/li&gt;
+&lt;li&gt;Node-JS application 을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 GitHub Actions 에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 효율적인 이슈 및 태스크 공유로 팀원들과 진행 상황 공유 및 커뮤니케이션에 기여&lt;/li&gt;
@@ -7860,8 +7860,8 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;/table&gt;
 &lt;h4 id=&quot;issue-조회-화면-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#issue-%EC%A1%B0%ED%9A%8C-%ED%99%94%EB%A9%B4-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;issue 조회 화면 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Issue 조회 화면 개발&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;UI를 담당하는 클래스에서 비즈니스 로직에 대한 관심사를 분리함&lt;br&gt;
-이를 통해 UI와 관련된 프레임워크를 UI를 담당하는 클래스에서만 import 하도록 구성하여, UI와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발&lt;/li&gt;
+&lt;li&gt;UI 를 담당하는 클래스에서 비즈니스 로직에 대한 관심사를 분리함&lt;br&gt;
+이를 통해 UI 와 관련된 프레임워크를 UI 를 담당하는 클래스에서만 import 하도록 구성하여, UI 와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발&lt;/li&gt;
 &lt;li&gt;데이터가 생성되는 시점부터 뷰에 그려지는 시점까지의 과정을 하나의 큰 스트림으로 연결함&lt;br&gt;
 이를 통해 데이터의 흐름을 명확히 파악할 수 있도록 설계&lt;/li&gt;
 &lt;li&gt;
@@ -7918,7 +7918,7 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 /static/fbb46307392814c417285dea10dc5cef/cdfac/composition-root.png 5146w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;해결&lt;/strong&gt;: 컴파일 타임에 앱에 필요한 의존성을 구성할 수 있도록 앱의 시작 점이라고 할 수 있는 AppDelegate에서 앱의 의존성 트리인 Composition Root를 구성하여 객체의 생성과 사용 분리&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;해결&lt;/strong&gt;: 컴파일 타임에 앱에 필요한 의존성을 구성할 수 있도록 앱의 시작 점이라고 할 수 있는 AppDelegate 에서 앱의 의존성 트리인 Composition Root 를 구성하여 객체의 생성과 사용 분리&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/issue-tracker/blob/a922337042e93e222b7ab1b08e7f4023dbd5aacb/iOS/IssueTracker/IssueTracker/Application/AppDelegate.swift#L14&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;코드 링크&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;테스트-코드-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;테스트 코드 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;테스트 코드 작성&lt;/h4&gt;
@@ -7928,11 +7928,11 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;/ul&gt;
 &lt;h4 id=&quot;appdelegatetestdouble-구성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#appdelegatetestdouble-%EA%B5%AC%EC%84%B1&quot; aria-label=&quot;appdelegatetestdouble 구성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;AppDelegateTestDouble 구성&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: AppDelegate에서 실행하는 로직이 사이드 이펙트가 되어 단위 테스트에 영향을 끼칠 수 있는 위험 존재&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: AppDelegate 에서 실행하는 로직이 사이드 이펙트가 되어 단위 테스트에 영향을 끼칠 수 있는 위험 존재&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:   &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;프로젝트의 엔트리 포인트인 main.swift를 구성하여 테스트 타겟 실행 시에 기존의 AppDelegate 대신 불릴 AppDelegateTestDouble을 구성 &lt;/li&gt;
+&lt;li&gt;프로젝트의 엔트리 포인트인 main.swift 를 구성하여 테스트 타겟 실행 시에 기존의 AppDelegate 대신 불릴 AppDelegateTestDouble 을 구성 &lt;/li&gt;
 &lt;li&gt;프레임워크가 호출하는 생성자는 private 접근 제어자를 적용하여 휴먼에러를 방지&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -7940,11 +7940,11 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;/ul&gt;
 &lt;h4 id=&quot;viewmodel-테스트-코드-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#viewmodel-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;viewmodel 테스트 코드 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ViewModel 테스트 코드 작성&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 눈에 보이는 View(UI)를 직접 실행해서 테스트해야 하는 생산성 저하 요인 존재&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 눈에 보이는 View(UI) 를 직접 실행해서 테스트해야 하는 생산성 저하 요인 존재&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;View의 추상화 모델인 ViewModel을 작성하여 UI관련 프레임워크 요소 없이 View에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 &lt;/li&gt;
+&lt;li&gt;View 의 추상화 모델인 ViewModel 을 작성하여 UI 관련 프레임워크 요소 없이 View 에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerViewModelTests/Issue/IssueListViewModelTest.swift&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;코드 링크&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
@@ -7955,7 +7955,7 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;https://letswift.kr/2022/&quot; target=&quot;_blank&quot;&gt;Let’Swift 2022&lt;/a&gt; 공식 앱 개발&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;MultipeerConnectivity를 이용한 사용자 찾기 및 거리 계산: &lt;a href=&quot;https://github.com/letswiftconf/LetSwift/pull/159&quot; target=&quot;_blank&quot;&gt;PR 링크&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;MultipeerConnectivity 를 이용한 사용자 찾기 및 거리 계산: &lt;a href=&quot;https://github.com/letswiftconf/LetSwift/pull/159&quot; target=&quot;_blank&quot;&gt;PR 링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Let’Swift 2023 행사 기획 및 연사섭외&lt;/li&gt;
@@ -7974,7 +7974,7 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;h4 id=&quot;open-source&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#open-source&quot; aria-label=&quot;open source permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Open Source&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/notion-github-issue-sync&quot; target=&quot;_blank&quot;&gt;Notion GitHub Issue Sync&lt;/a&gt;:&lt;br&gt;
-GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기화하는 Docker Application&lt;/li&gt;
+GitHub Actions 를 사용해 GitHub issue 와 Notion 데이터베이스를 동기화하는 Docker Application&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;patent&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#patent&quot; aria-label=&quot;patent permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Patent&lt;/h4&gt;
 &lt;ul&gt;
@@ -8087,14 +8087,14 @@ PLC를 활용한 지하철 스크린 도어 안전장치 센서 감지 및 스�
 &lt;h4 id=&quot;컨텐츠-미리보기-기능-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%BB%A8%ED%85%90%EC%B8%A0-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0-%EA%B8%B0%EB%8A%A5-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;컨텐츠 미리보기 기능 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;컨텐츠 미리보기 기능 개발&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;[관련 기술: SwiftSoup, 프로토콜을 이용한 의존성 분리]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: Web의 metadata를 가져오기 위해 서버에 크롤링을 요청한 정보에 대해 응답시간 지연 문제 발생&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;배경&lt;/strong&gt;: 서버의 크롤링 라이브러리 성능 문제로, 자체적인 Web의 metadata 접근 필요&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: Web 의 metadata 를 가져오기 위해 서버에 크롤링을 요청한 정보에 대해 응답시간 지연 문제 발생&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;배경&lt;/strong&gt;: 서버의 크롤링 라이브러리 성능 문제로, 자체적인 Web 의 metadata 접근 필요&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;사용자의 기기 자체에서 Web의 metadata 접근하여 기능구현&lt;/li&gt;
+&lt;li&gt;사용자의 기기 자체에서 Web 의 metadata 에 접근하여 기능구현&lt;/li&gt;
 &lt;li&gt;서버 상태에 의존하지 않고, 컨텐츠 미리보기에 들어가는 미디어를 기기 자체에서 크롤링하여 구현&lt;/li&gt;
-&lt;li&gt;동일한 URL에 대해 이전에 캐시 한 데이터를 활용하면 효율적으로 사용할 수 있을 것으로 판단하여&lt;br&gt;
+&lt;li&gt;동일한 URL 에 대해 이전에 캐시 한 데이터를 활용하면 효율적으로 사용할 수 있을 것으로 판단하여&lt;br&gt;
 캐싱 메커니즘 구현하여 사용성 향상&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
@@ -8110,10 +8110,10 @@ PLC를 활용한 지하철 스크린 도어 안전장치 센서 감지 및 스�
 &lt;p&gt;&lt;strong&gt;SwiftSoup와 LinkMetadataService의 의존성 분리&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Web의 metadata에 접근하여 URL의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML을 분석하기 위해 사용한 라이브러리인 &lt;a href=&quot;https://github.com/scinfu/SwiftSoup&quot; target=&quot;_blank&quot;&gt;SwiftSoup&lt;/a&gt;를 프로토콜을 통해 한번 더 추상화하여 사용&lt;/p&gt;
+&lt;p&gt;Web 의 metadata 에 접근하여 URL 의 정보를 가져오는 역할을 가진 LinkMetadataService 객체에서 HTML 을 분석하기 위해 사용한 라이브러리인 &lt;a href=&quot;https://github.com/scinfu/SwiftSoup&quot; target=&quot;_blank&quot;&gt;SwiftSoup&lt;/a&gt; 를 프로토콜을 통해 한번 더 추상화하여 사용&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;SwiftSoup가 아닌 다른 라이브러리 사용, 구현, 로직 변경 시 기존 코드에 영향이 가지 않도록 구현&lt;/li&gt;
-&lt;li&gt;단위 테스트 작성 시 SwiftSoup의 로직에 의존하지 않는 독립적인 테스트 작성 가능&lt;/li&gt;
+&lt;li&gt;SwiftSoup 가 아닌 다른 라이브러리 사용, 구현, 로직 변경 시 기존 코드에 영향이 가지 않도록 구현&lt;/li&gt;
+&lt;li&gt;단위 테스트 작성 시 SwiftSoup 의 로직에 의존하지 않는 독립적인 테스트 작성 가능&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -8121,15 +8121,15 @@ PLC를 활용한 지하철 스크린 도어 안전장치 센서 감지 및 스�
 &lt;p&gt;&lt;strong&gt;[관련 기술: Swift Concurrency, XCTest]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 사용자가 컨텐츠 저장 시 불특정 컨텐츠가 중복으로 저장되는 문제 발생&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청 시 중복 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot; target=&quot;_blank&quot;&gt;throttle operator&lt;/a&gt;를 이용해 작성된 로직, throttle time interval이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;측정&lt;/strong&gt;: XCTest Framework를 이용하여 네트워크 작업 중복 요청에 대한 테스트 코드 작성 후 테스트 케이스 실패 확인 &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;원인&lt;/strong&gt;: 콘텐츠 저장 네트워크 요청 시 중복 요청에 대해 &lt;a href=&quot;https://developer.apple.com/documentation/combine/fail/throttle(for:scheduler:latest:)&quot; target=&quot;_blank&quot;&gt;throttle operator&lt;/a&gt; 를 이용해 작성된 로직, throttle time interval 이 초과할 경우 컨텐츠가 중복으로 저장&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;측정&lt;/strong&gt;: XCTest Framework 를 이용하여 네트워크 작업 중복 요청에 대한 테스트 코드 작성 후 테스트 케이스 실패 확인 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Swift Concurrency의 비동기 작업의 단위인 Task를 감싸고 있는 객체에 열거형을 이용해 inprogress, ready 상태 부여&lt;/li&gt;
-&lt;li&gt;Task를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시의 URL에 해당하는 객체가 있을 때 inprogress 상태라면 &lt;a href=&quot;https://developer.apple.com/documentation/swift/task/value-60t02&quot; target=&quot;_blank&quot;&gt;task.value&lt;/a&gt;에 접근하여 작업이 완료될 때까지 대기하도록 하고,
+&lt;li&gt;Swift Concurrency 의 비동기 작업의 단위인 Task 를 감싸고 있는 객체에 열거형을 이용해 inprogress, ready 상태 부여&lt;/li&gt;
+&lt;li&gt;Task 를 감싸고 있는 객체를 메모리 캐시에 저장하고, 캐시의 URL에 해당하는 객체가 있을 때 inprogress 상태라면 &lt;a href=&quot;https://developer.apple.com/documentation/swift/task/value-60t02&quot; target=&quot;_blank&quot;&gt;task.value&lt;/a&gt; 에 접근하여 작업이 완료될 때까지 대기하도록 하고,
 ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트워크 요청을 방지하고, 작업이 끝나면 캐시를 비우도록 구현&lt;/li&gt;
-&lt;li&gt;actor type을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현&lt;/li&gt;
+&lt;li&gt;actor type 을 이용해 여러 스레드에서 동시에 접근하지 못하도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 네트워크 작업 중복 요청에 대한 테스트 통과 및 서버 모니터링 결과 컨텐츠 중복 저장 현상 해결
@@ -8158,12 +8158,12 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
     &lt;/span&gt;
 &lt;p&gt;&lt;strong&gt;[관련기술: GitHub Actions, Docker, JavaScript]&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: GitHub에 익숙하지 않은 팀원들(디자인, 기획팀원)이 개발 진행 상황을 확인하기 어려운 문제 발생&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: GitHub 에 익숙하지 않은 팀원들(디자인, 기획팀원)이 개발 진행 상황을 확인하기 어려운 문제 발생&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;개발 작업을 GitHub에 Issue로 등록하면 협업 시 자주 사용하는 도구인 Notion에 동기화되도록 구현&lt;/li&gt;
-&lt;li&gt;Node-JS application을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 GitHub Actions에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
+&lt;li&gt;개발 작업을 GitHub 에 Issue 로 등록하면 협업 시 자주 사용하는 도구인 Notion 에 동기화되도록 구현&lt;/li&gt;
+&lt;li&gt;Node-JS application 을 도커라이징하여 Notion 데이터베이스와 GitHub Issue 연동을 GitHub Actions 에서 개발자가 쉽게 구성할 수 있도록 구현&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;결과&lt;/strong&gt;: 효율적인 이슈 및 태스크 공유로 팀원들과 진행 상황 공유 및 커뮤니케이션에 기여&lt;/li&gt;
@@ -8196,8 +8196,8 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;/table&gt;
 &lt;h4 id=&quot;issue-조회-화면-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#issue-%EC%A1%B0%ED%9A%8C-%ED%99%94%EB%A9%B4-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;issue 조회 화면 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Issue 조회 화면 개발&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;UI를 담당하는 클래스에서 비즈니스 로직에 대한 관심사를 분리함&lt;br&gt;
-이를 통해 UI와 관련된 프레임워크를 UI를 담당하는 클래스에서만 import 하도록 구성하여, UI와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발&lt;/li&gt;
+&lt;li&gt;UI 를 담당하는 클래스에서 비즈니스 로직에 대한 관심사를 분리함&lt;br&gt;
+이를 통해 UI 와 관련된 프레임워크를 UI 를 담당하는 클래스에서만 import 하도록 구성하여, UI 와 관련된 코드 응집성 향상 및 다른 프레임워크로 쉽게 교체할 수 있도록 개발&lt;/li&gt;
 &lt;li&gt;데이터가 생성되는 시점부터 뷰에 그려지는 시점까지의 과정을 하나의 큰 스트림으로 연결함&lt;br&gt;
 이를 통해 데이터의 흐름을 명확히 파악할 수 있도록 설계&lt;/li&gt;
 &lt;li&gt;
@@ -8254,7 +8254,7 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 /static/fbb46307392814c417285dea10dc5cef/cdfac/composition-root.png 5146w&quot; sizes=&quot;(max-width: 650px) 100vw, 650px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
     &lt;/span&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;해결&lt;/strong&gt;: 컴파일 타임에 앱에 필요한 의존성을 구성할 수 있도록 앱의 시작 점이라고 할 수 있는 AppDelegate에서 앱의 의존성 트리인 Composition Root를 구성하여 객체의 생성과 사용 분리&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;해결&lt;/strong&gt;: 컴파일 타임에 앱에 필요한 의존성을 구성할 수 있도록 앱의 시작 점이라고 할 수 있는 AppDelegate 에서 앱의 의존성 트리인 Composition Root 를 구성하여 객체의 생성과 사용 분리&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/issue-tracker/blob/a922337042e93e222b7ab1b08e7f4023dbd5aacb/iOS/IssueTracker/IssueTracker/Application/AppDelegate.swift#L14&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;코드 링크&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;테스트-코드-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;테스트 코드 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;테스트 코드 작성&lt;/h4&gt;
@@ -8264,11 +8264,11 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;/ul&gt;
 &lt;h4 id=&quot;appdelegatetestdouble-구성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#appdelegatetestdouble-%EA%B5%AC%EC%84%B1&quot; aria-label=&quot;appdelegatetestdouble 구성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;AppDelegateTestDouble 구성&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: AppDelegate에서 실행하는 로직이 사이드 이펙트가 되어 단위 테스트에 영향을 끼칠 수 있는 위험 존재&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: AppDelegate 에서 실행하는 로직이 사이드 이펙트가 되어 단위 테스트에 영향을 끼칠 수 있는 위험 존재&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;:   &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;프로젝트의 엔트리 포인트인 main.swift를 구성하여 테스트 타겟 실행 시에 기존의 AppDelegate 대신 불릴 AppDelegateTestDouble을 구성 &lt;/li&gt;
+&lt;li&gt;프로젝트의 엔트리 포인트인 main.swift 를 구성하여 테스트 타겟 실행 시에 기존의 AppDelegate 대신 불릴 AppDelegateTestDouble 을 구성 &lt;/li&gt;
 &lt;li&gt;프레임워크가 호출하는 생성자는 private 접근 제어자를 적용하여 휴먼에러를 방지&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -8276,11 +8276,11 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;/ul&gt;
 &lt;h4 id=&quot;viewmodel-테스트-코드-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#viewmodel-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;viewmodel 테스트 코드 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ViewModel 테스트 코드 작성&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 눈에 보이는 View(UI)를 직접 실행해서 테스트해야 하는 생산성 저하 요인 존재&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt;: 눈에 보이는 View(UI) 를 직접 실행해서 테스트해야 하는 생산성 저하 요인 존재&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;해결&lt;/strong&gt;: &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;View의 추상화 모델인 ViewModel을 작성하여 UI관련 프레임워크 요소 없이 View에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 &lt;/li&gt;
+&lt;li&gt;View 의 추상화 모델인 ViewModel 을 작성하여 UI 관련 프레임워크 요소 없이 View 에 보여질 데이터를 단독으로 단위 테스트하여 확인 및 검증 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/issue-tracker/blob/team-04/iOS/IssueTracker/IssueTrackerTests/IssueTrackerViewModelTests/Issue/IssueListViewModelTest.swift&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;코드 링크&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
@@ -8291,7 +8291,7 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;https://letswift.kr/2022/&quot; target=&quot;_blank&quot;&gt;Let’Swift 2022&lt;/a&gt; 공식 앱 개발&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;MultipeerConnectivity를 이용한 사용자 찾기 및 거리 계산: &lt;a href=&quot;https://github.com/letswiftconf/LetSwift/pull/159&quot; target=&quot;_blank&quot;&gt;PR 링크&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;MultipeerConnectivity 를 이용한 사용자 찾기 및 거리 계산: &lt;a href=&quot;https://github.com/letswiftconf/LetSwift/pull/159&quot; target=&quot;_blank&quot;&gt;PR 링크&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Let’Swift 2023 행사 기획 및 연사섭외&lt;/li&gt;
@@ -8310,7 +8310,7 @@ ready 상태라면 결괏값에 바로 접근하도록 하여 중복된 네트�
 &lt;h4 id=&quot;open-source&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#open-source&quot; aria-label=&quot;open source permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Open Source&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/noah0316/notion-github-issue-sync&quot; target=&quot;_blank&quot;&gt;Notion GitHub Issue Sync&lt;/a&gt;:&lt;br&gt;
-GitHub Actions를 사용해 GitHub issue와 Notion 데이터베이스를 동기화하는 Docker Application&lt;/li&gt;
+GitHub Actions 를 사용해 GitHub issue 와 Notion 데이터베이스를 동기화하는 Docker Application&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;patent&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#patent&quot; aria-label=&quot;patent permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Patent&lt;/h4&gt;
 &lt;ul&gt;
